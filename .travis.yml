@@ -1,0 +1,27 @@
+dist: bionic
+
+language: php
+
+php:
+  - 7.4.2
+services:
+  - mysql
+
+cache:
+  directories:
+    - node_modules
+    - vendor
+
+env:
+    - DATABASE_URI="mysql://root:unittest@localhost/blog"
+
+before_script:
+  - cp .env.travis .env
+  - sudo mysql -e 'create database blog;'
+  - composer self-update
+  - composer install --no-interaction
+  - php artisan key:generate
+  - php artisan migrate
+
+script:
+  - vendor/bin/phpunit
