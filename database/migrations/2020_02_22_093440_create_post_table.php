@@ -16,7 +16,7 @@ class CreatePostTable extends Migration
         Schema::create('post', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->charset = 'utf8mb4';
-            $table->collation = 'utf8mb4_0900_ai_ci';
+            $table->collation = 'utf8mb4_general_ci';
             $table->increments('uuid')->unsigned();
             $table->string('title', 50);
             $table->string('content', 1000);

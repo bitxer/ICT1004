@@ -16,7 +16,7 @@ class CreateUserTable extends Migration
         Schema::create('user', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->charset = 'utf8mb4';
-            $table->collation = 'utf8mb4_0900_ai_ci';
+            $table->collation = 'utf8mb4_general_ci';
             $table->increments('uuid')->unsigned();
             $table->text('loginid');
             $table->text('password');

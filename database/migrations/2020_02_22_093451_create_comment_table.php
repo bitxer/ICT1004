@@ -16,7 +16,7 @@ class CreateCommentTable extends Migration
         Schema::create('comment', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->charset = 'utf8mb4';
-            $table->collation = 'utf8mb4_0900_ai_ci';
+            $table->collation = 'utf8mb4_general_ci';
             $table->increments('uuid')->unsigned();
             $table->string('comment', 200);
             $table->integer('usr_uuid')->unsigned();
