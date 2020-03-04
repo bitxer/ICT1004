@@ -16,13 +16,11 @@ env:
     - DATABASE_URI="mysql://root:unittest@localhost/blog"
 
 before_script:
-  - cp .env.travis .env
   - sudo mysql -e 'create database blog;'
   - sudo mysql -e 'ALTER SCHEMA `blog` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ;'
+  - sudo mysql < ./databse/structure.sql
   - composer self-update
   - composer install --no-interaction
-  - php artisan key:generate
-  - php artisan migrate
 
 script:
   - vendor/bin/phpunit
