@@ -16,9 +16,7 @@ env:
     - DATABASE_URI="mysql://root:unittest@localhost/blog"
 
 before_script:
-  - sudo mysql -e 'create database blog;'
-  - sudo mysql -e 'ALTER SCHEMA `blog` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ;'
-  - sudo mysql < databse/structure.sql
+  - sudo mysql -u root < database/structure.sql
   - composer self-update
   - composer install --no-interaction
 
