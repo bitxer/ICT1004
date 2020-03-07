@@ -1,6 +1,6 @@
 <?php
-require_once("../app/model/Field.php");
-require_once("../app/model/Model.php");
+require_once("../app/model/utils/Field.php");
+require_once("../app/model/utils/Model.php");
 require_once("../app/utils/helpers.php");
 
 class User extends Model{
