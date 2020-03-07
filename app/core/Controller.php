@@ -7,12 +7,17 @@ class Controller{
         require_once("../app/database/Connection.php");
         $db = new MySQL();
         $db->connect();
-        //$userFound = $db->query('user',['uuid'],['loginid'=>['=',$login_id]]);
-        $userFound = $db->query('user','*',['uuid'=>['=',$login_id]]);
-        if($userFound==0){
+        #$userFound = $db->query('users','*',['loginid'=>['=',$login_id]]);
+        $userFound = $db->query('users','*',['id'=>['=',$login_id]]);
+        if(sizeof($userFound)==0){
             return $row = null;
         }else {
-            return $rows = $db->query('post', '*', ['usr_uuid' => ['=', $login_id]]);
+            $rows = $db->query('posts', '*', ['usr_id' => ['=', $login_id]]);
+            if($rows==null){
+                return $rows['no post']=true;
+            }else{
+                return $rows;
+            }
         }
     }
 }

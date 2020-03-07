@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$_SESSION['name'] = 'Placeholder';
+$_SESSION['name'] = 'TempPlaceholder';
 ?>
 
 User: <?=$_SESSION['name']?> |  or whatever
