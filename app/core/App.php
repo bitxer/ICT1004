@@ -6,28 +6,39 @@ class App{
 
     protected $params = [];
 
+    protected $url = '';
+
     public function __construct(){
-        $url = $this->parseUrl();
-        if(isset($url[1])){
-            array_shift($url);
-        }
-        if(file_exists('../app/controllers/' . $url[0] . '.php')){
-            $this->controller=$url[0];
-            array_shift($url);
-        }
+        $this->url = $_SERVER['REQUEST_URI'];
+        $this->parseUrl();
+        $this->SetPageName();
         require_once '../app/controllers/' . $this->controller . '.php';
-        if(isset($url[0])){
-            if(method_exists($this->controller, $url[0])){
-                $this->method = $url[0];
-                array_shift($url);
-            }
-        }
-        $this->params = $url ? array_values($url) : [];
+        $this->SetMethodName();
+        $this->SetParam();
         call_user_func_array([$this->controller,$this->method], $this->params);
 
     }
     public function parseUrl(){
-        $url = explode('/', filter_var(rtrim($_SERVER['REQUEST_URI'],'/'),FILTER_SANITIZE_URL));
-        return $url;
+        $this->url = explode('/', filter_var(rtrim($this->url,'/'),FILTER_SANITIZE_URL));
+        array_shift($this->url);
     }
+    public function SetPageName(){
+        if(file_exists('../app/controllers/' . $this->url[0] . '.php')) {
+            $this->controller = $this->url[0];
+            array_shift($this->url);
+        }
+    }
+    public function SetMethodName(){
+            if(isset($this->url[0])){
+                if(method_exists($this->controller, $this->url[0])){
+                    $this->method = $this->url[0];
+                    array_shift($this->url);
+                }
+            }
+        }
+    public function SetParam(){
+        $this->params = $this->url ? array_values($this->url) : [];
+    }
+
+
 }
