@@ -5,7 +5,7 @@ require_once("../app/utils/helpers.php");
 
 class Post extends Model{
     const tablename = "posts";
-    const fields = ["title", "content", "created_at", "updated_at"];
+    const fields = ["id","title", "content", "created_at", "updated_at","usr_id"];
     protected $id = null;
     protected $title = null;
     protected $content = null;
@@ -31,9 +31,25 @@ class Post extends Model{
         $this->updated_at->setValue(get($values["updated_at"]));
         $this->usr_id->setValue(get($values["usr_id"]));
     }
-}
+    function getID(){
+        return $this->id->getValue();
+    }
 
+    function getTitle(){
+        return $this->title->getValue();
+    }
+    function getContent(){
+        return $this->content->getValue();
+    }
+    function getCreated(){
+        return $this->created_at->getValue();
+    }
+}
+/*
 function get_post($fields='*', $filter_by=[]){
-    return get_row(Post::tablename, $fields, $filter_by);
+    return get_row_post(Post::tablename, $fields, $filter_by);
+}*/
+function get_post($fields='*', $filter_by=[]){
+    return get_row('Post', $fields, $filter_by);
 }
 ?>

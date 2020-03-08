@@ -1,5 +1,5 @@
 <?php
-require_once("../app/model/Query.php");
+require_once("../app/model/utils/Query.php");
 class Model {
     const fields = [];
     const tablename = null;
@@ -56,7 +56,7 @@ class Model {
             $stmt = $query->build_update(static::tablename, $fields, [$id=>'=']);
             $conn = $query->build_connection();
             $stmt = $conn->prepare($stmt);
-    
+
             array_walk($fields, function($value) use ($stmt){
                 $field = $this->{$value};
                 $fvalue = $field->getValue();
@@ -72,14 +72,16 @@ class Model {
 }
 
 
-function get_row($tablename, $fields='*', $filter_by=[]){
+function get_row($table, $fields='*', $filter_by=[]){
+    $tablename = $table::tablename;
+    $known_fields = $table::fields;
     $query = new Query();
     if (is_array($fields)){
-        $fields = array_intersect($fields, User::fields);
+        $fields = array_intersect($fields, $known_fields);
     }
     $proc = [];
-    array_walk($filter_by, function ($value, $key) use (&$proc){
-        if (in_array($key, User::fields)){
+    array_walk($filter_by, function ($value, $key) use (&$proc, $known_fields){
+        if (in_array($key, $known_fields)){
             $proc[$key] = $value[0];
         }
     });
@@ -90,19 +92,16 @@ function get_row($tablename, $fields='*', $filter_by=[]){
     array_walk($filter_by, function($value, $key) use ($stmt){
         $field = $key;
         $fvalue = $value[1];
+
         $stmt->bindParam(":filter_$field", $fvalue);
     });
-    
     $result = $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_UNIQUE);
-    $users = [];
-    array_walk($result, function($row, $id) use (&$users){
+    $model = [];
+    array_walk($result, function($row, $id) use (&$model, $table){
         $row['id'] = $id;
-        array_push($users, new User($row));
+        array_push($model, new $table($row));
     });
-    return count($users) > 0 ? $users : null;
+    return count($model) > 0 ? $model : null;
 }
-
-
-
 ?>
