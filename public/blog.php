@@ -36,8 +36,16 @@ session_start();
                     </div>
                     <div class="card-body">
                         <h5 class="card-title"><?=$entry->getTitle() ?></h5>
-                        <p class="card-text"><?=$entry->getContent()?></p>
-                        <a href="<?=$_SERVER['REQUEST_URI'] . '/comments/' . $entry->getID() ?>" class="btn btn-primary">Read More</a>
+                        <p class="card-text">
+                            <?php
+                            $preview_content = $entry->getContent();
+                            if(strlen($preview_content)>100){
+                                $preview_content = substr($preview_content,0,100) . '...';
+                            }
+                                ?>
+                            <?=$preview_content?>
+                        </p>
+                        <a href="<?=$_SERVER['REQUEST_URI'] . '/' . $entry->getID() ?>" class="btn btn-primary">Read More</a>
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -55,14 +63,3 @@ session_start();
 
 
 </html>
-
-
-<?php
-    if(isset($data['blog_info'])) {
-        foreach ($data['blog_info'] as &$entry) {
-            var_dump($entry);
-        }
-    }else{
-        echo "No entry";
-    }
-?>
