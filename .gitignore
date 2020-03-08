@@ -14,5 +14,7 @@ yarn-error.log
 
 # Application specific
 # DO NOT MODIFY
-app/private/*
-!app/private/README.md
+private/
+!private/README.md
+
+tmp/
