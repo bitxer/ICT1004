@@ -11,3 +11,10 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 .vscode/
+
+# Application specific
+# DO NOT MODIFY
+private/
+!private/README.md
+
+tmp/
