@@ -90,7 +90,9 @@ class Model {
 }
 
 
-function get_row($tablename, $known_fields=[], $fields='*', $filter_by=[]){
+function get_row($table, $fields='*', $filter_by=[]){
+    $tablename = $table::tablename;
+    $known_fields = $table::fields;
     $query = new Query();
     if (is_array($fields)){
         $fields = array_intersect($fields, $known_fields);
@@ -113,12 +115,12 @@ function get_row($tablename, $known_fields=[], $fields='*', $filter_by=[]){
     
     $result = $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_UNIQUE);
-    $users = [];
-    array_walk($result, function($row, $id) use (&$users){
+    $model = [];
+    array_walk($result, function($row, $id) use (&$model, $table){
         $row['id'] = $id;
-        array_push($users, new User($row));
+        array_push($model, new $table($row));
     });
-    return count($users) > 0 ? $users : null;
+    return count($model) > 0 ? $model : null;
 }
 
 ?>
