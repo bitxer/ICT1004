@@ -7,13 +7,11 @@ class blog extends Controller
         echo "blog/index";
     }
 
-    public static function u(...$argv)
-    {
-        $loginid = $argv[0];
-
-        if ($loginid == '') {
+    public static function u(...$argv){
+        if (!isset($argv[0])) {
             echo "404 No user";
         } else {
+            $loginid = $argv[0];
             if(sizeof($argv)<=2) {
                 $UserBlogID = parent::getUserID($loginid);
                 if ($UserBlogID == null) {
