@@ -4,7 +4,7 @@ class blog extends Controller
 {
     public static function index()
     {
-        echo "blog/index";
+        parent::view('404');
     }
 
     public static function u(...$argv){
@@ -15,12 +15,12 @@ class blog extends Controller
             if(sizeof($argv)<=2) {
                 $UserBlogID = parent::getUserID($loginid);
                 if ($UserBlogID == null) {
-                    echo "User not Found";
+                    parent::view('404');
                 } else {
                     if(isset($argv[1])) {
                         $post_info = parent::getPost($UserBlogID, $PostID = $argv[1]);
                         if ($post_info == null) {
-                            echo "Post Not Found";
+                            parent::view('404');
                         } else {
 
                         parent::view('post', ['post_info' => $post_info]);
