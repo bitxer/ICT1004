@@ -31,6 +31,6 @@ class Comment extends Model{
 }
 
 function get_comment($fields='*', $filter_by=[]){
-    return get_row(Comment::tablename, $fields, $filter_by);
+    return get_row(Comment::tablename, Comment::fields, $fields, $filter_by);
 }
 ?>

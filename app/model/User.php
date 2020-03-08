@@ -34,6 +34,6 @@ class User extends Model{
 }
 
 function get_user($fields='*', $filter_by=[]){
-    return get_row(User::tablename, $fields, $filter_by);
+    return get_row(User::tablename, User::fields, $fields, $filter_by);
 }
 ?>

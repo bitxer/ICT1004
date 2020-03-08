@@ -1,14 +1,31 @@
-<?php
-require_once("../app/model/Query.php");
+<?php declare(strict_types=1);
+require_once("../app/model/utils/Query.php");
 class Model {
+    /**
+     * Placeholder for known fields to be updated
+     */
     const fields = [];
+    /**
+     * Placeholder for tablename
+     */
     const tablename = null;
 
-    public function getValue($field) {
-        return $this->{$field};
+    /**
+     * Get value of field
+     * @param   string  field   Field to get value for
+     * @return  string  value of field
+     */
+    public function getValue($field=''): string {
+        return $field != null ? $this->{$field} : '';
     }
 
-    public function setValue($field, $value){
+    /**
+     * Set value for field
+     * @param   string  field   Field to set value for
+     * @param   string  value   Value to be set to field
+     * @return  int     1 if succesful and 0 if unsuccessful
+     */
+    public function setValue($field, $value): int {
         if (in_array($field, static::fields, TRUE)){
             $this->{$field}->setValue($value);
             return 1;
@@ -29,7 +46,7 @@ class Model {
             $ftype = $field->getType();
             $stmt->bindParam(":$value", $fvalue, $ftype);
         });
-        $stmt->execute();
+        return $stmt->execute();
     }
 
     public function delete(){
@@ -66,20 +83,21 @@ class Model {
             $idtype = $this->id->getType();
             $idval = $this->id->getValue();
             $stmt->bindParam(":filter_$id", $idval, $idtype);
-            $stmt->execute();
+            return $stmt->execute();
         }
+        return false;
     }
 }
 
 
-function get_row($tablename, $fields='*', $filter_by=[]){
+function get_row($tablename, $known_fields=[], $fields='*', $filter_by=[]){
     $query = new Query();
     if (is_array($fields)){
-        $fields = array_intersect($fields, User::fields);
+        $fields = array_intersect($fields, $known_fields);
     }
     $proc = [];
-    array_walk($filter_by, function ($value, $key) use (&$proc){
-        if (in_array($key, User::fields)){
+    array_walk($filter_by, function ($value, $key) use (&$proc, $known_fields){
+        if (in_array($key, $known_fields)){
             $proc[$key] = $value[0];
         }
     });
@@ -102,7 +120,5 @@ function get_row($tablename, $fields='*', $filter_by=[]){
     });
     return count($users) > 0 ? $users : null;
 }
-
-
 
 ?>

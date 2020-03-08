@@ -34,6 +34,6 @@ class Post extends Model{
 }
 
 function get_post($fields='*', $filter_by=[]){
-    return get_row(Post::tablename, $fields, $filter_by);
+    return get_row(Post::tablename, Post::fields, $fields, $filter_by);
 }
 ?>
