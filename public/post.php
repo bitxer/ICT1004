@@ -1,0 +1,1 @@
+This is a post<?php var_dump($data['post_info'])?>
