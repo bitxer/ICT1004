@@ -21,7 +21,8 @@ class App{
 
     }
     public function parseUrl(){
-        $this->url = explode('/', filter_var(rtrim($this->url,'/'),FILTER_SANITIZE_URL));
+        $this->url = parse_url($this->url);
+        $this->url = explode('/',$this->url['path'], FILTER_SANITIZE_URL);
         unset($this->url[0]);
     }
     public function SetPageName(){
