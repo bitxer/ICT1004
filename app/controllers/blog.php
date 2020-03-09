@@ -29,7 +29,7 @@ class blog extends Router
                         }
                     }else {
                         $blog_info = BlogController::getBlog($UserBlogID);
-                        $blog_by_page = BlogController::getBlogbyPageX($blog_info,$_POST);
+                        $blog_by_page = BlogController::getBlogbyPageX($blog_info,$_GET);
                         Router::view('blog', ['blog_info' => $blog_by_page, 'blog_name' => $loginid]);
                     }
                 }
