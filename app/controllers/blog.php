@@ -9,7 +9,7 @@ class blog extends Controller
 
     public static function u(...$argv){
         if (!isset($argv[0])) {
-            echo "404 No user";
+            parent::view('404');
         } else {
             $loginid = $argv[0];
             if(sizeof($argv)<=2) {
