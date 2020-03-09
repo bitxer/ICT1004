@@ -1,5 +1,5 @@
 <nav aria-label="BlogNav">
-    <ul class="pagination">
+    <ul class="pagination justify-content-end">
         <li class="page-item <?= ($data['blog_current_page']==1) ? "disabled" : "" ?>">
             <a class="page-link" href="<?=parse_url($_SERVER['REQUEST_URI'])['path'];?>?page=<?= $data['blog_current_page']>=1 ? $data['blog_current_page']-1 : 1?>" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
