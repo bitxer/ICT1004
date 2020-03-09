@@ -1,5 +1,5 @@
 <?php
-class main extends Controller{
+class main extends Router{
     public static function index(){
         phpinfo();
     }
