@@ -45,10 +45,7 @@ class Post extends Model{
         return $this->created_at->getValue();
     }
 }
-/*
-function get_post($fields='*', $filter_by=[]){
-    return get_row_post(Post::tablename, $fields, $filter_by);
-}*/
+
 function get_post($fields='*', $filter_by=[]){
     return get_row('Post', $fields, $filter_by);
 }

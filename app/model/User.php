@@ -35,10 +35,7 @@ class User extends Model{
         return $this->id->getValue();
     }
 }
-/*
-function get_user($fields='*', $filter_by=[]){
-    return get_row_user(User::tablename, $fields, $filter_by);
-}*/
+
 function get_user($fields='*', $filter_by=[]){
     return get_row('User', $fields, $filter_by);
 }

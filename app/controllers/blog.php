@@ -29,7 +29,8 @@ class blog extends Controller
                         }
                     }else {
                         $blog_info = BlogController::getBlog($UserBlogID);
-                        Controller::view('blog', ['blog_info' => $blog_info, 'blog_name' => $loginid]);
+                        $blog_by_page = BlogController::getBlogbyPageX($blog_info,$_POST);
+                        Controller::view('blog', ['blog_info' => $blog_by_page, 'blog_name' => $loginid]);
                     }
                 }
             }else{

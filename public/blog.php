@@ -25,7 +25,24 @@ session_start();
                 </div>
             </article>
         </section>
-        <section>
+        <section class="card m-5">
+
+            <div class="card-header">
+                <h2>Page Number</h2>
+                <form action="<?=$_SERVER['REQUEST_URI']?>" method="post">
+                    <div class="form-group">
+                        <label for="page" id="page" name="page">Page No:</label>
+                        <select class="form-control" id="pageSelect" name="page">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Go</button>
+                </form>
+            </div>
             <?php if(isset($data['blog_info']))  : ?>
                 <?php foreach ($data['blog_info'] as &$entry) : ?>
                     <article>
