@@ -26,11 +26,11 @@ class BlogController{
         }
         return $rows;
     }
-    public static function getBlogbyPageX($blog_info, $post){
+    public static function getBlogbyPageX($blog_info, $get){
         $page_no=1;
-        if(isset($post['page'])){
-            if(is_numeric(($post['page']))){
-                $page_no = (int)$post['page'];
+        if(isset($get['page'])){
+            if(is_numeric(($get['page']))){
+                $page_no = (int)$get['page'];
             }else{
                 return null;
             }
