@@ -15,7 +15,7 @@ session_start();
                 crossorigin="anonymous">
         </script>
     </head>
-    <body>
+    <body class="container-fluid">
         <section>
             <article>
                 <div class="card border-light mb-3">

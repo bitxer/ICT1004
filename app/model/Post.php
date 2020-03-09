@@ -44,6 +44,7 @@ class Post extends Model{
     function getCreated(){
         return $this->created_at->getValue();
     }
+
 }
 
 function get_post($fields='*', $filter_by=[]){

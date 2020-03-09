@@ -19,24 +19,59 @@ session_start();
         <section>
             <?php if(isset($data['post_info'][0]))  : ?>
                 <?php  $entry = $data['post_info'][0]; ?>
-                    <article>
-                        <div class="card m-5">
-                            <div class="card-header">
-                                <?php
-                                $epoch = (int)($entry->getCreated());
-                                $dt = new DateTime("@$epoch");
-                                ?>
-                                <?=$dt->format('D, j M Y g:i:s A');?>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title"><?=$entry->getTitle() ?></h5>
-                                <p class="card-text">
-                                    <?php $content = $entry->getContent(); ?>
-                                    <?=$content?>
-                                </p>
-                            </div>
+                <article>
+                    <div class="card m-5">
+                        <div class="card-header">
+                            <?php
+                            $epoch = (int)($entry->getCreated());
+                            $dt = new DateTime("@$epoch");
+                            ?>
+
+                            <?=$dt->format('D, j M Y g:i:s A');?>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><?=$entry->getTitle() ?></h5>
+                            <p class="card-text">
+                                <?php $content = $entry->getContent(); ?>
+
+                                <?=$content?>
+                            </p>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <a class="btn btn-primary" href="/blog/u/<?=$data['blog_name']?>">Back to Blog</a>
                         </div>
                     </article>
+                <article>
+                    <div class="card m-5">
+                        <div class="card-header text-center">
+                            Comments
+                        </div>
+                        <div class="card-body">
+                            <form class="form-group" action="<?=(parse_url($_SERVER['REQUEST_URI']))['path']?>" method="post">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <span>ProfilePic</span>
+                                    </div>
+                                    <div class="col">
+                                        <label class="form-group">Username</label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-group col-10">
+                                        <textarea class="form-control" aria-label="With textarea"></textarea>
+                                    </div>
+                                <div class="col">
+                                    <input class="btn btn-primary" type="submit" name="submit">
+                                </div>
+                                </div>
+                            </form>
+                        </div>
+
+
+                    </div>
+                </article>
+
             <?php else: ?>
                 <article>
                     <div class="card">
@@ -47,9 +82,7 @@ session_start();
                     </div>
                 </article>
             <?php endif;?>
-        </section>
-        <section>
-
+        </article>
         </section>
     </body>
 </html>

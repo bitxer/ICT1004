@@ -24,8 +24,7 @@ class blog extends Router
                         if ($post_info == null) {
                             Router::view('404');
                         } else {
-
-                            Router::view('post', ['post_info' => $post_info]);
+                            Router::view('post', ['post_info' => $post_info, 'blog_name'=>$loginid]);
                         }
                     }else {
                         $blog_info = BlogController::getBlog($UserBlogID);
