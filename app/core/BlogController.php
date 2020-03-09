@@ -26,22 +26,23 @@ class BlogController{
         }
         return $rows;
     }
-    public static function getBlogbyPageX($blog_info, $get){
+    public static function getBlogbyPageX($blog_info){
         $page_no=1;
-        if(isset($get['page'])){
-            if(is_numeric(($get['page']))){
-                $page_no = (int)$get['page'];
+        $max_page = ceil(sizeof($blog_info)/5);
+        if(isset($_GET['page'])){
+            if(is_numeric(($_GET['page']))){
+                $page_no = (int)$_GET['page'];
             }else{
-                return null;
+                return ['max_page'=>$max_page];
             }
         }
-        if((5*$page_no-4) > sizeof($blog_info)){
-            return null;
+        if($page_no > $max_page){
+            return ['max_page'=>$max_page];
         }
         $top_post = 5*($page_no-1);
         $bot_post = (5*($page_no)+5)<sizeof($blog_info) ? sizeof($blog_info) : $page_no*5 ;
         $rows = array_slice($blog_info,$top_post,$bot_post);
-        return $rows;
+        return ['row'=>$rows,'cur_page'=>$page_no,'max_page'=>$max_page];
     }
 
     public static function getPost($user_id,$post_id){

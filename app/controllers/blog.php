@@ -29,8 +29,12 @@ class blog extends Router
                         }
                     }else {
                         $blog_info = BlogController::getBlog($UserBlogID);
-                        $blog_by_page = BlogController::getBlogbyPageX($blog_info,$_GET);
-                        Router::view('blog', ['blog_info' => $blog_by_page, 'blog_name' => $loginid]);
+                        $blog_by_page = BlogController::getBlogbyPageX($blog_info);
+                        if(!isset($blog_by_page['row'])){
+                            Router::view('blog',['blog_name'=>$loginid,'blog_max_page'=>$blog_by_page['max_page']]);
+                        }else{
+                        Router::view('blog', ['blog_info' => $blog_by_page['row'],'blog_current_page'=>$blog_by_page['cur_page'], 'blog_max_page'=> $blog_by_page['max_page'], 'blog_name' => $loginid]);
+                        }
                     }
                 }
             }else{

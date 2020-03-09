@@ -26,60 +26,61 @@ session_start();
             </article>
         </section>
         <section class="card m-5">
-
-            <div class="card-header">
-                <h2>Page Number</h2>
-                <form action="<?=$_SERVER['REQUEST_URI']?>" method="post">
-                    <div class="form-group">
-                        <label for="page" id="page" name="page">Page No:</label>
-                        <select class="form-control" id="pageSelect" name="page">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Go</button>
-                </form>
-            </div>
-            <?php if(isset($data['blog_info']))  : ?>
-                <?php foreach ($data['blog_info'] as &$entry) : ?>
-                    <article>
-                        <div class="card m-5">
-                            <div class="card-header">
-                                <?php
-                                $epoch = (int)($entry->getCreated());
-                                $dt = new DateTime("@$epoch");
-                                ?>
-                                <?=$dt->format('D, j M Y g:i:s A');?>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title"><?=$entry->getTitle() ?></h5>
-                                <p class="card-text">
-                                    <?php
-                                    $preview_content = $entry->getContent();
-                                    if(strlen($preview_content)>100){
-                                        $preview_content = substr($preview_content,0,100) . '...';
-                                    }
-                                        ?>
-                                    <?=$preview_content?>
-                                </p>
-                                <a href="<?=$_SERVER['REQUEST_URI'] . '/' . $entry->getID() ?>" class="btn btn-primary">Read More</a>
-                            </div>
-                        </div>
-                    </article>
-                <?php endforeach; ?>
-            <?php else: ?>
-            <article>
-                <div class="card">
-                    <h5 class="card-header">Hmmm...</h5>
-                    <div class="card-body">
-                        <h5 class="card-title">No Post Yet!!</h5>
-                        <p class="card-text">Blog under construction</p>
-                    </div>
+            <?php if(isset($data['blog_info'])) : ?>
+                <div class="card-header">
+                    <?php include 'blog.nav.inc.php'?>
                 </div>
-            </article>
+                <?php if(isset($data['blog_info']))  : ?>
+                    <?php foreach ($data['blog_info'] as &$entry) : ?>
+                        <article>
+                            <div class="card m-5">
+                                <div class="card-header">
+                                    <?php
+                                    $epoch = (int)($entry->getCreated());
+                                    $dt = new DateTime("@$epoch");
+                                    ?>
+                                    <?=$dt->format('D, j M Y g:i:s A');?>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title"><?=$entry->getTitle() ?></h5>
+                                    <p class="card-text">
+                                        <?php
+                                        $preview_content = $entry->getContent();
+                                        if(strlen($preview_content)>100){
+                                            $preview_content = substr($preview_content,0,100) . '...';
+                                        }
+                                            ?>
+                                        <?=$preview_content?>
+                                    </p>
+                                    <a href="<?=$_SERVER['REQUEST_URI'] . '/' . $entry->getID() ?>" class="btn btn-primary">Read More</a>
+                                </div>
+                            </div>
+                        </article>
+                    <?php endforeach; ?>
+                <?php endif;?>
+                <div class="card-footer text-muted">
+                    <?php if(isset($data['blog_info'])) : ?>
+                        <?php include 'blog.nav.inc.php'?>
+                    <?php endif;?>
+                </div>
+            <?php else :?>
+                <article>
+                    <div class="card">
+                        <?php if(isset($data['blog_max_page'])) : ?>
+                        <div class="card-body">
+                            <h5 class="card-title">Max Page Reached (>.<)</h5>
+                            <p class="card-text">Yep, Page our of Range kinda</p>
+                                <a href="<?=parse_url($_SERVER["REQUEST_URI"])["path"]?>" class="btn btn-primary">Return to Blog</a>
+                        </div>
+                        <?php else:?>
+                            <h5 class="card-header">Hmmm...</h5>
+                            <div class="card-body">
+                                <h5 class="card-title">No Post Yet!</h5>
+                                <p class="card-text">Blog under construction</p>
+                            </div>
+                        <?php endif;?>
+                    </div>
+                </article>
             <?php endif;?>
         </section>
     </body>
