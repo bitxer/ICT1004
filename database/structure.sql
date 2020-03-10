@@ -86,10 +86,10 @@ CREATE TABLE `users` (
   `password` text COLLATE utf8mb4_general_ci NOT NULL,
   `email` text COLLATE utf8mb4_general_ci NOT NULL,
   `name` text COLLATE utf8mb4_general_ci NOT NULL,
-  `isadmin` tinyint NOT NULL DEFAULT '0'
-  PRIMARY KEY (`id`)
+  `isadmin` tinyint NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
   UNIQUE KEY `users_loginid_unique` (`loginid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -101,4 +101,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-04 11:53:35
+-- Dump completed on 2020-03-10 13:55:34
