@@ -15,7 +15,7 @@ class Model {
      * @param   string  field   Field to get value for
      * @return  string  value of field
      */
-    public function getValue($field=''): string {
+    public function getValue($field=''): Field {
         return $field != null ? $this->{$field} : '';
     }
 

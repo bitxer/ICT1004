@@ -19,6 +19,7 @@
     echo "<h1>Added user</h1><br>";
     var_dump(get_user());
     $user = get_user()[1];
+    var_dump($user->getValue('id'));
 
     //Update user
     var_dump($user);
@@ -36,7 +37,6 @@
     echo "<h1>Update user</h1><br>";
     $user->update();
     var_dump(get_user());
-
 
     echo "<h1>Delete user</h1><br>";
     $user->delete();
