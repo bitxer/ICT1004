@@ -28,7 +28,7 @@ class BlogController{
     }
     public static function getBlogbyPageX($blog_info){
         $page_no=1;
-        $max_page = ceil(sizeof($blog_info)/5);
+        $max_page = (int)(ceil(sizeof($blog_info)/5));
         if(isset($_GET['page'])){
             if(is_numeric(($_GET['page']))){
                 $page_no = (int)$_GET['page'];
