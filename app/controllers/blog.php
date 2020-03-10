@@ -37,8 +37,11 @@ class blog extends Router
                     }
                 }
             }else{
-                echo "error 404"; //e.g /u/test/2/randomstring
+                Router::view('404'); //e.g /u/test/2/randomstring
             }
         }
+    }
+    public static function create(){
+        echo "";
     }
 }
