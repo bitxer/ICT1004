@@ -14,6 +14,7 @@ session_start();
             integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
             crossorigin="anonymous">
     </script>
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
     <body>
         <section>
@@ -59,7 +60,7 @@ session_start();
 
                                 <div class="row">
                                     <div class="input-group col-10">
-                                        <textarea class="form-control" aria-label="With textarea"></textarea>
+                                        <textarea class="form-control comment-box" rows="5" aria-label="With textarea"></textarea>
                                     </div>
                                 <div class="col">
                                     <input class="btn btn-primary" type="submit" name="submit">

@@ -1,1 +1,4 @@
-placeholder
+.comment-box, .post-box{
+    resize: none;
+    height: 100%;
+}
