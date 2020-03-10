@@ -11,11 +11,11 @@ class Model {
     const tablename = null;
 
     /**
-     * Get value of field
-     * @param   string  field   Field to get value for
-     * @return  string  value of field
+     * Get field
+     * @param   string  field   Field with value
+     * @return  string  Field field
      */
-    public function getValue($field=''): Field {
+    public function getField($field=''): Field {
         return $field != null ? $this->{$field} : '';
     }
 
