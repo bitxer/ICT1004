@@ -3,13 +3,13 @@
 require_once("../app/private/database.php");
 
 class Query {
-    
+
     public function build_connection(): PDO{
         $conn = new PDO(DATABASE_URI, DATABASE_USER, DATABASE_PASS);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $conn;
     }
-    
+
     /**
      * Function to be used to build table name
      * @return string
@@ -21,7 +21,7 @@ class Query {
 
     /**
      * @param   array   $filter Filter used in where clause. It should have a key
-     *                          with the column name and a value with a array of 
+     *                          with the column name and a value with a array of
      *                          2 values. The first should be the condition and
      *                          the second a value used in the where clause.
      *                          Example:
@@ -43,13 +43,13 @@ class Query {
                 $where .= " $key $value :filter_$key and";
             });
         }
-        
+
 
         return rtrim(rtrim($where, "and"), " ");
     }
 
     public function build_select($table, $fields, $filter): string
-    {   
+    {
         // Build vanilla select query
         $sql = "SELECT ";
         if ($fields === '*'){
@@ -83,7 +83,7 @@ class Query {
         {
             $sql .= ":$key,";
         });
-        
+
         $sql = rtrim($sql, ',');
         $sql .= ")";
         return $sql;

@@ -14,7 +14,7 @@ class Post extends Model{
     protected $usr_id = null;
 
     function __construct($values)
-    {   
+    {
         // Initialise fields
         $this->id = new Field("id", PDO::PARAM_INT);
         $this->title = new Field("title");
@@ -31,20 +31,6 @@ class Post extends Model{
         $this->updated_at->setValue(get($values["updated_at"]));
         $this->usr_id->setValue(get($values["usr_id"]));
     }
-    function getID(){
-        return $this->id->getValue();
-    }
-
-    function getTitle(){
-        return $this->title->getValue();
-    }
-    function getContent(){
-        return $this->content->getValue();
-    }
-    function getCreated(){
-        return $this->created_at->getValue();
-    }
-
 }
 
 function get_post($fields='*', $filter_by=[]){

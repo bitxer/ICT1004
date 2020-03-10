@@ -31,9 +31,7 @@ class User extends Model{
         $this->name->setValue(get($values["name"]));
         $this->isadmin->setValue(get($values["isadmin"]));
     }
-    function getID(){
-        return $this->id->getValue();
-    }
+
 }
 
 function get_user($fields='*', $filter_by=[]){
