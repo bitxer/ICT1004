@@ -87,7 +87,7 @@ CREATE TABLE `users` (
   `email` text COLLATE utf8mb4_general_ci NOT NULL,
   `name` text COLLATE utf8mb4_general_ci NOT NULL,
   `isadmin` tinyint NOT NULL DEFAULT '0'
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`)
   UNIQUE KEY `users_loginid_unique` (`loginid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
