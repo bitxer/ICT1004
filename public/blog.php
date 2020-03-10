@@ -16,6 +16,7 @@ session_start();
         </script>
     </head>
     <body class="container-fluid">
+
         <section>
             <article>
                 <div class="card border-light mb-3">
@@ -36,23 +37,23 @@ session_start();
                             <div class="card m-5">
                                 <div class="card-header">
                                     <?php
-                                    $epoch = (int)($entry->getCreated());
+                                    $epoch = (int)($entry->getField('created_at')->getValue());
                                     $dt = new DateTime("@$epoch");
                                     ?>
                                     <?=$dt->format('D, j M Y g:i:s A');?>
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-title"><?=$entry->getTitle() ?></h5>
+                                    <h5 class="card-title"><?=$entry->getField('title')->getValue() ?></h5>
                                     <p class="card-text">
                                         <?php
-                                        $preview_content = $entry->getContent();
+                                        $preview_content = $entry->getField('content')->getValue();
                                         if(strlen($preview_content)>100){
                                             $preview_content = substr($preview_content,0,100) . '...';
                                         }
                                             ?>
                                         <?=$preview_content?>
                                     </p>
-                                    <a href="<?=$_SERVER['REQUEST_URI'] . '/' . $entry->getID() ?>" class="btn btn-primary">Read More</a>
+                                    <a href="<?=$_SERVER['REQUEST_URI'] . '/' . $entry->getField('id')->getValue() ?>" class="btn btn-primary">Read More</a>
                                 </div>
                             </div>
                         </article>

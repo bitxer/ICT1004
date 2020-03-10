@@ -7,7 +7,8 @@ class BlogController{
         if($userFound==null){
             return $rows = null;
         }else {
-            return $userFound[0]->getID();
+            $user = $userFound[0];
+            return $user->getField('id')->getValue();
         }
     }
     public static function getBlog($user_id){
@@ -15,8 +16,8 @@ class BlogController{
         $rows = get_post("*",['usr_id'=>['=',$user_id]]);
         if ($rows!=null) {
             usort($rows, function ($PostEntryA, $PostEntryB) {
-                $epochTimeA = $PostEntryA->getCreated();
-                $epochTimeB = $PostEntryB->getCreated();
+                $epochTimeA = $PostEntryA->getField('created_at')->getValue();
+                $epochTimeB = $PostEntryB->getField('created_at')->getValue();
                 if ($epochTimeA == $epochTimeB) {
                     return 0;
                 }

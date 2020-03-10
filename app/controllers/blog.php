@@ -42,6 +42,13 @@ class blog extends Router
         }
     }
     public static function create(){
-        echo "";
+        if(!isset($_POST['loginid'])){
+            Router::view('create');
+        }else{
+            //Run create post
+
+            //Go back to blog
+            header("Location: /blog/u/" . $argv[0]);
+        }
     }
 }

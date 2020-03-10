@@ -23,16 +23,16 @@ session_start();
                     <div class="card m-5">
                         <div class="card-header">
                             <?php
-                            $epoch = (int)($entry->getCreated());
+                            $epoch = (int)($entry->getField('created_at')->getValue());
                             $dt = new DateTime("@$epoch");
                             ?>
 
                             <?=$dt->format('D, j M Y g:i:s A');?>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title"><?=$entry->getTitle() ?></h5>
+                            <h5 class="card-title"><?=$entry->getField('title')->getValue() ?></h5>
                             <p class="card-text">
-                                <?php $content = $entry->getContent(); ?>
+                                <?php $content = $entry->getField('content')->getValue(); ?>
 
                                 <?=$content?>
                             </p>
