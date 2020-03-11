@@ -51,4 +51,27 @@ class BlogController{
         return $rows = get_post("*",['usr_id'=>['=',$user_id],'id'=>['=',$post_id]]);
     }
 
+    public static function AddPost($blog_post){
+        $title = $content = "";
+        $err_msg = array();
+        $loginid = $_SESSION['loginid'];
+        if(isset($blog_post['title'])){
+            $title = $blog_post['title'];
+        }else{
+            $err_msg[0] = true;
+        }
+        if(isset($blog_post['content'])){
+            $content = $blog_post['content'];
+        }else{
+            $err_msg[1] = true;
+        }
+        if($err_msg != null){
+            return $err_msg;
+        }else{
+            require_once('../app/model/Post.php');
+            $add_post = new Post(["title"=>$title, "content"=>$content,"created_at"=>time(),"updated_at"=>time(),"usr_id"=>self::getUserID($loginid)]);
+            return $add_post->add();
+        }
+    }
+
 }

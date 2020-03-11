@@ -4,6 +4,13 @@ require_once('../app/core/BlogController.php');
 
 class blog extends Router
 {
+    /**
+     * Route for /blog
+     * Available Routes:
+     *  /blog/u/<loginid>           -Contains the Blog of a User
+     *  /blog/u/<loginid>/<postid>  -Contains a Post od a User
+     *  /blog/create                -Creates a Post
+     */
     public static function index()
     {
         Router::view('404');
@@ -42,13 +49,31 @@ class blog extends Router
         }
     }
     public static function create(){
-        if(!isset($_POST['loginid'])){
-            Router::view('create');
-        }else{
-            //Run create post
+        if(!isset($_SESSION['internal-token'])){
+            if($_POST){
+                //validate Post
+                Router::get($_SESSION['temptoken']);
+                $_SESSION['temptoken'] = Router::get($_POST['token']);
+                if($hmacsuccess = Router::hmac_compare()){
+                    $postsuccess = BlogController::AddPost($_POST);//$postsuccess returns an array if an entry is invalid, bool if it is success
+                    var_dump($postsuccess);
+                    if(is_bool($postsuccess)){
+                        header("Location: /blog/u/" . $_SESSION['loginid']);
 
-            //Go back to blog
-            header("Location: /blog/u/" . $argv[0]);
+                    }else{
+                        Router::view('create');
+                    }
+                }else{
+                    session_destroy();
+                    header("Location: /");
+                }
+
+            }else {
+                Router::view('create');
+            }
+        }else{
+            //Go back to Login
+            header("Location: /");
         }
     }
 }
