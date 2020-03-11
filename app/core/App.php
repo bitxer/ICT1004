@@ -12,8 +12,9 @@ class App{
         session_start();
         $this->url = $_SERVER['REQUEST_URI'];
         $this->parseUrl();
-        $this->get($this->url[1]);
-        $this->get($this->url[2]);
+        require_once '../app/utils/helpers.php';
+        get($this->url[1]);
+        get($this->url[2]);
         $this->SetPageName();
         require_once '../app/controllers/' . $this->controller . '.php';
         $this->SetMethodName();
@@ -46,9 +47,4 @@ class App{
     public function SetParam(){
         $this->params = $this->url ? array_values($this->url) : [];
     }
-    public function get(&$val, $default=null){
-        return isset($val) ? $val : $default;
-    }
-
-
 }

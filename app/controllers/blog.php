@@ -52,8 +52,9 @@ class blog extends Router
         if(!isset($_SESSION['internal-token'])){
             if($_POST){
                 //validate Post
-                Router::get($_SESSION['temptoken']);
-                $_SESSION['temptoken'] = Router::get($_POST['token']);
+                require_once '../app/utils/helpers.php';
+                get($_SESSION['temptoken']);
+                $_SESSION['temptoken'] = get($_POST['token']);
                 if($hmacsuccess = Router::hmac_compare()){
                     $postsuccess = BlogController::AddPost($_POST);//$postsuccess returns an array if an entry is invalid, bool if it is success
                     var_dump($postsuccess);
