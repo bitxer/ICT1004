@@ -15,21 +15,21 @@
 <body>
     <section class="m-5">
         <form action="/blog/create" method="post">
-            <div class="row" id="row_style">
-                <h4 class="col-4">Submit new post</h4>
-                <div class="col">
-                    <div class="form-group">
+                <legend class="form-group">Submit new post</legend>
+            <fieldset class="row">
+            <div class="col">
+                    <fieldset class="form-group">
                         <input type="text" name="title" class="form-control" placeholder="Title">
-                    </div>
-                    <div class="form-group">
+                    </fieldset>
+                    <fieldset class="form-group">
                         <textarea class="form-control post-box" name="content" rows="20" placeholder="Add a Post here..."></textarea>
-                    </div>
-                    <div class="form-group">
+                    </fieldset>
+                    <fieldset class="form-group">
                         <input type="hidden" name="token" value="<?=$_SESSION['token']?>">
                         <button class="btn btn-primary" id="submit">Submit new post</button>
-                    </div>
+                    </fieldset>
                 </div>
-            </div>
+            </fieldset>
         </form>
     </section>
 </body>

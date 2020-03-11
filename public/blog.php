@@ -13,33 +13,32 @@
         </script>
     </head>
     <body class="container-fluid">
-
         <section>
             <article>
                 <div class="card border-light mb-3">
-                    <div class="card-body">
+                    <main class="card-body">
                         <h2>Welcome to <?=$data['blog_name']?>'s blog!</h2>
-                    </div>
+                    </main>
                 </div>
             </article>
         </section>
         <section class="card m-5">
             <?php if(isset($data['blog_info'])) : ?>
-                <div class="card-header">
+                <header class="card-header">
                     <?php include 'blog.nav.inc.php'?>
-                </div>
+                </header>
                 <?php if(isset($data['blog_info']))  : ?>
                     <?php foreach ($data['blog_info'] as &$entry) : ?>
                         <article>
-                            <div class="card m-5">
-                                <div class="card-header">
+                            <section class="card m-5">
+                                <header class="card-header">
                                     <?php
                                     $epoch = (int)($entry->getField('created_at')->getValue());
                                     $dt = new DateTime("@$epoch");
                                     ?>
                                     <?=$dt->format('D, j M Y g:i:s A');?>
-                                </div>
-                                <div class="card-body">
+                                </header>
+                                <main class="card-body">
                                     <h5 class="card-title"><?=$entry->getField('title')->getValue() ?></h5>
                                     <p class="card-text">
                                         <?php
@@ -51,31 +50,31 @@
                                         <?=$preview_content?>
                                     </p>
                                     <a href="<?=$_SERVER['REQUEST_URI'] . '/' . $entry->getField('id')->getValue() ?>" class="btn btn-primary">Read More</a>
-                                </div>
-                            </div>
+                                </main>
+                            </section>
                         </article>
                     <?php endforeach; ?>
                 <?php endif;?>
-                <div class="card-footer text-muted">
+                <footer class="card-footer text-muted">
                     <?php if(isset($data['blog_info'])) : ?>
                         <?php include 'blog.nav.inc.php'?>
                     <?php endif;?>
-                </div>
+                </footer>
             <?php else :?>
                 <article>
                     <div class="card">
                         <?php if(isset($data['blog_max_page'])) : ?>
-                        <div class="card-body">
+                        <main class="card-body">
                             <h5 class="card-title">Max Page Reached (>.<)</h5>
                             <p class="card-text">Yep, Page our of Range kinda</p>
                                 <a href="<?=parse_url($_SERVER["REQUEST_URI"])["path"]?>" class="btn btn-primary">Return to Blog</a>
-                        </div>
+                        </main>
                         <?php else:?>
-                            <h5 class="card-header">Hmmm...</h5>
-                            <div class="card-body">
+                            <header class="card-header">Hmmm...</header>
+                            <main class="card-body">
                                 <h5 class="card-title">No Post Yet!</h5>
                                 <p class="card-text">Blog under construction</p>
-                            </div>
+                            </main>
                         <?php endif;?>
                     </div>
                 </article>
