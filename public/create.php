@@ -15,9 +15,9 @@
 <body>
     <section class="m-5">
         <form action="/blog/create" method="post">
-                <legend class="form-group">Submit new post</legend>
+            <legend class="form-group">Submit new post</legend>
             <fieldset class="row">
-            <div class="col">
+                <div class="col">
                     <fieldset class="form-group">
                         <input type="text" name="title" class="form-control" placeholder="Title">
                     </fieldset>

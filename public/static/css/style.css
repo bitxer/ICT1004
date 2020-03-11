@@ -2,3 +2,7 @@
     resize: none;
     height: 100%;
 }
+.post-preview{
+    white-space: pre-line;
+    overflow-wrap: break-word;
+}
