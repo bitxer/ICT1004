@@ -11,6 +11,8 @@
                 integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
                 crossorigin="anonymous">
         </script>
+        <link rel="stylesheet"
+        href="/static/css/style.css">
     </head>
     <body class="container-fluid">
         <section>
@@ -40,7 +42,7 @@
                                 </header>
                                 <main class="card-body">
                                     <h5 class="card-title"><?=$entry->getField('title')->getValue() ?></h5>
-                                    <p class="card-text">
+                                    <p class="card-text post-preview">
                                         <?php
                                         $preview_content = $entry->getField('content')->getValue();
                                         if(strlen($preview_content)>100){

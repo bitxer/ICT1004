@@ -30,6 +30,8 @@ class BlogController{
     public static function getBlogbyPageX($blog_info){
         $page_no=1;
         $max_page = (int)(ceil(sizeof($blog_info)/5));
+        $top_post=0;
+        $bot_post=4;
         if(isset($_GET['page'])){
             if(is_numeric(($_GET['page']))){
                 $page_no = (int)$_GET['page'];
@@ -40,9 +42,13 @@ class BlogController{
         if($page_no > $max_page){
             return ['max_page'=>$max_page];
         }
-        $top_post = 5*($page_no-1);
-        $bot_post = (5*($page_no)+5)<sizeof($blog_info) ? sizeof($blog_info) : $page_no*5 ;
-        $rows = array_slice($blog_info,$top_post,$bot_post);
+        $top_post = $top_post+5*($page_no-1);
+        $bot_post = $bot_post+5*($page_no-1) < sizeof($blog_info) ? $bot_post+5*($page_no-1) :sizeof($blog_info)-1;
+        if($top_post==$bot_post){
+            $rows = array_slice($blog_info,$top_post);
+        }else {
+            $rows = array_slice($blog_info, $top_post, 5);
+        }
         return ['row'=>$rows,'cur_page'=>$page_no,'max_page'=>$max_page];
     }
 
