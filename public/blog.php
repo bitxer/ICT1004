@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <html>
 <!--Temp head-->
     <head>
