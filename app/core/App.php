@@ -9,6 +9,7 @@ class App{
     protected $url = '';
 
     public function __construct(){
+        session_start();
         $this->url = $_SERVER['REQUEST_URI'];
         $this->parseUrl();
         $this->get($this->url[1]);

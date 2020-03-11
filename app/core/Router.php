@@ -18,6 +18,7 @@ class Router{
         }
         $_SESSION['token'] = hash_hmac('sha256',($view . $_SESSION['loginid']),$_SESSION['internal_token']);
     }
+
     public static function hmac_compare(){
         self::get($_SESSION['temptoken']);
         self::get($_SESSION['token']);
