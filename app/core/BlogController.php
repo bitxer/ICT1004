@@ -28,8 +28,14 @@ class BlogController{
         return $rows;
     }
     public static function getBlogbyPageX($blog_info){
+        get($blog_info);
         $page_no=1;
+        $max_page=1;
+        if($blog_info==null){
+            return null;
+        }else{
         $max_page = (int)(ceil(sizeof($blog_info)/5));
+        }
         $top_post=0;
         $bot_post=4;
         if(isset($_GET['page'])){
