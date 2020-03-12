@@ -8,7 +8,6 @@ class Router{
         get($_SESSION['token']);
         get($_SESSION['token-expire']);
         get($_SESSION['loginid']);
-        $_SESSION['loginid'] = 'test';
         if($_SESSION['token']==null){
             $length = 32;
             $_SESSION['token'] = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, $length);

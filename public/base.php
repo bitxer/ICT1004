@@ -37,6 +37,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collpase navbar-collapse mr-auto" id="navbarMenu">
+        <?php if(isset($_SESSION['loginid'])):?>
         <ul class="navbar-nav mr-auto">
             <div class="search-containter">
                 <form class="searchbar d-flex" action="/action_page.php" style="margin:auto;max-width:260px">
@@ -45,6 +46,19 @@
                 </form>
             </div>
         </ul>
+        <?php else : ?>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contact Us</a>
+            </li>
+        </ul>
+        <?php endif;?>
+
+        <?php if(isset($_SESSION['loginid'])) :?>
+
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" href="/blog/u/<?= $_SESSION['loginid'] ?>">Home</a>
@@ -61,11 +75,21 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" >
                     <a class="dropdown-item" href="#"><i class="fas fa-cogs pr-3"></i>Profile</a>
-                    <div class="dropdown-divider"></div>
+                    <span class="dropdown-divider"></span>
                     <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt pr-3"></i>Sign Out</a>
                 </div>
             </li>
         </ul>
+        <?php else: ?>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sign In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sign Up</a>
+                </li>
+            </ul>
+        <?php endif?>
     </div>
 </nav>
 <main>
