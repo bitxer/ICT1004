@@ -9,10 +9,14 @@ class App{
     protected $url = '';
 
     public function __construct(){
+        require_once '../app/utils/helpers.php';
         session_start();
+        get($_SESSION['token']);
+        if(!isset($_SESSION['token'])){
+            Router::token_gen();
+        }
         $this->url = $_SERVER['REQUEST_URI'];
         $this->parseUrl();
-        require_once '../app/utils/helpers.php';
         get($this->url[1]);
         get($this->url[2]);
         $this->SetPageName();

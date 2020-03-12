@@ -1,34 +1,35 @@
 <?php
 class Router{
-    public static function view($view, $data = []){
-        self::token_gen($view);
-        require_once  '../public/' . $view . '.php';
+    public static function view( $data = []){
+        require_once  '../public/base.php';
     }
-    public static function token_gen($view){
+    public static function token_gen(){
         require_once '../app/utils/helpers.php';
-        get($_SESSION['internal_token']);
-        get($_SESSION['loginid']);
-        get($_SESSION['password']);
         get($_SESSION['token']);
-        if($_SESSION['internal_token']==null){
-            $time=time();
-            $loginid=$_SESSION['loginid'];
-            $password = $_SESSION['password'];
-            $internal_token='t={$time}&loginid={$loginid}&password={$password}';
-            $_SESSION['internal_token']=bin2hex(random_bytes(100));
+        get($_SESSION['token-expire']);
+        get($_SESSION['loginid']);
+        $_SESSION['loginid'] = 'test';
+        if($_SESSION['token']==null){
+            $length = 32;
+            $_SESSION['token'] = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, $length);
+            $_SESSION['token-expire'] = time()+3600;
         }
-        $_SESSION['token'] = hash_hmac('sha256',($view . $_SESSION['loginid']),$_SESSION['internal_token']);
     }
 
-    public static function hmac_compare(){
+    public static function token_compare(){
         require_once '../app/utils/helpers.php';
-        get($_SESSION['temptoken']);
         get($_SESSION['token']);
-        if ($_SESSION['internal_token']!=null){
-            if($_SESSION['token']==$_SESSION['temptoken']){
-                return true;
-            }
+        if($_SESSION['token']==$_POST['token']){
+            return self::check_session_timeout();
+
         }
         return false;
+    }
+    public static function check_session_timeout(){
+        if(time()>=$_SESSION['token-expire']){
+            return false;
+        }else{
+            return true;
+        }
     }
 }
