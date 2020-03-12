@@ -98,4 +98,7 @@
     ?>
 </main>
 </body>
+<footer class="container border-top">
+    <p class="text-center">Copyright &copy; 2020 Budget Blogspots</p>
+</footer>
 </html>
