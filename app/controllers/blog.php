@@ -36,7 +36,9 @@ class blog extends Router
                     }else {
                         $blog_info = BlogController::getBlog($UserBlogID);
                         $blog_by_page = BlogController::getBlogbyPageX($blog_info);
-                        if(!isset($blog_by_page['row'])){
+                        if($blog_by_page==null){
+                            self::view(['page'=>'blog', 'blog_name'=>$loginid]);
+                        }elseif(!isset($blog_by_page['row'])){
                             self::view(['page'=>'blog','blog_name'=>$loginid,'blog_max_page'=>$blog_by_page['max_page']]);
                         }else{
                         self::view(['page'=>'blog','blog_info' => $blog_by_page['row'],'blog_current_page'=>$blog_by_page['cur_page'], 'blog_max_page'=> $blog_by_page['max_page'], 'blog_name' => $loginid]);
