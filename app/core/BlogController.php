@@ -81,7 +81,13 @@ class BlogController{
             return $err_msg;
         }else{
             require_once('../app/model/Post.php');
-            $add_post = new Post(["title"=>$title, "content"=>$content,"created_at"=>time(),"updated_at"=>time(),"usr_id"=>self::getUserID($loginid)]);
+            $Postvalue = [
+                "title"=>$title,
+                "content"=>$content,
+                "created_at"=>time(),
+                "updated_at"=>time(),
+                "usr_id"=>self::getUserID($loginid)];
+            $add_post = new Post($Postvalue);
             return $add_post->add();
         }
     }

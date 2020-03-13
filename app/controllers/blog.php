@@ -46,7 +46,12 @@ class blog extends Router
                         } else {
                             require_once '../app/model/Post.php';
                             $comments = BlogController::getComments(($post_info[0])->getField('id')->getValue());
-                            self::view(['page'=>'post','post_info' => $post_info, 'blog_name'=>$loginid,'comments'=>$comments]);
+                            $data =[
+                                'page'=>'post',
+                                'post_info' => $post_info,
+                                'blog_name'=>$loginid,
+                                'comments'=>$comments];
+                            self::view($data);
                         }
                     }else {
                         $blog_info = BlogController::getBlog($UserBlogID);
@@ -54,9 +59,19 @@ class blog extends Router
                         if($blog_by_page==null){
                             self::view(['page'=>'blog', 'blog_name'=>$loginid]);
                         }elseif(!isset($blog_by_page['row'])){
-                            self::view(['page'=>'blog','blog_name'=>$loginid,'blog_max_page'=>$blog_by_page['max_page']]);
+                            $data=[
+                                'page'=>'blog',
+                                'blog_name'=>$loginid,
+                                'blog_max_page'=>$blog_by_page['max_page']];
+                            self::view($data);
                         }else{
-                        self::view(['page'=>'blog','blog_info' => $blog_by_page['row'],'blog_current_page'=>$blog_by_page['cur_page'], 'blog_max_page'=> $blog_by_page['max_page'], 'blog_name' => $loginid]);
+                            $data = [
+                                'page'=>'blog',
+                                'blog_info' => $blog_by_page['row'],
+                                'blog_current_page'=>$blog_by_page['cur_page'],
+                                'blog_max_page'=> $blog_by_page['max_page'],
+                                'blog_name' => $loginid];
+                            self::view($data);
                         }
                     }
                 }
