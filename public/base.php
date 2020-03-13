@@ -74,7 +74,7 @@
                     Account Settings
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" >
-                    <a class="dropdown-item" href="#"><i class="fas fa-cogs pr-3"></i>Profile</a>
+                    <a class="dropdown-item" href="/account/profile"><i class="fas fa-cogs pr-3"></i>Profile</a>
                     <span class="dropdown-divider"></span>
                     <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt pr-3"></i>Sign Out</a>
                 </div>
@@ -83,10 +83,10 @@
         <?php else: ?>
             <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sign In</a>
+                    <a class="nav-link" href="/login">Sign In</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sign Up</a>
+                    <a class="nav-link" href="/register">Sign Up</a>
                 </li>
             </ul>
         <?php endif?>
