@@ -33,9 +33,13 @@ class App{
     }
 
     public function SetPageName(){
-        if(file_exists('../app/controllers/' . $this->url[1] . '.php')) {
+        if($this->url[1]==''){
+            $this->controller = 'main';
+        }elseif(file_exists('../app/controllers/' . $this->url[1] . '.php')) {
             $this->controller = $this->url[1];
             unset($this->url[1]);
+        }else{
+            $this->controller='pageerror';
         }
     }
 
