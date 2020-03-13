@@ -19,14 +19,8 @@ class account extends Router{
     public static function update_profile(){
         get($_POST['token']);
         if (self::token_compare()) {
-            $user = AccountController::update_user();
-            var_dump($user);
-            if ($user == NULL) {
-                header("Location: /account/profile");
-            } else {
-                $_SESSION['loginid'] = $user;
-                header("Location: /account/profile");
-            }
+            AccountController::update_user();
+            header("Location: /account/profile");
         } 
         else {
             session_destroy();

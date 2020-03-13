@@ -137,8 +137,5 @@ class AccountController
         } else {
             $_SESSION['msg'] = $errorMsg;
         }
-
-        //Helper function that checks input for malicious or unwanted content.
-
     }
 }
