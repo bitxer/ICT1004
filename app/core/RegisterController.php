@@ -17,14 +17,15 @@ class RegisterController
             return NULL;
         } else if (empty($values['password'])) {
             return NULL;
-        } else if (strlen($values['password'] < 8)) {
+        } else if (strlen($values['password']) < 8) {
+            var_dump(strlen($values['password']<8));
             return NULL;
-        } else if (!preg_match("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", $values['password'])) {
+        } else if (!preg_match("/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/i", $values['password'])) {
             return NULL;
         } 
         else if (empty($values['email'])) {
             return NULL;
-        } else if (!preg_match("^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", $values['email'])) {
+        } else if (!preg_match("/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/i", $values['email'])) {
             return NULL;
         } else if (empty($values['name'])) {
             return NULL;
@@ -36,8 +37,17 @@ class RegisterController
             return NULL;
         }
         else {
-            $user = new User($values);
-            $user->add();
+            $hash = password_hash($values['password'], PASSWORD_DEFAULT);
+            $new_values=[
+                'loginid' => $_POST["loginid"],
+                'password' => $hash,
+                'email' => $_POST["email"],
+                'name' => $_POST["name"],
+                'isadmin' => 0
+            ];
+            $user = new User($new_values);
+            return $user->add();
+
         }
     }
 }
