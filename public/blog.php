@@ -20,9 +20,9 @@
                                 <header class="card-header">
                                     <?php
                                     $epoch = (int)($entry->getField('created_at')->getValue());
-                                    $dt = new DateTime("@$epoch");
+                                    $PostTimeStamp = new DateTime("@$epoch");
                                     ?>
-                                    <?=$dt->format('D, j M Y g:i:s A');?>
+                                    <?=$PostTimeStamp->format('D, j M Y g:i:s A');?>
                                 </header>
                                 <main class="card-body">
                                     <h5 class="card-title"><?=$entry->getField('title')->getValue() ?></h5>

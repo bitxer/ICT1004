@@ -13,7 +13,7 @@ class Comment extends Model{
     protected $created_at = null;
 
     function __construct($values)
-    {   
+    {
         // Initialise fields
         $this->id = new Field("id", PDO::PARAM_INT);
         $this->comment = new Field("comment");
@@ -31,6 +31,6 @@ class Comment extends Model{
 }
 
 function get_comment($fields='*', $filter_by=[]){
-    return get_row(Comment::tablename, $fields, $filter_by);
+    return get_row('Comment', $fields, $filter_by);
 }
 ?>
