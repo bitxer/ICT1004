@@ -1,6 +1,6 @@
 <?php
 
-require_once('../app/core/BlogController.php');
+require_once('../app/controllers/BlogController.php');
 
 class blog extends Router
 {

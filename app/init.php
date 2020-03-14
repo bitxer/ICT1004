@@ -1,3 +1,3 @@
 <?php
-require_once 'core/App.php';
-require_once 'core/Router.php';
+require_once 'controllers/App.php';
+require_once 'controllers/Router.php';
