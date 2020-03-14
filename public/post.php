@@ -29,30 +29,46 @@
                     <main class="card-body">
                         <form class="form-group" action="<?=(parse_url($_SERVER['REQUEST_URI']))['path']?>" method="post">
                             <div class="row pb-2 pl-5">
-                                <span class="col-2">
+                                <span class="col-1">
                                     ProfilePic
                                 </span>
                                 <span class="col">
-                                    <label class="form-group">Username</label>
+                                    <label class="form-group"><?=$_SESSION['loginid']?></label>
                                 </span>
                             </div>
                             <div class="row pb-2 pl-5 pr-2">
                                 <span class="input-group">
-                                    <textarea class="form-control comment-box" rows="5" aria-label="With textarea"></textarea>
+                                    <textarea class="form-control comment-box" rows="5" aria-label="With textarea" name="comment" required></textarea>
                                 </span>
                             </div>
                             <div class="row pb-2 pl-5">
                                 <span class="input-group">
+                                    <input type="hidden" name="token" value="<?=$_SESSION['token']?>">
                                     <input class="btn btn-primary" type="submit" name="submit">
                                 </span>
                             </div>
                         </form>
                     </main>
-                    <span class="border-top"></span>
-                    <div class="card-body pb-2 pl-5 pr-2">
-                        <p><span>User Profile</span>Username</p>
-                        <p class="card-text">Comments oencwcw</p>
-                    </div>
+                    <?php if(!empty($data['comments'])) : ?>
+                        <?php foreach($data['comments'] as &$comment) :?>
+                        <span class="border-top"></span>
+                            <?php
+                            $epoch = (int)($comment['created_at']);
+                            $commentTimeStamp = new DateTime("@$epoch");
+                            ?>
+                        <main class="card-body pb-2 pl-5 pr-2">
+                            <p><span><a class="nav-link" href="/blog/u/<?=$comment['loginid']?>"><?=$comment['loginid']?></a></span></p>
+                            <p class="card-text"><?=$comment['comment']?></p>
+                            <p class="card-text"><?=$commentTimeStamp->format('D, j M Y g:i:s A');?></p>
+                        </main>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                         <span class="border-top pt-5"></span>
+                         <main class="card-body pb-2 pl-5 pr-2">
+                             <p class="card-text text-center">No Comments Yet. Be the first to Comment!!</p>
+                         </main>
+                        <span class="pt-5"></span>
+                    <?php endif;?>
                 </section>
             </article>
         </section>

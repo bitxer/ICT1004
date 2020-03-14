@@ -81,9 +81,64 @@ class BlogController{
             return $err_msg;
         }else{
             require_once('../app/model/Post.php');
-            $add_post = new Post(["title"=>$title, "content"=>$content,"created_at"=>time(),"updated_at"=>time(),"usr_id"=>self::getUserID($loginid)]);
+            $Postvalue = [
+                "title"=>$title,
+                "content"=>$content,
+                "created_at"=>time(),
+                "updated_at"=>time(),
+                "usr_id"=>self::getUserID($loginid)];
+            $add_post = new Post($Postvalue);
             return $add_post->add();
         }
+    }
+
+    public static function getComments($postid)
+    {
+        require_once('../app/model/Comment.php');
+        require_once('../app/model/User.php');
+        $row = get_comment("*", ['posts_id' => ['=', $postid]]);
+        $comment_array = array();
+        if ($row != null) {
+            usort($row, function ($CommentA, $CommentB) {
+                $epochTimeA = $CommentA->getField('created_at')->getValue();
+                $epochTimeB = $CommentB->getField('created_at')->getValue();
+                if ($epochTimeA == $epochTimeB) {
+                    return 0;
+                }
+                return $epochTimeA > $epochTimeB ? -1 : 1;
+            });
+            foreach ($row as &$comment) {
+                $usr_id = $comment->getField('usr_id')->getValue();
+                $loginid = get_user('*', ['id' => ['=', $usr_id]]);
+                array_push($comment_array,[
+                    'created_at' => $comment->getField('created_at')->getValue(),
+                    'loginid' => $loginid[0]->getField('loginid')->getValue(),
+                    'comment' => $comment->getField('comment')->getValue()
+                ]);
+            }
+
+        }
+        return $comment_array;
+    }
+    public static function addComments($PostID){
+        require_once('../app/model/Comment.php');
+        $comment = "";
+        if(empty($_POST['comment'])){
+            return false;
+        }else{
+            $comment = $_POST['comment'];
+        }
+
+        $add_comment = new Comment([
+            "comment"=>$comment,
+            "usr_id"=>self::getUserID($_SESSION['loginid']),
+            "posts_id"=>$PostID,
+            "created_at"=>time(),
+        ]);
+        $add_comment->add();
+        return true;
+
+
     }
 
 }

@@ -1,22 +1,4 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-
-<head>
-    <?php
-    include "header.php";
-    ?>
-</head>
-
-<body>
-    <?php
-    include "nav.index.php";
-    ?>
-    <form name="frmRegistration" method="post" action="/register/register_process">
+ <form name="frmRegistration" method="post" action="/register/register_process">
         <div class="form-group">
             <?php
             if (!empty($errorMessage) && is_array($errorMessage)) {
@@ -75,9 +57,3 @@ and open the template in the editor.
             </div>
         </div>
     </form>
-    <?
-    include "footer.inc.php";
-    ?>
-</body>
-
-</html>

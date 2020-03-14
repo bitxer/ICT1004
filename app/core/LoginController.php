@@ -6,16 +6,20 @@ class LoginController
     public static function getUserAccount()
     {
         require_once("../app/model/User.php");
+        $hashed_password = password_hash($_POST['password'],PASSWORD_DEFAULT);
         $values = [
-            'loginid' => ['=', $_POST["loginid"]],
-            'password' => ['=', $_POST["password"]]
+            'loginid' => ['=', $_POST["loginid"]]
         ];
         $rows = get_user("*", $values);
+        var_dump($rows);
         if ($rows == NULL) {
             return NULL;
-        } else {
+        } else if(password_verify($_POST['password'],$hashed_password)){
             $user = $rows[0];
             return $user->getField('loginid')->getValue();
+        } else{
+            return NULL;
         }
+            
     }
 }

@@ -76,7 +76,7 @@
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" >
                     <a class="dropdown-item" href="/account/profile"><i class="fas fa-cogs pr-3"></i>Profile</a>
                     <span class="dropdown-divider"></span>
-                    <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt pr-3"></i>Sign Out</a>
+                    <a class="dropdown-item" href="/signout"><i class="fas fa-sign-out-alt pr-3"></i>Sign Out</a>
                 </div>
             </li>
         </ul>
