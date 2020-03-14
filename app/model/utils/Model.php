@@ -11,11 +11,11 @@ class Model {
     const tablename = null;
 
     /**
-     * Get value of field
-     * @param   string  field   Field to get value for
-     * @return  string  value of field
+     * Get field
+     * @param   string  field   Field with value
+     * @return  string  Field field
      */
-    public function getValue($field=''): string {
+    public function getField($field=''): Field {
         return $field != null ? $this->{$field} : '';
     }
 
@@ -73,7 +73,7 @@ class Model {
             $stmt = $query->build_update(static::tablename, $fields, [$id=>'=']);
             $conn = $query->build_connection();
             $stmt = $conn->prepare($stmt);
-    
+
             array_walk($fields, function($value) use ($stmt){
                 $field = $this->{$value};
                 $fvalue = $field->getValue();
@@ -97,22 +97,24 @@ function get_row($table, $fields='*', $filter_by=[]){
     if (is_array($fields)){
         $fields = array_intersect($fields, $known_fields);
     }
+
     $proc = [];
     array_walk($filter_by, function ($value, $key) use (&$proc, $known_fields){
         if (in_array($key, $known_fields)){
             $proc[$key] = $value[0];
         }
     });
+
     $stmt = $query->build_select($tablename, $fields, $proc);
     $conn = $query->build_connection();
     $stmt = $conn->prepare($stmt);
 
     array_walk($filter_by, function($value, $key) use ($stmt){
+
         $field = $key;
         $fvalue = $value[1];
         $stmt->bindParam(":filter_$field", $fvalue);
     });
-    
     $result = $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_UNIQUE);
     $model = [];

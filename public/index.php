@@ -1,3 +1,5 @@
-<?php 
-    echo "Placeholder and the project will be updated shortly";
+<?php
+require_once '..\app\init.php';
+
+$app = new App;
 ?>

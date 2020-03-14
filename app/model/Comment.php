@@ -13,7 +13,7 @@ class Comment extends Model{
     protected $created_at = null;
 
     function __construct($values)
-    {   
+    {
         // Initialise fields
         $this->id = new Field("id", PDO::PARAM_INT);
         $this->comment = new Field("comment");
