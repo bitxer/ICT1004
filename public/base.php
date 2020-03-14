@@ -28,7 +28,7 @@
           integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
           crossorigin="anonymous">
     <!--Custom JS -->
-    <script defer src="static/js/script.js"></script>
+    <script defer src="/static/js/script.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
