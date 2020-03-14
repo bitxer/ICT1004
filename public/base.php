@@ -49,10 +49,10 @@
         <?php else : ?>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">About Us</a>
+                <a class="nav-link" href="/check/aboutus">About Us</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Contact Us</a>
+                <a class="nav-link" href="/check/contactus">Contact Us</a>
             </li>
         </ul>
         <?php endif;?>

@@ -30,7 +30,7 @@ class AccountController
 
         $errorMsg = "";
         $success = true;
-        $p = true;
+        $p = false;
         $uid = self::sanitize_input($_POST["userid"]);
         $name = self::sanitize_input($_POST["name"]);
         $cpwd = self::sanitize_input($_POST["cpassword"]);
