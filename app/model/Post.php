@@ -5,7 +5,7 @@ require_once("../app/utils/helpers.php");
 
 class Post extends Model{
     const tablename = "posts";
-    const fields = ["title", "content", "created_at", "updated_at"];
+    const fields = ["id","title", "content", "created_at", "updated_at","usr_id"];
     protected $id = null;
     protected $title = null;
     protected $content = null;
@@ -14,7 +14,7 @@ class Post extends Model{
     protected $usr_id = null;
 
     function __construct($values)
-    {   
+    {
         // Initialise fields
         $this->id = new Field("id", PDO::PARAM_INT);
         $this->title = new Field("title");

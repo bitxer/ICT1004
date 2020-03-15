@@ -14,7 +14,7 @@ class User extends Model{
     protected $isadmin = null;
 
     function __construct($values)
-    {   
+    {
         // Initialise fields
         $this->id = new Field("id", PDO::PARAM_INT);
         $this->loginid = new Field("loginid");
@@ -31,6 +31,7 @@ class User extends Model{
         $this->name->setValue(get($values["name"]));
         $this->isadmin->setValue(get($values["isadmin"]));
     }
+
 }
 
 function get_user($fields='*', $filter_by=[]){
