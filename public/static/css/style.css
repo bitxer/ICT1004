@@ -1,12 +1,20 @@
+/* Style for blog post cards*/
+
 .comment-box, .post-box{
     resize: none;
     height: 100%;
 }
-.post-preview{
+
+.post-preview, .blog-post{
     white-space: pre-line;
     overflow-wrap: break-word;
 }
-
+.post-preview {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+}
 
 /* Style the search field */
 form.searchbar input[type=text] {
