@@ -32,7 +32,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <a class="navbar-brand" href="index.php">Logo</a>
+    <a class="navbar-brand" href="/">Logo</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -40,7 +40,7 @@
         <?php if(isset($_SESSION['loginid'])):?>
         <ul class="navbar-nav mr-auto">
             <div class="search-containter">
-                <form class="searchbar d-flex" action="/action_page.php" style="margin:auto;max-width:260px">
+                <form class="searchbar d-flex" action="#" style="margin:auto;max-width:260px">
                     <input type="text" placeholder="Search" name="search">
                     <button type="submit"><i class="fa fa-search"> Search</i></button>
                 </form>
@@ -61,7 +61,7 @@
 
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="/blog/u/<?= $_SESSION['loginid'] ?>">Home</a>
+                <a class="nav-link" href="/blog/u/<?= $_SESSION['loginid'] ?>"><?= $_SESSION['loginid'] ?></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/blog/create">Create</a>
