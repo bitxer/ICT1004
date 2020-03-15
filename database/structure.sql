@@ -29,28 +29,13 @@ CREATE TABLE `comments` (
   `comment` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
   `usr_id` int unsigned NOT NULL,
   `posts_id` int unsigned NOT NULL,
-  `created_at` datetime NOT NULL,
+  `created_at` int unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `comments_posts_id_foreign` (`posts_id`),
   KEY `comments_usr_id_foreign` (`usr_id`),
   CONSTRAINT `comments_posts_id_foreign` FOREIGN KEY (`posts_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `comments_usr_id_foreign` FOREIGN KEY (`usr_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `migrations`
---
-
-DROP TABLE IF EXISTS `migrations`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `migrations` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,8 +49,8 @@ CREATE TABLE `posts` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `content` varchar(1000) COLLATE utf8mb4_general_ci NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
+  `created_at` int unsigned NOT NULL,
+  `updated_at` int unsigned NOT NULL,
   `usr_id` int unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `posts_usr_id_foreign` (`usr_id`),
@@ -101,4 +86,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-10 13:55:34
+-- Dump completed on 2020-03-15 23:42:50
