@@ -1,5 +1,5 @@
 <?php
-require_once '../app/core/RegisterController.php';
+require_once '../app/controllers/RegisterController.php';
 require_once '../app/utils/helpers.php';
 class register extends Router{
     public static function index(){

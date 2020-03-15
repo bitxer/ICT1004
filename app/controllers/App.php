@@ -20,7 +20,7 @@ class App{
         get($this->url[1]);
         get($this->url[2]);
         $this->SetPageName();
-        require_once '../app/controllers/' . $this->controller . '.php';
+        require_once '../app/routes/' . $this->controller . '.php';
         $this->SetMethodName();
         $this->SetParam();
         call_user_func_array([$this->controller,$this->method], $this->params);
@@ -35,7 +35,7 @@ class App{
     public function SetPageName(){
         if($this->url[1]==''){
             $this->controller = 'main';
-        }elseif(file_exists('../app/controllers/' . $this->url[1] . '.php')) {
+        }elseif(file_exists('../app/routes/' . $this->url[1] . '.php')) {
             $this->controller = $this->url[1];
             unset($this->url[1]);
         }else{

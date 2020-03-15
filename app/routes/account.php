@@ -1,5 +1,5 @@
 <?php
-require_once("../app/core/AccountController.php");
+require_once("../app/controllers/AccountController.php");
 require_once("../app/model/User.php");
 
 

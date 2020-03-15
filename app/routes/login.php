@@ -1,5 +1,5 @@
 <?php
-require_once '../app/core/LoginController.php';
+require_once '../app/controllers/LoginController.php';
 require_once '../app/utils/helpers.php';
 class login extends Router
 {
