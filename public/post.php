@@ -12,7 +12,7 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title"><?=$entry->getField('title')->getValue() ?></h5>
-                        <p class="card-text">
+                        <p class="card-text blog-post">
                             <?php $content = $entry->getField('content')->getValue(); ?>
                             <?=$content?>
                         </p>
