@@ -1,9 +1,13 @@
 <?php
 class Router{
-    public static function view( $data = []){
-        require_once  '../public/base.php';
+    protected $RIGHTS = 0;
+    protected $METHODS = ['GET', 'POST'];
+    
+    public  function view( $data = []){
+        require_once  '../public/view/base.php';
     }
-    public static function token_gen(){
+
+    public  function token_gen(){
         require_once '../app/utils/helpers.php';
         get($_SESSION['token']);
         get($_SESSION['token-expire']);
@@ -15,20 +19,34 @@ class Router{
         }
     }
 
-    public static function token_compare(){
+    public function token_compare(){
         require_once '../app/utils/helpers.php';
         get($_SESSION['token']);
         if($_SESSION['token']==$_POST['token']){
-            return self::check_session_timeout();
+            return $this->check_session_timeout();
 
         }
         return false;
     }
-    public static function check_session_timeout(){
+    public  function check_session_timeout(){
         if(time()>=$_SESSION['token-expire']){
             return false;
         }else{
             return true;
+        }
+    }
+
+    public function abort($status) {
+        http_response_code($status);
+        $this->view(['page' => 'error/' . $status]);
+        die();
+    }
+
+    public function __call($method,$arguments) {
+        if($this->$RIGHTS == $_SESSION[SESSION_RIGHTS]) {
+            return call_user_func_array(array($this,$method),$arguments);
+        } else {
+            $this->abort(403);
         }
     }
 }

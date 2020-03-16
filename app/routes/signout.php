@@ -1,7 +1,8 @@
 <?php
 
 class signout extends Router{
-    public static function index(){
+    protected $RIGHTS = 1;
+    public function index(){
         session_destroy();
         header("Location: /");
     }

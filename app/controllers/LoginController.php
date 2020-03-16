@@ -3,7 +3,7 @@
 
 class LoginController
 {
-    public static function getUserAccount()
+    public function getUserAccount()
     {
         require_once("../app/model/User.php");
         $hashed_password = password_hash($_POST['password'],PASSWORD_DEFAULT);
@@ -11,7 +11,6 @@ class LoginController
             'loginid' => ['=', $_POST["loginid"]]
         ];
         $rows = get_user("*", $values);
-        var_dump($rows);
         if ($rows == NULL) {
             return NULL;
         } else if(password_verify($_POST['password'],$hashed_password)){

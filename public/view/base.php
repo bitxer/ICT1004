@@ -94,7 +94,7 @@
 </nav>
 <main>
     <?php
-    include $data['page'] . '.php';
+    include '../public/view/' . $data['page'] . '.php';
     ?>
 </main>
 </body>
