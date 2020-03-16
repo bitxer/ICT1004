@@ -1,3 +1,10 @@
+/* Style for alert box */
+.alert-box{
+    position: fixed;
+    width:90%;
+    z-index: 9999;
+}
+
 /* Style for blog post cards*/
 
 .comment-box, .post-box{

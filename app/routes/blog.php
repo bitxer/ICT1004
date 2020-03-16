@@ -90,9 +90,10 @@ class blog extends Router
                 if($token_match = Router::token_compare()){
                     $postsuccess = $blog_control->AddPost($_POST);//$postsuccess returns an array if an entry is invalid, bool if it is success
                     if(is_bool($postsuccess)){
+                        $_SESSION['post_success'] = true;
                         header("Location: /blog/u/" . $_SESSION['loginid']);
                     }else{
-                        $this->view(['page'=>'create']);
+                        $this->view(['page'=>'create','err_msg'=>$postsuccess]);
                     }
                 }else{
                     session_destroy();

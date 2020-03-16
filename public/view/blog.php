@@ -1,4 +1,15 @@
-         <section class="card border-0">
+<?php if(isset($_SESSION['post_success'])):?>
+<section class="alert alert-success alert-dismissible fade show ml-5 mt-2 mb-0 alert-box" role="alert"">
+    <p class="text-center">Your Post is has been added!!</p>
+
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</section>
+
+<?php   unset($_SESSION['post_success']);
+        endif;?>
+<section class="card border-0">
              <article class="border-bottom pt-3 mb-3">
                  <header class="card-body">
                      <h2 class="text-center">Welcome to <?=$data['blog_name']?>'s blog!</h2>

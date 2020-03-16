@@ -65,19 +65,19 @@ class BlogController{
 
     public function AddPost($blog_post){
         $title = $content = "";
-        $err_msg = [false, false];
+        $err_msg = array(false, false);
         $loginid = $_SESSION['loginid'];
-        if(empty($blog_post['title'])){
+        if(!empty($blog_post['title'])){
             $title = $blog_post['title'];
         }else{
             $err_msg[0] = true;
         }
-        if(empty($blog_post['content'])){
+        if(!empty($blog_post['content'])){
             $content = $blog_post['content'];
         }else{
             $err_msg[1] = true;
         }
-        if($err_msg != null){
+        if(in_array(true,$err_msg)){
             return $err_msg;
         }else{
             require_once('../app/model/Post.php');
@@ -142,9 +142,9 @@ class BlogController{
     }
     public function  updatePost($content, $postid){
         require_once('../app/model/Post.php');
-        if(empty($content)){
+        if(!empty($content)){
             return false;
-        }elseif(empty($postid)){
+        }elseif(!empty($postid)){
             return false;
         }
         $userid = $this->getUserID($_SESSION['loginid']);
