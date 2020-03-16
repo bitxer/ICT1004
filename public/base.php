@@ -31,9 +31,11 @@
     <script defer src="/static/js/script.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <a class="navbar-brand" href="index.php">Logo</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu">
+<nav class="navbar navbar-expand-sm nav-light" style="background-color: #32a891;">
+    <a class="navbar-brand" href="index.php">
+    <img class="rounded-circle" src="/static/image/logo1.jpg" id="logo" width="60" height="60"/>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collpase navbar-collapse mr-auto" id="navbarMenu">
@@ -49,10 +51,10 @@
         <?php else : ?>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/check/aboutus">About Us</a>
+                <a class="nav-link" href="/main/aboutus">About Us</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/check/contactus">Contact Us</a>
+                <a class="nav-link" href="/main/contactus">Contact Us</a>
             </li>
         </ul>
         <?php endif;?>
@@ -73,7 +75,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Account Settings
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" >
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" id="dropdown" >
                     <a class="dropdown-item" href="/account/profile"><i class="fas fa-cogs pr-3"></i>Profile</a>
                     <span class="dropdown-divider"></span>
                     <a class="dropdown-item" href="/signout"><i class="fas fa-sign-out-alt pr-3"></i>Sign Out</a>
@@ -81,12 +83,12 @@
             </li>
         </ul>
         <?php else: ?>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Sign In</a>
+            <ul class="nav navbar-nav navbar-right" id="signin">
+                <li class="nav-item pr-3">
+                    <a class="nav-link" href="/login" title="Sign In"><i class="fas fa-sign-in-alt fa-lg"></i></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/register">Sign Up</a>
+                <li class="nav-item>">
+                    <a class="nav-link" href="/register" title="Sign Up"><i class="fas fa-user-plus fa-lg"></i></a>
                 </li>
             </ul>
         <?php endif?>

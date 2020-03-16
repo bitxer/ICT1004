@@ -46,7 +46,7 @@
 
         <label>New Password:</label>
         <section class="form-group">
-            <input class="form-group" type="password" minlength="8" name="npassword" placeholder="Enter new password">
+            <input class="form-group" type="password" title="Password must contain at least 8 characters, including UPPER/lowercase and numbers." pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" minlength="8" name="npassword" placeholder="Enter new password">
         </section>
 
         <label>Confirm New Password:</label>
