@@ -4,6 +4,7 @@ require_once('../app/controllers/BlogController.php');
 
 class blog extends Router
 {
+    protected $RIGHTS = 0;
     /**
      * Route for /blog
      * Available Routes:
@@ -11,12 +12,12 @@ class blog extends Router
      *  /blog/u/<loginid>/<postid>  -Contains a Post od a User
      *  /blog/create                -Creates a Post
      */
-    public static function index()
-    {
-        self::view(['page'=>'404']);
+    protected static function index()
+    {   
+        self::abort(404);
     }
 
-    public static function u(...$argv){
+    protected static function u(...$argv){
         if (!isset($argv[0])) {
             self::view(['page'=>'404']);
         } else {
@@ -80,7 +81,8 @@ class blog extends Router
             }
         }
     }
-    public static function create(){
+
+    protected static function create(){
         if(isset($_SESSION['token'])){
             if($_POST){
                 if($token_match = Router::token_compare()){
@@ -104,4 +106,6 @@ class blog extends Router
             header("Location: /");
         }
     }
+
+
 }
