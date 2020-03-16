@@ -1,5 +1,5 @@
 <?php if(isset($_SESSION['post_success'])):?>
-<section class="alert alert-success alert-dismissible fade show ml-5 mt-2 mb-0 alert-box" role="alert"">
+<section class="alert alert-success alert-dismissible fade show ml-5 mt-2 mb-0 alert-box" role="alert">
     <p class="text-center">Your Post is has been added!!</p>
 
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
