@@ -3,15 +3,16 @@ require_once '../app/controllers/LoginController.php';
 require_once '../app/utils/helpers.php';
 class login extends Router
 {
-    public static function index()
+    public function index()
     {
-        self::view(['page' => 'login']);
+        $this->view(['page' => 'login']);
     }
-    public static function login_process()
+    public function login_process()
     {
+        $login_control = new LoginController();
         get($_POST['token']);
-        if (self::token_compare()) {
-            $account = LoginController::getUserAccount();
+        if ($this->token_compare()) {
+            $account = $login_control->getUserAccount();
             if ($account == NULL) {
                 header("Location: /login");
             } else {

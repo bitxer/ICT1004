@@ -3,7 +3,7 @@ require_once("../app/model/User.php");
 
 class RegisterController
 {
-    public static function createUserAccount()
+    public function createUserAccount()
     {
         $confirm_pass = $_POST["confirm_password"];
         $values = [

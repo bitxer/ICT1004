@@ -2,13 +2,14 @@
 require_once '../app/controllers/RegisterController.php';
 require_once '../app/utils/helpers.php';
 class register extends Router{
-    public static function index(){
-        self::view(['page' => 'register']);
+    public function index(){
+        $this->view(['page' => 'register']);
     }
-    public static function register_process(){
+    public function register_process(){
+        $register_control = new RegisterController();
         get($_POST['token']);
-        if(self::token_compare()){
-            $register = RegisterController::createUserAccount();
+        if($this->token_compare()){
+            $register = $register_control->createUserAccount();
             if ($register == NULL){
                 header("Location: /register");
             } else{

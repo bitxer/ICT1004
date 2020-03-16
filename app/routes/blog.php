@@ -12,26 +12,27 @@ class blog extends Router
      *  /blog/u/<loginid>/<postid>  -Contains a Post od a User
      *  /blog/create                -Creates a Post
      */
-    protected static function index()
+    public function index()
     {   
-        self::abort(404);
+        $this->abort(404);
     }
 
-    protected static function u(...$argv){
+    public function u($argv){
+        $blog_control = new BlogController();
         if (!isset($argv[0])) {
-            self::view(['page'=>'404']);
+            $this->abort(404);
         } else {
             $loginid = $argv[0];
             if(sizeof($argv)<=2) {
-                $UserBlogID = BlogController::getUserID($loginid);
+                $UserBlogID = $blog_control->getUserID($loginid);
                 if ($UserBlogID == null) {
-                    self::view(['page'=>'404']);
+                    $this->abort(404);
                 } else {
                     if(isset($argv[1])) {
                             if (!empty($_POST)) {
                                 if(isset($_POST['token'])) {
-                                    if($tokenmatch = Router::token_compare()){
-                                        $isComAdded = BlogController::addComments($PostID = $argv[1]);
+                                    if($tokenmatch = (new Router())->token_compare()){
+                                        $isComAdded = $blog_control->addComments($PostID = $argv[1]);
                                     }else{
                                         session_destroy();
                                         header("Location: /");
@@ -41,30 +42,30 @@ class blog extends Router
                                     header("Location: /");
                                 }
                             }
-                        $post_info = BlogController::getPost($UserBlogID, $PostID = $argv[1]);
+                        $post_info = $blog_control->getPost($UserBlogID, $PostID = $argv[1]);
                         if ($post_info == null) {
-                            self::view(['page'=>'404']);
+                            $this->abort(404);
                         } else {
                             require_once '../app/model/Post.php';
-                            $comments = BlogController::getComments(($post_info[0])->getField('id')->getValue());
+                            $comments = $blog_control->getComments(($post_info[0])->getField('id')->getValue());
                             $data =[
                                 'page'=>'post',
                                 'post_info' => $post_info,
                                 'blog_name'=>$loginid,
                                 'comments'=>$comments];
-                            self::view($data);
+                            $this->view($data);
                         }
                     }else {
-                        $blog_info = BlogController::getBlog($UserBlogID);
-                        $blog_by_page = BlogController::getBlogbyPageX($blog_info);
+                        $blog_info = $blog_control->getBlog($UserBlogID);
+                        $blog_by_page = $blog_control->getBlogbyPageX($blog_info);
                         if($blog_by_page==null){
-                            self::view(['page'=>'blog', 'blog_name'=>$loginid]);
+                            $this->view(['page'=>'blog', 'blog_name'=>$loginid]);
                         }elseif(!isset($blog_by_page['row'])){
                             $data=[
                                 'page'=>'blog',
                                 'blog_name'=>$loginid,
                                 'blog_max_page'=>$blog_by_page['max_page']];
-                            self::view($data);
+                            $this->view($data);
                         }else{
                             $data = [
                                 'page'=>'blog',
@@ -72,33 +73,34 @@ class blog extends Router
                                 'blog_current_page'=>$blog_by_page['cur_page'],
                                 'blog_max_page'=> $blog_by_page['max_page'],
                                 'blog_name' => $loginid];
-                            self::view($data);
+                            $this->view($data);
                         }
                     }
                 }
             }else{
-                self::view(['page'=>'404']); //e.g /u/test/2/randomstring
+                $this->abort(404);
             }
         }
     }
 
-    protected static function create(){
+     public function create(){
+        $blog_control = new BlogController();
         if(isset($_SESSION['token'])){
             if($_POST){
                 if($token_match = Router::token_compare()){
-                    $postsuccess = BlogController::AddPost($_POST);//$postsuccess returns an array if an entry is invalid, bool if it is success
+                    $postsuccess = $blog_control->AddPost($_POST);//$postsuccess returns an array if an entry is invalid, bool if it is success
                     if(is_bool($postsuccess)){
                         header("Location: /blog/u/" . $_SESSION['loginid']);
 
                     }else{
-                        self::view(['page'=>'create']);
+                        $this->view(['page'=>'create']);
                     }
                 }else{
                     session_destroy();
                     header("Location: /");
                 }
             }else {
-                self::view(['page'=>'create']);
+                $this->view(['page'=>'create']);
             }
         }else{
             //Go back to Login

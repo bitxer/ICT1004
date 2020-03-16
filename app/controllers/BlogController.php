@@ -1,7 +1,7 @@
 <?php
 
 class BlogController{
-    public static function getUserID($login_id){
+    public function getUserID($login_id){
         require_once("../app/model/User.php");
         $userFound = get_user("*", ['loginid'=>['=', $login_id]]);
         if($userFound==null){
@@ -11,7 +11,7 @@ class BlogController{
             return $user->getField('id')->getValue();
         }
     }
-    public static function getBlog($user_id){
+    public function getBlog($user_id){
         require_once("../app/model/Post.php");
         $rows = get_post("*",['usr_id'=>['=',$user_id]]);
         if ($rows!=null) {
@@ -27,7 +27,7 @@ class BlogController{
         }
         return $rows;
     }
-    public static function getBlogbyPageX($blog_info){
+    public function getBlogbyPageX($blog_info){
         get($blog_info);
         $page_no=1;
         $max_page=1;
@@ -58,12 +58,12 @@ class BlogController{
         return ['row'=>$rows,'cur_page'=>$page_no,'max_page'=>$max_page];
     }
 
-    public static function getPost($user_id,$post_id){
+    public function getPost($user_id,$post_id){
         require_once("../app/model/Post.php");
         return $rows = get_post("*",['usr_id'=>['=',$user_id],'id'=>['=',$post_id]]);
     }
 
-    public static function AddPost($blog_post){
+    public function AddPost($blog_post){
         $title = $content = "";
         $err_msg = array();
         $loginid = $_SESSION['loginid'];
@@ -86,13 +86,13 @@ class BlogController{
                 "content"=>$content,
                 "created_at"=>time(),
                 "updated_at"=>time(),
-                "usr_id"=>self::getUserID($loginid)];
+                "usr_id"=>$this->getUserID($loginid)];
             $add_post = new Post($Postvalue);
             return $add_post->add();
         }
     }
 
-    public static function getComments($postid)
+    public function getComments($postid)
     {
         require_once('../app/model/Comment.php');
         require_once('../app/model/User.php');
@@ -120,7 +120,7 @@ class BlogController{
         }
         return $comment_array;
     }
-    public static function addComments($PostID){
+    public function addComments($PostID){
         require_once('../app/model/Comment.php');
         $comment = "";
         if(empty($_POST['comment'])){
@@ -131,7 +131,7 @@ class BlogController{
 
         $add_comment = new Comment([
             "comment"=>$comment,
-            "usr_id"=>self::getUserID($_SESSION['loginid']),
+            "usr_id"=>$this->getUserID($_SESSION['loginid']),
             "posts_id"=>$PostID,
             "created_at"=>time(),
         ]);
