@@ -8,9 +8,9 @@
         <section class="card m-5">
             <?php if(isset($data['blog_info'])) : ?>
                 <header class="card-header">
-                    <section class="row">
-                        <span class="col-2 pt-2 pl-5"><h2>Blog Post</h2></span>
-                    <span class="col"><?php include 'blog.nav.inc.php' ?></span>
+                    <section class="d-flex">
+                        <span class="mr-auto  pt-2 pl-5"><p class="h2">Blog Post</p></span>
+                        <span class="p-2"><?php include 'blog.nav.inc.php' ?></span>
                     </section>
                 </header>
                 <?php if(isset($data['blog_info']))  : ?>

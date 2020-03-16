@@ -3,23 +3,39 @@
         <section>
             <article>
                 <div class="card m-5">
-                    <div class="card-header">
+                    <header class="card-header">
+                        <div class="row">
                         <?php
-                        $epoch = (int)($entry->getField('created_at')->getValue());
-                        $dt = new DateTime("@$epoch");
-                        ?>
-                        <?=$dt->format('D, j M Y g:i:s A');?>
-                    </div>
-                    <div class="card-body">
+                        $epochCreated = (int)($entry->getField('created_at')->getValue());
+                        $epochUpdated = (int)($entry->getField('updated_at')->getValue());
+
+                        $dtCreated = new DateTime("@$epochCreated");
+                        $dtUpdated = new DateTime("@$epochUpdated");
+                        echo "<span class='col-md'><p>" . $dtCreated->format('D, j M Y g:i:s A') . "</p></span>";
+                        if($epochUpdated>$epochCreated){
+                            echo  "<span class='col-md'><p class='text-right'>Last Edited: " . $dtUpdated->format('D, j M Y g:i:s A') . "</p></span>";
+                        }?>
+                        </div>
+                    </header>
+                    <main class="card-body">
                         <h5 class="card-title"><?=$entry->getField('title')->getValue() ?></h5>
                         <p class="card-text blog-post">
                             <?php $content = $entry->getField('content')->getValue(); ?>
                             <?=$content?>
                         </p>
-                    </div>
-                    <div class="card-footer text-muted">
+                    </main>
+                    <footer class="card-footer text-muted">
+                        <div class="d-flex">
+                        <span class="mr-auto p-2">
                         <a class="btn btn-primary" href="/blog/u/<?=$data['blog_name']?>">Back to Blog</a>
-                    </div>
+                        </span>
+                        <?php if($data['blog_name']==$_SESSION['loginid'])  :?>
+                        <span class="p-2">
+                            <a class="btn btn-primary d-flex justify-content-end" href="/blog/UpdatePost?postid=<?=$entry->getField("id")->getValue()?>">Update Post</a>
+                        </span>
+                        <?php endif;?>
+                        </div>
+                    </footer>
             </article>
             <article>
                 <section class="card m-5">

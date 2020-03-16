@@ -91,7 +91,6 @@ class blog extends Router
                     $postsuccess = $blog_control->AddPost($_POST);//$postsuccess returns an array if an entry is invalid, bool if it is success
                     if(is_bool($postsuccess)){
                         header("Location: /blog/u/" . $_SESSION['loginid']);
-
                     }else{
                         $this->view(['page'=>'create']);
                     }
@@ -101,6 +100,41 @@ class blog extends Router
                 }
             }else {
                 $this->view(['page'=>'create']);
+            }
+        }else{
+            //Go back to Login
+            session_destroy();
+            header("Location: /");
+        }
+    }
+
+    public function updatepost(){
+        $blog_control = new BlogController();
+        if(isset($_SESSION['token'])){
+            if($_POST){
+                if($token_match = Router::token_compare()){
+                    $postsuccess = $blog_control->updatePost($_POST['content'],$_POST['postid']);//$postsuccess returns an array if an entry is invalid, bool if it is success
+                    if($postsuccess==true){
+                        header("Location: /blog/u/" . $_SESSION['loginid']);
+                    }else{
+                        $this->view(['page'=>'update_post']);
+                    }
+                }else{
+                    session_destroy();
+                    header("Location: /");
+                }
+            }else {
+                if(is_int(filter_var($_GET['postid'],FILTER_VALIDATE_INT))) {
+                    $usr_id = $blog_control->getUserID($_SESSION['loginid']);
+                    $blog_post = $blog_control->getPost($usr_id,$_GET['postid']);
+                    if(is_null($blog_post)){
+                        $this->abort(404);
+                    }else {
+                        $this->view(['page' => 'update_post', 'blog_post' => $blog_post[0]]);
+                    }
+                }else{
+                    $this->abort(404);
+                }
             }
         }else{
             //Go back to Login
