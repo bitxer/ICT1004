@@ -43,10 +43,14 @@ class Router{
     }
 
     public function __call($method,$arguments) {
-        if($this->$RIGHTS == $_SESSION[SESSION_RIGHTS]) {
-            return call_user_func_array(array($this,$method),$arguments);
-        } else {
+        if($this->RIGHTS !== $_SESSION[SESSION_RIGHTS]) {
             $this->abort(403);
         }
+
+        if (in_array($_SERVER['REQUEST_METHOD'], $this->METHODS, true)) {
+            $this->abort(405);
+        }
+        
+        return call_user_func_array(array($this,$method),$arguments);
     }
 }
