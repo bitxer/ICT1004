@@ -29,6 +29,12 @@
                         <span class="mr-auto p-2">
                         <a class="btn btn-primary" href="/blog/u/<?= $data['blog_name'] ?>">Back to Blog</a>
                         </span>
+                        <span class="p-2">
+                            <?php //Get Full url
+                            $link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];  ?>
+                            <button class="btn btn-primary" id="share-btn" data-clipboard-text="<?=$link?>">Share</button>
+                        </span>
+
                         <?php if ($data['blog_name'] == $_SESSION['loginid'])  : ?>
                             <span class="p-2">
                             <a class="btn btn-primary d-flex justify-content-end"

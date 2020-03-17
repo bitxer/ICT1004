@@ -22,6 +22,11 @@
             integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
             crossorigin="anonymous">
     </script>
+    <!--Clipboard JS-->
+    <script defer
+            src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js">
+    </script>
+
     <!--Icons-->
     <link rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
