@@ -44,7 +44,7 @@
             <div class="search-containter">
                 <form class="searchbar d-flex" action="/action_page.php" style="margin:auto;max-width:260px">
                     <input type="text" placeholder="Search" name="search">
-                    <button type="submit"><i class="fa fa-search"> Search</i></button>
+                    <button type="submit" ><i class="fa fa-search"> Search</i></button>
                 </form>
             </div>
         </ul>

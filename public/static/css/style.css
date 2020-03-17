@@ -67,6 +67,7 @@ form.searchbar::after {
   display: table;
 }
 
+
 /*profile page*/
 #profile{
     margin: auto;
@@ -84,7 +85,12 @@ form.profile button{
     margin: 0 auto;
     padding: 4px;
 }
-  
+
+#profilenote{
+  color: red;
+  font-size: 13px;
+}
+
 #myMsg{
     font-weight: bold;
     color: red;
@@ -114,13 +120,15 @@ form.contactus textarea, form.contactus input{
   border: 1px solid grey;
   border-radius: 3px;
   width: 100%;
+  resize: none;
 }
 
 form.contactus button{
   width: 8rem;
 }
 
-/*login page*/
+
+/*Login page*/
 #login{
   margin: auto;
   margin-left: 5rem;
@@ -132,18 +140,30 @@ form.contactus button{
 form.login input{
   border: 1px solid grey;
   border-radius: 3px;
-  width: 90%;
+  min-width: 20%;
+  max-width: 20rem;
 }
 
-/*Registration*/
+
+/*Registration page*/
 form.register{
   margin: auto;
   margin-top: 1rem;
-  margin-left: 5rem;
-  margin-right: 5rem;
+  margin-left: 7rem;
+  margin-right: 7rem;
 }
 
 form.register input{
   border: 1px solid grey;
   border-radius: 3px;
 }
+
+
+/*About us page*/
+#aboutheader{
+  text-align: center;
+  background-color: white;
+  border-width: 1px;
+  border-color: black;
+}
+

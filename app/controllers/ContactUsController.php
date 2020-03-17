@@ -1,5 +1,5 @@
 <?php
-
+require_once("../app/model/ContactUs.php");
 
 class ContactUsController{
 
@@ -18,6 +18,7 @@ class ContactUsController{
         $email = self::sanitize_input($_POST["email"]);
         $description = self::sanitize_input($_POST["description"]);
         
+        
         if (empty($fname) and empty($email) and empty($description)){
             $errorMsg .= "Please fill in all required field";
             $success = false;
@@ -27,23 +28,24 @@ class ContactUsController{
                 $errorMsg .= "Invalid email format.<br>";
                 $success = false;
             } else {
-                $values=[
-                    'fname' => $fname,
-                    'email' => $email,
-                    'description' => $description
-                ];
-                
                 $success = true;
             }
         }
 
         if($success == true){
             $_SESSION["contactus"] = "Message successfully sent";
+            $values=[
+                'name' => $fname,
+                'email' => $email,
+                'message' => $description
+            ];
+            $contactus = new ContactUs($values);
+            return $contactus->add();
         }
         else{
             $_SESSION["contactus"] = $errorMsg;
         }
-
+        
     }
 
 }

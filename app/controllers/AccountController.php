@@ -110,7 +110,7 @@ class AccountController
                             $p = true;
                             $success = true;
                         } else {
-                            $errorMsg .= "Password do not match.<br>";
+                            $errorMsg .= "New password do not match.<br>";
                             $success = false;
                         }
                     } else {

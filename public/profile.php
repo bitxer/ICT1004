@@ -55,6 +55,7 @@
             <button class="btn btn-primary" type="submit" name="update" value="bpassword">Change Password</button>
         </section>
 
+        <label id="profilenote">Note: if you change your password, you will be signed out, sign back in with the new password</label>
         <input type="hidden" name="token" value="<?=$_SESSION['token']?>">
     </form>
 </div>
