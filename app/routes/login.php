@@ -17,6 +17,7 @@ class login extends Router
                 header("Location: /login");
             } else {
                 $_SESSION['loginid'] = $account;
+                $_SESSION['token-expire'] = time()+3600;
                 header("Location: /blog/u/" . $_SESSION['loginid']);
             }
         } else {
