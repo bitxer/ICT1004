@@ -40,7 +40,7 @@
         <?php if(isset($_SESSION['loginid'])):?>
         <ul class="navbar-nav mr-auto">
             <div class="search-containter">
-                <form class="searchbar d-flex" action="#" style="margin:auto;max-width:260px">
+                <form class="searchbar d-flex" method = "post" action="/search" style="margin:auto;max-width:260px">
                     <input type="text" placeholder="Search" name="search">
                     <button type="submit"><i class="fa fa-search"> Search</i></button>
                 </form>
@@ -92,7 +92,7 @@
         <?php endif?>
     </div>
 </nav>
-<main>
+<main class = "container">
     <?php
     include '../public/view/' . $data['page'] . '.php';
     ?>
