@@ -1,5 +1,5 @@
 
-<div class='card border-dark mb-3' id="profile" style="max-width: 30rem; ">
+<div class='card border-dark mb-3' id="profile" style="max-width: 35rem; ">
 <h1 class="card-header">My Profile</h1>
 
     <form class="profile card-body" method="post" action="/account/update_profile">
