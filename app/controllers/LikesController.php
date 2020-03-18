@@ -3,6 +3,7 @@ require_once('../app/controllers/BlogController.php');
 require_once('../app/model/Post_Like.php');
 
 
+
  class LikesController{
      public function setLikes($postid){
          $loginid = $_SESSION['loginid'];
@@ -35,7 +36,16 @@ require_once('../app/model/Post_Like.php');
      public function getLikes($liketype, $usr_id = null, $postid = null){
             /* 1 : Likes of all post, 2: Like of a single Post, 3: check if user has already like the post*/
          if($liketype == 1){
-             return $row = get_post_likes('count(*)');
+             $all_usr_post = get_post('*',['usr_id'=>['=',$usr_id]]);
+             $like_counter = 0;
+             if(is_null($all_usr_post)){
+                 return $like_counter;
+             }
+             foreach($all_usr_post as &$post){
+                 $like = get_post_likes('*',['posts_id'=>['=',$post->getField('id')->getValue()]]);
+                 $like_counter += is_null($like) ? 0 : sizeof($like);
+             }
+             return $like_counter;
          }elseif($liketype == 2){
              $row = get_post_likes('*',['posts_id'=>['=',$postid]]);
              return is_null($row) ? 0 : sizeof($row);
