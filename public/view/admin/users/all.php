@@ -11,9 +11,14 @@
                     <th>Rights</th>
                 </thead>
                 <tbody>
-                    <?php foreach ($data['users'] as $user) { ?>
+                    <?php
+                        foreach ($data['users'] as $user) { 
+                            $id = $user->getField('id')->getValue();
+                    ?>
                         <tr>
-                            <td><?php echo $user->getField('id')->getValue(); ?></td>
+                            <td>
+                                <a href="/admin/u/<?php echo $id ?>"><?php echo $id ?></a>
+                            </td>
                             <td><?php echo $user->getField('loginid')->getValue(); ?></td>
                             <td><?php echo $user->getField('email')->getValue(); ?></td>
                             <td><?php echo $user->getField('name')->getValue(); ?></td>
