@@ -49,7 +49,8 @@ class blog extends Router
                             }
                         }
                         $usr_id = $blog_control->getUserID($_SESSION['loginid']);
-                        $usr_like = $like_control->getLikes(3, $usr_id, $postid = $argv[1]);
+                        $usr_like = $like_control->getLikes(3, $usr_id,$postid = $argv[1]);
+                        $post_like = $like_control->getLikes(2,null,$postid=$argv[1]);
                         $post_info = $blog_control->getPost($UserBlogID, $PostID = $argv[1]);
                         if ($post_info == null) {
                             $this->abort(404);
@@ -60,6 +61,7 @@ class blog extends Router
                                 'page' => 'post',
                                 'post_info' => $post_info,
                                 'usr_like' => $usr_like,
+                                'likes_count' => $post_like,
                                 'blog_name' => $loginid,
                                 'comments' => $comments,
                                 'comment_success' => $isComAdded];

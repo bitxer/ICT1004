@@ -37,7 +37,8 @@ require_once('../app/model/Post_Like.php');
          if($liketype == 1){
              return $row = get_post_likes('count(*)');
          }elseif($liketype == 2){
-             return $row = get_post_likes('count(*)',['posts_id'=>['=',$postid]]);
+             $row = get_post_likes('*',['posts_id'=>['=',$postid]]);
+             return is_null($row) ? 0 : sizeof($row);
          }elseif($liketype == 3){
              return $row = get_post_likes('*',['usr_id'=>['=',$usr_id], 'posts_id'=>['=',$postid]]);
          }

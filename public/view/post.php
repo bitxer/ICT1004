@@ -16,6 +16,10 @@
                             echo "<span class='col-md'><p class='text-right'>Last Edited: " . $dtUpdated->format('D, j M Y g:i:s A') . "</p></span>";
                         } ?>
                     </div>
+                    <div class="row">
+                        <span class="col text-right pr-1"><?= $data["likes_count"] ?></span>
+                        <span class="col text-left pl-0">Likes</span>
+                    </div>
                 </header>
                 <main class="card-body">
                     <h5 class="card-title"><?= $entry->getField('title')->getValue() ?></h5>
@@ -31,24 +35,26 @@
                         </span>
                         <span class="p-2">
                             <form action="/blog/like" method="post">
-                                <input type="hidden" name="postid" value="<?=$entry->getField('id')->getValue()?>">
+                                <input type="hidden" name="postid" value="<?= $entry->getField('id')->getValue() ?>">
                                 <?php
                                 $like_css = "primary";
                                 $like_action = "Like";
-                                if(is_null($data['usr_like'])) {
+                                if (is_null($data['usr_like'])) {
                                     $like_css = "primary";
                                     $like_action = "Like";
-                                }else{
+                                } else {
                                     $like_css = "danger";
                                     $like_action = "Unlike";
-                                }?>
-                                    <input class="btn btn-<?=$like_css?>" type="submit" name="submit" value="<?=$like_action?>">
+                                } ?>
+                                    <input class="btn btn-<?= $like_css ?>" type="submit" name="submit"
+                                           value="<?= $like_action ?>">
                             </form>
                         </span>
                         <span class="p-2">
                             <?php //Get Full url
-                            $link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];  ?>
-                            <button class="btn btn-primary" id="share-btn" data-clipboard-text="<?=$link?>">Share</button>
+                            $link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>
+                            <button class="btn btn-primary" id="share-btn"
+                                    data-clipboard-text="<?= $link ?>">Share</button>
                         </span>
 
                         <?php if ($data['blog_name'] == $_SESSION['loginid'])  : ?>
@@ -63,7 +69,10 @@
         <article>
             <section class="card m-5">
                 <header class="card-header text-center">
-                    Comments
+                    <div class="row">
+                        <span class="col text-right pr-1"><?=sizeof($data['comments'])?></span>
+                        <span class="col text-left pl-0">Comment(s)</span>
+                    </div>
                 </header>
                 <main class="card-body">
                     <?php
