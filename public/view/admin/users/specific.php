@@ -28,7 +28,7 @@ $user = $data['user'][0]; ?>
                 </tr>
             </tbody>
         </table>
-        <form class="text-center" action="/admin/u/promote" method='POST'>
+        <form class="text-center" action="/admin/promote" method='POST'>
             <input type="hidden" name="_csrf" value="<?= $_SESSION[SESSION_CSRF_TOKEN]; ?>">
             <input type="hidden" name="uid" value="<?= $user->getField('id')->getValue(); ?>">
             <input type="submit" class="btn btn-success" value="Promote to admin"/>

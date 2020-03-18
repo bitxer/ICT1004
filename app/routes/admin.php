@@ -25,4 +25,16 @@ class admin extends Router{
             self::view(['page'=>'admin/users/all', 'users'=>$users]);
         }
     }
+
+    public function promote($args) {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $this->abort(405);
+        }
+
+        $user = get_user('*', ['id'=>['=', $_POST['uid']]])[0];
+        $user->getField('isadmin')->setValue(1);
+        $result = $user->update();
+        self::view(['page'=>'admin/users/promote', 'uid'=>$_POST['uid'], 'result'=>$result]);
+
+    }
 }
