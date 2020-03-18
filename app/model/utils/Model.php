@@ -97,7 +97,6 @@ function get_row($table, $fields='*', $filter_by=[]){
     if (is_array($fields)){
         $fields = array_intersect($fields, $known_fields);
     }
-
     $proc = [];
     array_walk($filter_by, function ($value, $key) use (&$proc, $known_fields){
         if (in_array($key, $known_fields)){
@@ -110,14 +109,15 @@ function get_row($table, $fields='*', $filter_by=[]){
     $stmt = $conn->prepare($stmt);
 
     array_walk($filter_by, function($value, $key) use ($stmt){
-
         $field = $key;
         $fvalue = $value[1];
         $stmt->bindParam(":filter_$field", $fvalue);
     });
+
     $result = $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_UNIQUE);
     $model = [];
+    
     array_walk($result, function($row, $id) use (&$model, $table){
         $row['id'] = $id;
         array_push($model, new $table($row));

@@ -5,7 +5,7 @@ require_once("../app/utils/helpers.php");
 
 class User extends Model{
     const tablename = "users";
-    const fields = ["loginid", "password", "email", "name", "isadmin"];
+    const fields = ["id", "loginid", "password", "email", "name", "isadmin"];
     protected $id = null;
     protected $loginid = null;
     protected $password = null;
