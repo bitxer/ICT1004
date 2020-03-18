@@ -142,9 +142,9 @@ class BlogController{
     }
     public function  updatePost($content, $postid){
         require_once('../app/model/Post.php');
-        if(!empty($content)){
+        if(empty($content)){
             return false;
-        }elseif(!empty($postid)){
+        }elseif(empty($postid)){
             return false;
         }
         $userid = $this->getUserID($_SESSION['loginid']);
