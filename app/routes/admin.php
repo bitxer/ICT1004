@@ -11,11 +11,18 @@ class admin extends Router{
 
     public function u($args) {
         if (count($args))
-        {
-            // display specific
+        {   
+            $user = get_user(['id', 'loginid', 'email', 'name', 'isadmin'], ['id'=>['=', $args[0]]]);
+            if ($user == null) {
+                $this->abort(404);
+            }
+            if (count($user) > 1) {
+                $user = $user[0];
+            }
+            self::view(['page'=>'admin/users/specific', 'user'=>$user]);
         } else {
             $users = get_user(['id', 'loginid', 'email', 'name', 'isadmin']);
-            self::view(['page'=>'admin/users', 'users'=>$users]);
+            self::view(['page'=>'admin/users/all', 'users'=>$users]);
         }
     }
 }
