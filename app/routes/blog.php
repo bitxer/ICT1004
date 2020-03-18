@@ -70,13 +70,22 @@ class blog extends Router
                     } else {
                         $blog_info = $blog_control->getBlog($UserBlogID);
                         $blog_by_page = $blog_control->getBlogbyPageX($blog_info);
+                        $blog_like = $like_control->getLikes(1,$UserBlogID);
                         if ($blog_by_page == null) {
-                            $this->view(['page' => 'blog', 'blog_name' => $loginid]);
+                            $data = [
+                                'page' => 'blog',
+                                'blog_name' => $loginid,
+                                'total_post'=>0,
+                                'total_likes'=>0
+                            ];
+                            $this->view($data);
                         } elseif (!isset($blog_by_page['row'])) {
                             $data = [
                                 'page' => 'blog',
                                 'blog_name' => $loginid,
-                                'blog_max_page' => $blog_by_page['max_page']];
+                                'blog_max_page' => $blog_by_page['max_page'],
+                                'total_blogs' => is_null($blog_info) ? 0 : sizeof($blog_info),
+                                'total_likes' => $blog_like];
                             $this->view($data);
                         } else {
                             $data = [
@@ -84,7 +93,9 @@ class blog extends Router
                                 'blog_info' => $blog_by_page['row'],
                                 'blog_current_page' => $blog_by_page['cur_page'],
                                 'blog_max_page' => $blog_by_page['max_page'],
-                                'blog_name' => $loginid];
+                                'blog_name' => $loginid,
+                                'total_post' => is_null($blog_info) ? 0 : sizeof($blog_info),
+                                'total_likes' => $blog_like];
                             $this->view($data);
                         }
                     }
