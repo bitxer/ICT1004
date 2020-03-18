@@ -1,6 +1,6 @@
 <?php
 # Web application parameters.
-define("APP_TITLE", "FastTrade 08");
+define("APP_TITLE", "Budget Blogspot");
 define("APP_ROOT", trim(dirname($_SERVER["REQUEST_URI"])));
 define("APP_DOMAIN", trim($_SERVER["SERVER_NAME"]));
 define("APP_TZ", "Asia/Singapore");
@@ -9,9 +9,7 @@ define("APP_TZ", "Asia/Singapore");
 define("SESSION_LOGIN", "loginid");
 define("SESSION_UNAME", "S_UNAME");
 define("SESSION_RIGHTS", "S_RIGHTS");
-define("SESSION_CSRF_TOKEN", "_csrf");
-define("SESSION_CSRF_EXPIRE", "_csrf-expire");
+define("SESSION_CSRF_TOKEN", "token");
+define("SESSION_CSRF_EXPIRE", "token-expire");
 
-# Sensitive parameters.
-require_once("app/private/database.php");
 ?>

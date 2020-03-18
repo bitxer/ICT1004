@@ -17,12 +17,12 @@
                     ?>
                         <tr>
                             <td>
-                                <a href="/admin/u/<?php echo $id ?>"><?php echo $id ?></a>
+                                <a href="/admin/u/<?= $id ?>"><?= $id ?></a>
                             </td>
-                            <td><?php echo $user->getField('loginid')->getValue(); ?></td>
-                            <td><?php echo $user->getField('email')->getValue(); ?></td>
-                            <td><?php echo $user->getField('name')->getValue(); ?></td>
-                            <td><?php echo $user->getField('isadmin')->getValue(); ?></td>
+                            <td><?= $user->getField('loginid')->getValue(); ?></td>
+                            <td><?= $user->getField('email')->getValue(); ?></td>
+                            <td><?= $user->getField('name')->getValue(); ?></td>
+                            <td><?= $user->getField('isadmin')->getValue(); ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>
