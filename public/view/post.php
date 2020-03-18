@@ -30,6 +30,22 @@
                         <a class="btn btn-primary" href="/blog/u/<?= $data['blog_name'] ?>">Back to Blog</a>
                         </span>
                         <span class="p-2">
+                            <form action="/blog/like" method="post">
+                                <input type="hidden" name="postid" value="<?=$entry->getField('id')->getValue()?>">
+                                <?php
+                                $like_css = "primary";
+                                $like_action = "Like";
+                                if(is_null($data['usr_like'])) {
+                                    $like_css = "primary";
+                                    $like_action = "Like";
+                                }else{
+                                    $like_css = "danger";
+                                    $like_action = "Unlike";
+                                }?>
+                                    <input class="btn btn-<?=$like_css?>" type="submit" name="submit" value="<?=$like_action?>">
+                            </form>
+                        </span>
+                        <span class="p-2">
                             <?php //Get Full url
                             $link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];  ?>
                             <button class="btn btn-primary" id="share-btn" data-clipboard-text="<?=$link?>">Share</button>
@@ -38,7 +54,7 @@
                         <?php if ($data['blog_name'] == $_SESSION['loginid'])  : ?>
                             <span class="p-2">
                             <a class="btn btn-primary d-flex justify-content-end"
-                               href="/blog/UpdatePost?postid=<?= $entry->getField("id")->getValue() ?>">Update Post</a>
+                               href="/blog/updatepost?postid=<?= $entry->getField("id")->getValue() ?>">Update Post</a>
                         </span>
                         <?php endif; ?>
                     </div>

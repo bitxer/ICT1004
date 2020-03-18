@@ -9,7 +9,7 @@
                     </label>
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control post-box" name="content" rows="18" placeholder="Add your Post here..."><?=($data['blog_post'])->getField('content')->getValue();?></textarea>
+                    <textarea class="form-control post-box" name="content" rows="18" placeholder="Edit your Post here..." required><?=($data['blog_post'])->getField('content')->getValue();?></textarea>
                 </div>
                 <div class="form-group">
                     <input type="hidden" name="postid" value="<?=($data['blog_post'])->getField('id')->getValue();?>">
