@@ -26,6 +26,10 @@ $user = $data['user'][0]; ?>
                     <th scope="col" class="w-25 text-right">Admin user: </th>
                     <td scope="col"><?= $user->getField('isadmin')->getValue() == 1 ? 'Yes' : 'No'; ?></td>
                 </tr><tr>
+                    <th scope="col" class="w-25 text-right">Suspended</th>
+                    <td scope="col"><?= $user->getField('suspended')->getValue() == 1 ? 'Yes' : 'No'; ?></td>
+                </tr>
+                <tr>
                     <td scope="col" colspan="2" class="text-center">Click <a href="/blog/u/<?= $user->getField('loginid')->getValue(); ?>">here</a> to view blog</td>
                 </tr>
             </tbody>
