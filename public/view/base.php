@@ -1,3 +1,4 @@
+<!DOCtype html>
 <html>
     <head>
         <title>Blog</title>
