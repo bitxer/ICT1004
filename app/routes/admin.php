@@ -45,17 +45,4 @@ class admin extends Router{
         }
     }
 
-    // private function blog($args) {
-    //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //         $this->abort(405);
-    //     } else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    //         if (count($args) == 1) {
-    //             $id = $args[0];
-    //             $data = ["page" => 'admin/blog/user', 'uid' => $id];
-    //             self::view($data);
-    //         } else {
-    //             $this->abort(404);
-    //         }
-    //     }
-    // }
 }
