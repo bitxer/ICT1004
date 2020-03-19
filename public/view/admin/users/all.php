@@ -9,6 +9,7 @@
                     <th>Email</th>
                     <th>Name</th>
                     <th>Rights</th>
+                    <th>Suspended</th>
                 </thead>
                 <tbody>
                     <?php
@@ -22,7 +23,8 @@
                             <td><?= $user->getField('loginid')->getValue(); ?></td>
                             <td><?= $user->getField('email')->getValue(); ?></td>
                             <td><?= $user->getField('name')->getValue(); ?></td>
-                            <td><?= $user->getField('isadmin')->getValue(); ?></td>
+                            <td><?= $user->getField('isadmin')->getValue() == 1 ? 'Yes' : 'No'; ?></td>
+                            <td><?= $user->getField('suspended')->getValue() == 1 ? 'Yes' : 'No'; ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>
