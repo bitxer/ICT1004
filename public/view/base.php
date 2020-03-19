@@ -28,7 +28,6 @@
             integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
             crossorigin="anonymous">
         <!--Custom JS -->
-        <script defer src="/static/js/script.js"></script>
         <?php 
         if (isset($data['script'])) {
             $script = $data['script'];
