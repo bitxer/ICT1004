@@ -10,7 +10,7 @@
                 <header class="card-header">
                     <section class="row">
                         <span class="col-2 pt-2 pl-5"><h2>Blog Post</h2></span>
-                    <span class="col"><?php include 'blog.nav.inc.php'?></span>
+                    <span class="col"><?php include 'blog.nav.inc.php' ?></span>
                     </section>
                 </header>
                 <?php if(isset($data['blog_info']))  : ?>
@@ -43,7 +43,7 @@
                 <?php endif;?>
                 <footer class="card-footer text-muted">
                     <?php if(isset($data['blog_info'])) : ?>
-                        <?php include 'blog.nav.inc.php'?>
+                        <?php include 'blog.nav.inc.php' ?>
                     <?php endif;?>
                 </footer>
             <?php else :?>

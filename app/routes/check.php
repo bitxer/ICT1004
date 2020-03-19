@@ -2,15 +2,15 @@
 
 
 class check extends Router{
-    public static function index(){
-        self::view(['page'=>'404']);
+    public function index(){
+        $this->abort(404);
     }
     
-    public static function aboutus(){
-        self::view(['page'=>'aboutus']);
+    public function aboutus(){
+        $this->view(['page'=>'aboutus']);
     }
 
-    public static function contactus(){
-        self::view(['page'=>'contactus']);
+    public function contactus(){
+        $this->view(['page'=>'contactus']);
     }
 }

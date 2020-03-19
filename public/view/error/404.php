@@ -1,5 +1,3 @@
-
-        <main>
             <article>
                 <div class="card text-center">
                     <div class="card-header">
@@ -11,4 +9,3 @@
                     </div>
                 </div>
             </article>
-        </main>
