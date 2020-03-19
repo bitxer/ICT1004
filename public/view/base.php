@@ -29,6 +29,7 @@
           crossorigin="anonymous">
     <!--Custom JS -->
     <script defer src="/static/js/script.js"></script>
+    <script defer src="/static/js/validate.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">

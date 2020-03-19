@@ -79,6 +79,8 @@ text-align:center;
 
 #search_results_table{
 text-align:center;
+border-collapse: separate;
+border-spacing: 50px 0;
 }
 
 .main{
@@ -87,4 +89,8 @@ margin:auto;
 
 #search_results_card{
 width: 5rem;
+}
+
+th{
+  text-align:center;
 }
