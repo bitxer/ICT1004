@@ -23,6 +23,8 @@
                 integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
                 crossorigin="anonymous">
         </script>
+        <!--Clipboard JS-->
+        <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
         <!--Icons-->
         <link rel="stylesheet"
             href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
@@ -35,6 +37,9 @@
             echo "<script defer src=\"$script\"></script>";
         }
         ?>
+        <script defer
+                src="/static/js/clipboard.js">
+        </script>
     </head>
     <body>
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
