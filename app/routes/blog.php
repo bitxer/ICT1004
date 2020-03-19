@@ -121,63 +121,60 @@ class blog extends Router
                     }
                 } else {
                     session_destroy();
-                    header("Location: /");
+                    $this->abort(405);
                 }
             } else {
                 $this->view(['page' => 'create']);
             }
         } else {
-            //Go back to Login
             session_destroy();
-            header("Location: /");
+            $this->abort(405);
         }
     }
 
-    public function updatepost()
+    public function updatepost($argv)
     {
-        $blog_control = new BlogController();
-        if (isset($_SESSION['token'])) {
-            if ($_POST) {
-                if (is_int(filter_var($_POST['postid'], FILTER_VALIDATE_INT))) {
-                    if ($token_match = Router::token_compare()) {
-                        $postsuccess = $blog_control->updatePost($_POST['content'], $_POST['postid']);//$postsuccess returns an array if an entry is invalid, bool if it is success
-                        var_dump($postsuccess);
-                        if ($postsuccess == true) {
-                            header("Location: /blog/u/" . $_SESSION['loginid']);
+        
+        if(!isset($argv)){
+            $this->abort(404);
+        }else{
+            $postid = $argv[0];
+            if (!is_int(filter_var($postid, FILTER_VALIDATE_INT)) && (sizeof($argv)!=1)){
+                $this->abort(403);
+            }else{
+                $blog_control = new BlogController();
+                if (isset($_SESSION['token'])) {
+                    if ($_POST) {
+                            if ($token_match = Router::token_compare()) {
+                                $postsuccess = $blog_control->updatePost($_POST['content'], $postid);//$postsuccess returns an array if an entry is invalid, bool if it is success
+                                if ($postsuccess == true) {
+                                    header("Location: /blog/u/" . $_SESSION['loginid']);
+                                } else {
+                                    header("Location: /blog/updatepost/" . $postid . "?update=failed");
+                                }
+                            } else {
+                                session_destroy();
+                                $this->abort(405);
+                            }
+                    } else {
+                        $usr_id = $blog_control->getUserID($_SESSION['loginid']);
+                        $blog_post = $blog_control->getPost($usr_id, $postid);
+                        if (is_null($blog_post)) {
+                            $this->abort(403);
                         } else {
-                            header("Location: /blog/updatepost?postid=" . $_POST['postid']);
+                            $this->view(['page' => 'update_post', 'blog_post' => $blog_post[0]]);
                         }
-                    } else {
-                        session_destroy();
-                        header("Location: /");
                     }
                 } else {
-
-                    $this->abort(404);
-                }
-            } else {
-                if (is_int(filter_var($_GET['postid'], FILTER_VALIDATE_INT))) {
-                    $usr_id = $blog_control->getUserID($_SESSION['loginid']);
-                    $blog_post = $blog_control->getPost($usr_id, $_GET['postid']);
-                    if (is_null($blog_post)) {
-                        $this->abort(404);
-                    } else {
-                        $this->view(['page' => 'update_post', 'blog_post' => $blog_post[0]]);
-                    }
-                } else {
-                    $this->abort(404);
+                    session_destroy();
+                    $this->abort(405);
                 }
             }
-        } else {
-            //Go back to Login
-            session_destroy();
-            header("Location: /");
         }
     }
 
     public function like()
     {
-
         $likes_control = new LikesController();
         if ($_POST) {
             if ($_POST['submit']) {
@@ -192,8 +189,10 @@ class blog extends Router
                         header('Location: ' . parse_url($_SERVER['HTTP_REFERER'])['path']);
                     }
                 } else {
-                    $this->abort(404);
+                    $this->abort(405);
                 }
+            }else{
+                $this->abort(404);
             }
         } else {
             $this->abort(404);

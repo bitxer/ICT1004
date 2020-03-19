@@ -1,5 +1,5 @@
 <?php if(isset($data['err_msg'])):?>
-<section class="alert alert-danger alert-dismissible fade show ml-5 mb-0 alert-box" role="alert">
+<section class="alert alert-danger alert-dismissible fade show alert-box ml-5 w-25" role="alert">
 
     <?php if(($data['err_msg'])[0]) : ?>
     <p class="text-center">Title is empty</p>

@@ -60,7 +60,7 @@
                         <?php if ($data['blog_name'] == $_SESSION['loginid'])  : ?>
                             <span class="p-2">
                             <a class="btn btn-primary d-flex justify-content-end"
-                               href="/blog/updatepost?postid=<?= $entry->getField("id")->getValue() ?>">Update Post</a>
+                               href="/blog/updatepost/<?= $entry->getField("id")->getValue() ?>">Update Post</a>
                         </span>
                         <?php endif; ?>
                     </div>
@@ -70,7 +70,7 @@
             <section class="card m-5">
                 <header class="card-header text-center">
                     <div class="row">
-                        <span class="col text-right pr-1"><?=sizeof($data['comments'])?></span>
+                        <span class="col text-right pr-1"><?= sizeof($data['comments']) ?></span>
                         <span class="col text-left pl-0">Comment(s)</span>
                     </div>
                 </header>
