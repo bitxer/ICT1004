@@ -29,6 +29,12 @@
             crossorigin="anonymous">
         <!--Custom JS -->
         <script defer src="/static/js/script.js"></script>
+        <?php 
+        if (isset($data['script'])) {
+            $script = $data['script'];
+            echo "<script defer src=\"$script\"></script>";
+        }
+        ?>
     </head>
     <body>
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
