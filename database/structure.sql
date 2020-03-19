@@ -88,29 +88,10 @@ CREATE TABLE `users` (
   `email` text COLLATE utf8mb4_general_ci NOT NULL,
   `name` text COLLATE utf8mb4_general_ci NOT NULL,
   `isadmin` tinyint NOT NULL DEFAULT '0',
+  `suspended` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_loginid_unique` (`loginid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `post_likes`
---
-
-DROP TABLE IF EXISTS `post_likes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `post_likes` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `posts_id` int unsigned NOT NULL,
-  `usr_id` int unsigned NOT NULL,
-  `liked_at` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `post_id_idx` (`posts_id`),
-  KEY `usr_id_idx` (`usr_id`),
-  CONSTRAINT `fk_posts_id` FOREIGN KEY (`posts_id`) REFERENCES `posts` (`id`),
-  CONSTRAINT `fk_usr_id` FOREIGN KEY (`usr_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -122,4 +103,4 @@ CREATE TABLE `post_likes` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-17 13:20:15
+-- Dump completed on 2020-03-19 16:12:18
