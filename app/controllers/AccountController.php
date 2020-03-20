@@ -4,14 +4,14 @@ require_once("../app/model/User.php");
 
 class AccountController
 {
-    public static function getdetails()
+    public function getdetails()
     {
         $loginid = $_SESSION['loginid'];
         $data = get_user('*', ['loginid' => ["=", $loginid]]);
         return $user = $data[0];
     }
 
-    public static function sanitize_input($input)
+    public function sanitize_input($input)
     {
         $input = trim($input);
         $input = stripslashes($input);
@@ -20,10 +20,10 @@ class AccountController
     }
 
 
-    public static function update_user()
+    public function update_user()
     {
 
-        $user = self::getdetails();
+        $user = $this->getdetails();
         
 
         $currentpwd = $user->getField('password')->getValue();
@@ -32,12 +32,12 @@ class AccountController
         $errorMsg = "";
         $success = true;
         $p = false;
-        $uid = self::sanitize_input($_POST["userid"]);
-        $name = self::sanitize_input($_POST["name"]);
-        $cpwd = self::sanitize_input($_POST["cpassword"]);
-        $npwd = self::sanitize_input($_POST["npassword"]);
-        $ncpwd = self::sanitize_input($_POST["ncpassword"]);
-        $email = self::sanitize_input($_POST["email"]);
+        $uid = $this->sanitize_input($_POST["userid"]);
+        $name = $this->sanitize_input($_POST["name"]);
+        $cpwd = $this->sanitize_input($_POST["cpassword"]);
+        $npwd = $this->sanitize_input($_POST["npassword"]);
+        $ncpwd = $this->sanitize_input($_POST["ncpassword"]);
+        $email = $this->sanitize_input($_POST["email"]);
         $key = '';
         $val = '';
         $msg = '';

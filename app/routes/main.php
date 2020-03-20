@@ -2,8 +2,8 @@
 require_once("../app/controllers/ContactUsController.php");
 
 class main extends Router{
-    public static function index(){
-        self::view(['page'=>'main']);
+    public function index(){
+        $this->view(['page'=>'main']);
     }
 
     public static function aboutus(){
