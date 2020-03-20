@@ -27,7 +27,8 @@ class AccountController
         
 
         $currentpwd = $user->getField('password')->getValue();
-
+        //$_SESSION["pwd"] = $currentpwd;
+        
         $errorMsg = "";
         $success = true;
         $p = false;
@@ -94,20 +95,22 @@ class AccountController
                 break;
 
                 //when update password button is pressed.
+                
             case 'bpassword':
                 if (empty($cpwd) || empty($npwd) || empty($ncpwd)) {
                     $errorMsg .= "Password is required.";
                     $success = false;
                 } else {
-                    if ($cpwd == $currentpwd) {
+                    if (password_verify($cpwd,$currentpwd)) {
                         if ($npwd == $ncpwd) {
                             $key = 'password';
-                            $val = $npwd;
+                            $hash = password_hash($npwd, PASSWORD_DEFAULT);
+                            $val = $hash;
                             $msg = 'Password';
                             $p = true;
                             $success = true;
                         } else {
-                            $errorMsg .= "Password do not match.<br>";
+                            $errorMsg .= "New password do not match.<br>";
                             $success = false;
                         }
                     } else {

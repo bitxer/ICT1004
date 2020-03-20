@@ -1,15 +1,189 @@
-/* Style for alert box */
-.alert-box{
-    position: fixed;
-    width:90%;
-    z-index: 9999;
+body{
+  background-color: white;
 }
 
-/* Style for blog post cards*/
+.footer-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+ }
 
+/*Navbar*/
+.navbar-toggler{
+  border-color: black;
+}
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0, 0.5)' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+a.nav-link{
+  color: black;
+  display:block;
+  padding: 20px 30px;
+}
+.active, .nav-link:hover {
+  background-color: #248270;
+  color: white;
+}
+
+a.dropdown-item:hover{
+  background-color: #999999;
+}
+
+/* Style the search field */
+form.searchbar input[type=text] {
+font-size: 13px;
+padding: 5px;
+border: 1px solid grey;
+float: left;
+background: #f1f1f1;
+margin: 0 auto;
+}
+
+
+/* Style the submit button */
+form.searchbar button {
+  float: right;
+  margin: 0 auto;
+  padding: 3px;
+  background: white;
+  color: black;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/*when you hover over the search bar button*/
+form.searchbar button:hover {
+  background:#d4d4d4;
+}
+
+/* Clear floats */
+form.searchbar::after {
+content: "";
+clear: both;
+display: table;
+}
+
+
+/*profile page*/
+#profile{
+    margin: auto;
+    margin-top: 1rem;
+}
+
+form.profile{
+  margin-left: 3rem;
+  margin-right: 2rem;
+}
+
+form.profile input{
+  border: 1px solid grey;
+  border-radius: 3px;
+  width: 15rem;
+}
+
+form.profile button{
+  margin: 0 auto;
+  padding: 4px;
+}
+
+
+#profilenote{
+  color: red;
+  font-size: 13px;
+}
+
+#myMsg{
+  font-weight: bold;
+  color: red;
+}
+
+
+/*Contact us page*/
+#aboutus, #contactus{
+    margin: auto;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    border-width: 0;
+}
+
+#contact{
+  margin: auto;
+  float: center;
+  background-color: ghostwhite;
+}
+#contactheader{
+  background-color: ghostwhite;
+  border-width: 0.1rem;
+  border-color: black;
+}
+
+form.contactus textarea, form.contactus input{
+  border: 1px solid grey;
+  border-radius: 3px;
+  width: 100%;
+  resize: none;
+}
+
+form.contactus button{
+  width: 8rem;
+}
+
+
+/*Login page*/
+#login{
+  margin: auto;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  margin-top: 1rem;
+  border: none;
+}
+
+form.login input{
+  border: 1px solid grey;
+  border-radius: 3px;
+  min-width: 20%;
+  max-width: 20rem;
+}
+
+
+/*Registration page*/
+form.register{
+  margin: auto;
+  margin-top: 1rem;
+  margin-left: 7rem;
+  margin-right: 7rem;
+}
+
+form.register input{
+  border: 1px solid grey;
+  border-radius: 3px;
+}
+
+
+/*About us page*/
+#aboutheader{
+  text-align: center;
+  background-color: white;
+  border-width: 1px;
+  border-color: black;
+}
+
+
+#search_header{
+text-align:center;
+}
+
+.main{
+margin:auto;
+}
+
+/* Comment and Post Blog box style*/
 .comment-box, .post-box{
-    resize: none;
-    height: 100%;
+  resize: none;
+  height: 100%;
 }
 
 .post-preview, .blog-post{
@@ -22,68 +196,7 @@
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
 }
-
-/* Style the search field */
-form.searchbar input[type=text] {
-  font-size: 13px;
-  padding: 5px;
-  border: 1px solid grey;
-  float: left;
-  background: #f1f1f1;
-  margin: 0 auto;
-}
-
-/* Style the submit button */
-form.searchbar button {
-  float: right;
-  margin: 0 auto;
-  padding: 3px;
-  background: #2196F3;
-  color: white;
-  font-size: 17px;
-  border: 1px solid grey;
-  border-left: none; /* Prevent double borders */
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-/*when you hover over the search bar button*/
-form.searchbar button:hover {
-  background: #0b7dda;
-}
-
-/* Clear floats */
-form.searchbar::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-#profile{
-    margin: auto;
-    margin-left: 5rem;
-    margin-top: 1rem;
-}
-
-form.profile input{
-    border: 1px solid grey;
-    border-radius: 3px;
-    width: 15rem;
-}
-  
-form.profile button{
-    margin: 0 auto;
-    padding: 4px;
-}
-  
-#myMsg{
-    font-weight: bold;
-    color: red;
-}
-
-#aboutus, #contactus{
-    margin: auto;
-    margin-left: 5rem;
-    margin-top: 2rem;
-    margin-right: 5rem;
+.post-preview{
+  white-space: pre-line;
+  overflow-wrap: break-word;
 }

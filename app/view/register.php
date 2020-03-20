@@ -1,4 +1,6 @@
- <form name="frmRegistration" method="post" action="/register/register_process">
+
+<form class="register" name="frmRegistration" method="post" action="/register/register_process">
+<h2>Registration</h2>
         <div class="form-group">
             <?php
             if (!empty($errorMessage) && is_array($errorMessage)) {
