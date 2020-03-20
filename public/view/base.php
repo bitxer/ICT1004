@@ -5,6 +5,8 @@
     <title>Blog</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="SHORTCUT ICON" href="/static/image/icon.ico" type="image/x-icon" />
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -27,9 +29,9 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm" style="background-color: #32a891;">
+    <nav class="navbar navbar-expand-sm py-1" style="background-color: #32a891;">
         <a class="navbar-brand" href="/">
-            <img class="rounded-circle" src="/static/image/logo.jpg" id="logo" width="60" height="60" />
+            <img class="rounded-circle" src="/static/image/logo.jpg" id="logo" width="60" height="60" alt="Home" />
         </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu">
@@ -38,12 +40,10 @@
         <div class="collpase navbar-collapse mr-auto" id="navbarMenu">
             <?php if (isset($_SESSION['loginid'])) : ?>
                 <ul class="navbar-nav mr-auto">
-                    <div class="search-containter">
-                        <form class="searchbar d-flex" method="post" action="/search" style="margin:auto;max-width:260px">
-                            <input type="text" placeholder="Search" name="search">
-                            <button type="submit"><i class="fa fa-search"> Search</i></button>
-                        </form>
-                    </div>
+                    <li class="searchbar d-flex" method="post" action="/search" style="margin:auto;max-width:260px">
+                        <input type="text" placeholder="Search" name="search" aria-label="Search">
+                        <button type="submit"><i class="fa fa-search"> Search</i></button>
+                    </li>
                 </ul>
             <?php else : ?>
                 <ul class="navbar-nav mr-auto">
@@ -82,13 +82,13 @@
             <?php else : ?>
 
                 <ul class="nav navbar-nav navbar-right" id="signin">
-                <li class="nav-item pr-3">
-                    <a class="nav-link" href="/login" title="Sign In"><i class="fas fa-sign-in-alt fa-lg"></i></a>
-                </li>
-                <li class="nav-item>">
-                    <a class="nav-link" href="/register" title="Sign Up"><i class="fas fa-user-plus fa-lg"></i></a>
-                </li>
-            </ul>
+                    <li class="nav-item pr-3">
+                        <a class="nav-link" href="/login" title="Sign In"><i class="fas fa-sign-in-alt fa-lg"></i></a>
+                    </li>
+                    <li class="nav-item>">
+                        <a class="nav-link" href="/register" title="Sign Up"><i class="fas fa-user-plus fa-lg"></i></a>
+                    </li>
+                </ul>
 
             <?php endif ?>
         </div>
@@ -98,7 +98,7 @@
         include '../public/view/' . $data['page'] . '.php';
         ?>
     </main>
-    <footer class="container border-top">
+    <footer class="footer border-top">
         <p class="text-center">Copyright &copy; 2020 Budget Blogspots</p>
     </footer>
 </body>
