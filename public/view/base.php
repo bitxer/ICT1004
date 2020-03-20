@@ -26,7 +26,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm" style="background-color: #32a891;">
         <a class="navbar-brand" href="/">
             <img class="rounded-circle" src="/static/image/logo.jpg" id="logo" width="60" height="60" />
         </a>
@@ -78,14 +78,14 @@
                     </li>
                 </ul>
             <?php else : ?>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Sign In</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/register">Sign Up</a>
-                    </li>
-                </ul>
+                <ul class="nav navbar-nav navbar-right" id="signin">
+                <li class="nav-item pr-3">
+                    <a class="nav-link" href="/login" title="Sign In"><i class="fas fa-sign-in-alt fa-lg"></i></a>
+                </li>
+                <li class="nav-item>">
+                    <a class="nav-link" href="/register" title="Sign Up"><i class="fas fa-user-plus fa-lg"></i></a>
+                </li>
+            </ul>
             <?php endif ?>
         </div>
     </nav>

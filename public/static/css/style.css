@@ -8,6 +8,15 @@
     white-space: pre-line;
     overflow-wrap: break-word;
 }
+.main-container{
+  background-color: white;
+}
+
+.footer-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+ }
 
 /*Navbar*/
 .navbar-toggler{
