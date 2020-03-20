@@ -10,18 +10,17 @@ class login extends Router
     public function login_process()
     {
         $login_control = new LoginController();
-        get($_POST['token']);
         if ($this->token_compare()) {
             $account = $login_control->getUserAccount();
             if ($account == NULL) {
-                header("Location: /login");
+                header("Location: /login?error=invalidcredentials");
             } else {
                 $_SESSION['loginid'] = $account;
                 header("Location: /blog/u/" . $_SESSION['loginid']);
             }
         } else {
             session_destroy();
-            header("Location: /login");
+            header("Location: /login?error=invalidcredentials");
         }
     }
 }

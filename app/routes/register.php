@@ -7,17 +7,11 @@ class register extends Router{
     }
     public function register_process(){
         $register_control = new RegisterController();
-        get($_POST['token']);
-        if($this->token_compare()){
             $register = $register_control->createUserAccount();
             if ($register == NULL){
-                header("Location: /register");
+                header("Location: /register?error=sqlerror");
             } else{
                 header("Location: /login");
             }
-        } else{
-            session_destroy();
-            header("Location: /register");
-        }
     }
 }
