@@ -33,7 +33,7 @@
 <body>
 <nav class="navbar navbar-expand-sm nav-light" style="background-color: #32a891;">
     <a class="navbar-brand" href="index.php">
-    <img class="rounded-circle" src="/static/image/logo1.jpg" id="logo" width="60" height="60"/>
+    <img class="rounded-circle" src="/static/image/logo.jpg" id="logo" width="60" height="60"/>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
