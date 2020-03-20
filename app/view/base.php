@@ -72,7 +72,7 @@
 
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="/blog/u/<?= $_SESSION['loginid'] ?>">Home</a>
+                        <a class="nav-link" href="/blog/u/<?= $_SESSION['loginid'] ?>"><?= $_SESSION['loginid'] ?></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/blog/create">Create</a>

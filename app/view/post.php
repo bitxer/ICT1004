@@ -1,5 +1,4 @@
 <section>
-<?php if (isset($data['post_info'][0]))  : ?>
     <?php $entry = $data['post_info'][0]; ?>
         <article>
             <div class="card m-5">
@@ -82,7 +81,7 @@
                 <?php
                         if (is_bool($data['comment_success'])) :
                             if ($data['comment_success']):?>
-                                <span class="alert alert-success alert-dismissible fade show mt-2 mb-0 alert-box"
+                                <span class="alert alert-success alert-dismissible fade show mt-2 mb-0 alert-box w-25"
                                     role="alert">
                                 <p class="text-center">Your Comment has been added!!</p>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -90,7 +89,7 @@
                                 </button>
                             </span>
                             <?php else: ?>
-                                <span class="alert alert-danger alert-dismissible fade show mt-2 mb-0 alert-box"
+                                <span class="alert alert-danger alert-dismissible fade show mt-2 mb-0 alert-box w-25"
                                     role="alert">
                                     <p class="text-center">Please enter a comment.</p>
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -127,6 +126,7 @@
                         $epoch = (int)($comment['created_at']);
                         $commentTimeStamp = new DateTime("@$epoch");
                         ?>
+                        <span class="border-top"></span>
                         <div class="card-body pb-2 pl-5 pr-2">
                             <p><span><a class="nav-link"
                                         href="/blog/u/<?= $comment['loginid'] ?>"><?= $comment['loginid'] ?></a></span>
@@ -134,7 +134,6 @@
                             <p class="card-text"><?= $comment['comment'] ?></p>
                             <p class="card-text"><?= $commentTimeStamp->format('D, j M Y g:i:s A'); ?></p>
                         </div>
-                        <span class="border-top"></span>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <div class="card-body pb-2 pl-5 pr-2">
@@ -144,14 +143,4 @@
                 <?php endif; ?>
             </section>
         </article>
-<?php else: ?>
-        <article>
-            <div class="card">
-                <h5 class="card-header">Hmmm...</h5>
-                <div class="card-body">
-                    <h5 class="card-title">Post Not Found</h5>
-                </div>
-            </div>
-        </article>
-<?php endif; ?>
 </section>

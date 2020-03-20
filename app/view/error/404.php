@@ -1,4 +1,4 @@
-                <section class="card text-center">
+                <section class="card m-3 text-center">
                     <header class="card-header">
                         Error 404
                     </header>
