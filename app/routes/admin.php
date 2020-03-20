@@ -6,7 +6,7 @@ class admin extends Router{
     // protected $RIGHTS = 2;
     
     public function index(){
-        self::view(['page'=>'main']);
+        $this->abort(404);
     }
 
     public function u($args) {

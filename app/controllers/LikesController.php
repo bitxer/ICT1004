@@ -11,7 +11,7 @@ require_once('../app/model/Post_Like.php');
       *
       */
      public function setLikes($postid){
-         $loginid = $_SESSION['loginid'];
+         $loginid = $_SESSION[SESSION_LOGIN];
          $usr_id = (new BlogController())->getUserID($loginid);
          //Check if post is already liked by user
          $LikeFound = $this->getLikes(3,$usr_id,$postid);
@@ -39,7 +39,7 @@ require_once('../app/model/Post_Like.php');
       * @param string postid
       */
      public function RemoveLikes($postid){
-         $loginid = $_SESSION['loginid'];
+         $loginid = $_SESSION[SESSION_LOGIN];
          $usr_id = (new BlogController())->getUserID($loginid);
          //Check if user like the post
          $like_post = ($this->getLikes(3, $usr_id,$postid));

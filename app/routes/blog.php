@@ -83,7 +83,7 @@ class blog extends Router
                             $isComAdded = $blog_control->addComments($PostID = $argv[1]);
                         }
                         //Get info of Logged in user
-                        $usr_id = $blog_control->getUserID($_SESSION['loginid']);
+                        $usr_id = $blog_control->getUserID($_SESSION[SESSION_LOGIN]);
                         $usr_like = $like_control->getLikes(3, $usr_id, $postid = $argv[1]);
 
                         //Get info of the blog post
@@ -174,7 +174,7 @@ class blog extends Router
                 //Post is added
                 $_SESSION['post_success'] = true;
                 //redirect to /blog/u/<loginid>
-                header("Location: /blog/u/" . $_SESSION['loginid']);
+                header("Location: /blog/u/" . $_SESSION[SESSION_LOGIN]);
             } else {
                 //Post is not added
 
@@ -221,7 +221,7 @@ class blog extends Router
                         //update is a success
                         //Redirect to user blog
                         $_SESSION['update_success'] = true;
-                        header("Location: /blog/u/" . $_SESSION['loginid']);
+                        header("Location: /blog/u/" . $_SESSION[SESSION_LOGIN]);
                     } else {
                         //update fails
                         //Sends user back to /blog/updatepost/<postid>
@@ -229,7 +229,7 @@ class blog extends Router
                     }
                 } else {
                     //User want to edit <postid>
-                    $usr_id = $blog_control->getUserID($_SESSION['loginid']);
+                    $usr_id = $blog_control->getUserID($_SESSION[SESSION_LOGIN]);
                     $blog_post = $blog_control->getPost($usr_id, $postid);
                     //Check if the user owns that post
                     if (is_null($blog_post)) {

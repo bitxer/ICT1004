@@ -125,7 +125,7 @@ class BlogController{
     public function AddPost($blog_post){
         $title = $content = "";
         $err_msg = array(false, false);
-        $loginid = $_SESSION['loginid'];
+        $loginid = $_SESSION[SESSION_LOGIN];
         //Validate input
         if(!empty($blog_post['title'])){
             $title = $this->sanitize_input($blog_post['title']);
@@ -215,7 +215,7 @@ class BlogController{
 
         $add_comment = new Comment([
             "comment"=>$comment,
-            "usr_id"=>$this->getUserID($_SESSION['loginid']),
+            "usr_id"=>$this->getUserID($_SESSION[SESSION_LOGIN]),
             "posts_id"=>$PostID,
             "created_at"=>time(),
         ]);
@@ -242,7 +242,7 @@ class BlogController{
             return false;
         }
 
-        $userid = $this->getUserID($_SESSION['loginid']);
+        $userid = $this->getUserID($_SESSION[SESSION_LOGIN]);
         //Get post that is being updated
         $post_update = ($this->getPost($userid,$postid))[0];
 
