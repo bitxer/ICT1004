@@ -1,74 +1,96 @@
 .comment-box, .post-box{
-    resize: none;
-    height: 100%;
+  resize: none;
+  height: 100%;
 }
 .post-preview{
-    white-space: pre-line;
-    overflow-wrap: break-word;
+  white-space: pre-line;
+  overflow-wrap: break-word;
 }
 
 
 /* Style the search field */
 form.searchbar input[type=text] {
-  font-size: 13px;
-  padding: 5px;
-  border: 1px solid grey;
-  float: left;
-  background: #f1f1f1;
-  margin: 0 auto;
+font-size: 13px;
+padding: 5px;
+border: 1px solid grey;
+float: left;
+background: #f1f1f1;
+margin: 0 auto;
 }
 
 /* Style the submit button */
 form.searchbar button {
-  float: right;
-  margin: 0 auto;
-  padding: 3px;
-  background: #2196F3;
-  color: white;
-  font-size: 17px;
-  border: 1px solid grey;
-  border-left: none; /* Prevent double borders */
-  border-radius: 3px;
-  cursor: pointer;
+float: right;
+margin: 0 auto;
+padding: 3px;
+background: #2196F3;
+color: white;
+font-size: 17px;
+border: 1px solid grey;
+border-left: none; /* Prevent double borders */
+border-radius: 3px;
+cursor: pointer;
 }
 
 /*when you hover over the search bar button*/
 form.searchbar button:hover {
-  background: #0b7dda;
+background: #0b7dda;
 }
 
 /* Clear floats */
 form.searchbar::after {
-  content: "";
-  clear: both;
-  display: table;
+content: "";
+clear: both;
+display: table;
 }
 
 #profile{
-    margin: auto;
-    margin-left: 5rem;
-    margin-top: 1rem;
+  margin: auto;
+  margin-left: 5rem;
+  margin-top: 1rem;
 }
 
 form.profile input{
-    border: 1px solid grey;
-    border-radius: 3px;
-    width: 15rem;
+  border: 1px solid grey;
+  border-radius: 3px;
+  width: 15rem;
 }
-  
+
 form.profile button{
-    margin: 0 auto;
-    padding: 4px;
+  margin: 0 auto;
+  padding: 4px;
 }
-  
+
 #myMsg{
-    font-weight: bold;
-    color: red;
+  font-weight: bold;
+  color: red;
 }
 
 #aboutus, #contactus{
-    margin: auto;
-    margin-left: 5rem;
-    margin-top: 2rem;
-    margin-right: 5rem;
+  margin: auto;
+  margin-left: 5rem;
+  margin-top: 2rem;
+  margin-right: 5rem;
+}
+
+#search_header{
+text-align:center;
+}
+
+#search_results_table{
+text-align:center;
+border-collapse: separate;
+border-spacing: 50px 0;
+}
+
+.main{
+margin:auto;
+}
+
+#search_results_card{
+width: 5rem;
+}
+
+th{
+  text-align:center;
 }
