@@ -50,84 +50,16 @@
                     </li>
                 </ul>
             <?php endif; ?>
-            <!--Custom JS -->
-            <?php
-            if (isset($data['script'])) {
-                $script = $data['script'];
-                echo "<script defer src=\"$script\"></script>";
-            }
-            ?>
-            </head>
+        </div>
+    </nav>
+    <main class="container">
+        <?php
+        include '../public/view/' . $data['page'] . '.php';
+        ?>
+    </main>
+    <footer class="container border-top">
+        <p class="text-center">Copyright &copy; 2020 Budget Blogspots</p>
+    </footer>
+</body>
 
-            <body>
-                <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-                    <a class="navbar-brand" href="/">Logo</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collpase navbar-collapse mr-auto" id="navbarMenu">
-                        <?php if (isset($_SESSION['loginid'])) : ?>
-                            <ul class="navbar-nav mr-auto">
-                                <div class="search-containter">
-                                    <form class="searchbar d-flex" action="#" style="margin:auto;max-width:260px">
-                                        <input type="text" placeholder="Search" name="search">
-                                        <button type="submit"><i class="fa fa-search"> Search</i></button>
-                                    </form>
-                                </div>
-                            </ul>
-                        <?php else : ?>
-                            <ul class="navbar-nav mr-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/check/aboutus">About Us</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/check/contactus">Contact Us</a>
-                                </li>
-                            </ul>
-                        <?php endif; ?>
-
-                        <?php if (isset($_SESSION['loginid'])) : ?>
-
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/blog/u/<?= $_SESSION['loginid'] ?>">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/blog/create">Create</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Follow</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Account Settings
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="/account/profile"><i class="fas fa-cogs pr-3"></i>Profile</a>
-                                        <span class="dropdown-divider"></span>
-                                        <a class="dropdown-item" href="/signout"><i class="fas fa-sign-out-alt pr-3"></i>Sign Out</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        <?php else : ?>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/login">Sign In</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/register">Sign Up</a>
-                                </li>
-                            </ul>
-                        <?php endif ?>
-                    </div>
-                </nav>
-                <main class="container">
-                    <?php
-                    include '../public/view/' . $data['page'] . '.php';
-                    ?>
-                </main>
-                <footer class="container border-top">
-                    <p class="text-center">Copyright &copy; 2020 Budget Blogspots</p>
-                </footer>
-            </body>
 </html>
