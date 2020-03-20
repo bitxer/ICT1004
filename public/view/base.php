@@ -16,6 +16,7 @@
     </script>
     <!--Icons-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
     <!--Custom JS -->
     <?php
     if (isset($data['script'])) {
@@ -30,6 +31,7 @@
         <a class="navbar-brand" href="/">
             <img class="rounded-circle" src="/static/image/logo.jpg" id="logo" width="60" height="60" />
         </a>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -37,7 +39,7 @@
             <?php if (isset($_SESSION['loginid'])) : ?>
                 <ul class="navbar-nav mr-auto">
                     <div class="search-containter">
-                        <form class="searchbar d-flex" action="#" style="margin:auto;max-width:260px">
+                        <form class="searchbar d-flex" method="post" action="/search" style="margin:auto;max-width:260px">
                             <input type="text" placeholder="Search" name="search">
                             <button type="submit"><i class="fa fa-search"> Search</i></button>
                         </form>
@@ -78,6 +80,7 @@
                     </li>
                 </ul>
             <?php else : ?>
+
                 <ul class="nav navbar-nav navbar-right" id="signin">
                 <li class="nav-item pr-3">
                     <a class="nav-link" href="/login" title="Sign In"><i class="fas fa-sign-in-alt fa-lg"></i></a>
@@ -86,6 +89,7 @@
                     <a class="nav-link" href="/register" title="Sign Up"><i class="fas fa-user-plus fa-lg"></i></a>
                 </li>
             </ul>
+
             <?php endif ?>
         </div>
     </nav>

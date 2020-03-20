@@ -1,12 +1,12 @@
 
 
 .comment-box, .post-box{
-    resize: none;
-    height: 100%;
+  resize: none;
+  height: 100%;
 }
 .post-preview{
-    white-space: pre-line;
-    overflow-wrap: break-word;
+  white-space: pre-line;
+  overflow-wrap: break-word;
 }
 body{
   background-color: white;
@@ -41,12 +41,12 @@ a.dropdown-item:hover{
 
 /* Style the search field */
 form.searchbar input[type=text] {
-  font-size: 13px;
-  padding: 5px;
-  border: 1px solid grey;
-  float: left;
-  background: #f1f1f1;
-  margin: 0 auto;
+font-size: 13px;
+padding: 5px;
+border: 1px solid grey;
+float: left;
+background: #f1f1f1;
+margin: 0 auto;
 }
 
 
@@ -71,9 +71,9 @@ form.searchbar button:hover {
 
 /* Clear floats */
 form.searchbar::after {
-  content: "";
-  clear: both;
-  display: table;
+content: "";
+clear: both;
+display: table;
 }
 
 
@@ -89,15 +89,16 @@ form.profile{
 }
 
 form.profile input{
-    border: 1px solid grey;
-    border-radius: 3px;
-    width: 15rem;
+  border: 1px solid grey;
+  border-radius: 3px;
+  width: 15rem;
 }
-  
+
 form.profile button{
-    margin: 0 auto;
-    padding: 4px;
+  margin: 0 auto;
+  padding: 4px;
 }
+
 
 #profilenote{
   color: red;
@@ -105,8 +106,8 @@ form.profile button{
 }
 
 #myMsg{
-    font-weight: bold;
-    color: red;
+  font-weight: bold;
+  color: red;
 }
 
 
@@ -180,3 +181,11 @@ form.register input{
   border-color: black;
 }
 
+
+#search_header{
+text-align:center;
+}
+
+.main{
+margin:auto;
+}
