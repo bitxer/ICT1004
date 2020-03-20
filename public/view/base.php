@@ -16,17 +16,22 @@
     </script>
     <!--Icons-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-    </script>
-    <!--Icons-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
     <!--Custom JS -->
-    <script defer src="/static/js/script.js"></script>
-    <script defer src="/static/js/validate.js"></script>
+    <?php
+    if (isset($data['script'])) {
+        $script = $data['script'];
+        echo "<script defer src=\"$script\"></script>";
+    }
+    ?>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">Logo</a>
+    <nav class="navbar navbar-expand-sm" style="background-color: #32a891;">
+        <a class="navbar-brand" href="/">
+            <img class="rounded-circle" src="/static/image/logo.jpg" id="logo" width="60" height="60" />
+        </a>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -43,13 +48,14 @@
             <?php else : ?>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/check/aboutus">About Us</a>
+                        <a class="nav-link" href="/main/aboutus">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/check/contactus">Contact Us</a>
+                        <a class="nav-link" href="/main/contactus">Contact Us</a>
                     </li>
                 </ul>
             <?php endif; ?>
+
             <?php if (isset($_SESSION['loginid'])) : ?>
 
                 <ul class="navbar-nav">
@@ -74,14 +80,16 @@
                     </li>
                 </ul>
             <?php else : ?>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Sign In</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/register">Sign Up</a>
-                    </li>
-                </ul>
+
+                <ul class="nav navbar-nav navbar-right" id="signin">
+                <li class="nav-item pr-3">
+                    <a class="nav-link" href="/login" title="Sign In"><i class="fas fa-sign-in-alt fa-lg"></i></a>
+                </li>
+                <li class="nav-item>">
+                    <a class="nav-link" href="/register" title="Sign Up"><i class="fas fa-user-plus fa-lg"></i></a>
+                </li>
+            </ul>
+
             <?php endif ?>
         </div>
     </nav>
