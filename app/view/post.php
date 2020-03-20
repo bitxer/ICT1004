@@ -1,7 +1,25 @@
 <section>
     <?php $entry = $data['post_info'][0]; ?>
-        <article>
-            <div class="card m-5">
+        <article class="card m-5 border-0">
+        <?php   if (is_bool($data['comment_success'])) :
+                            if ($data['comment_success']):?>
+                                <span class="alert alert-success alert-dismissible fade show mt-2 mb-0 alert-box comment-alert" role="alert">
+                                    <p class="text-center">Your Comment has been added!!</p>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </span>
+                            <?php else: ?>
+                                <span class="alert alert-danger alert-dismissible fade show mt-2 mb-0 alert-box comment-alert" role="alert">
+                                    <p class="text-center">Please enter a comment.</p>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </span>
+                            <?php endif;
+                        endif; ?>
+        </article>
+        <article class="card m-5">
                 <header class="card-header">
                     <div class="row">
                         <?php
@@ -68,7 +86,7 @@
                 </footer>
         </article>
         <article>
-            <section class="card m-5">
+            <div class="card m-5">
                 <header class="card-header text-center">
                     <div class="row">
                         <span class="col text-right pr-1"><?= sizeof($data['comments']) ?></span>
@@ -77,29 +95,7 @@
                 </header>
                 <?php
                     if(isset($_SESSION["loginid"])) :?>
-                <div class="card-body">
-                <?php
-                        if (is_bool($data['comment_success'])) :
-                            if ($data['comment_success']):?>
-                                <span class="alert alert-success alert-dismissible fade show mt-2 mb-0 alert-box w-25"
-                                    role="alert">
-                                <p class="text-center">Your Comment has been added!!</p>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </span>
-                            <?php else: ?>
-                                <span class="alert alert-danger alert-dismissible fade show mt-2 mb-0 alert-box w-25"
-                                    role="alert">
-                                    <p class="text-center">Please enter a comment.</p>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </span>
-                            <?php endif;
-                        endif; ?>
-
-                    
+                <div class="card-body">                    
                     <form class="form-group" action="<?= (parse_url($_SERVER['REQUEST_URI']))['path'] ?>" method="post">
                         <div class="pb-2 pl-5">
                             <label class="form-group"><?= $_SESSION['loginid'] ?></label>
@@ -141,6 +137,5 @@
                     </div>
                     <span class="pt-5"></span>
                 <?php endif; ?>
-            </section>
         </article>
 </section>

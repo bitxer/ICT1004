@@ -220,6 +220,7 @@ class blog extends Router
                     if ($postsuccess == true) {
                         //update is a success
                         //Redirect to user blog
+                        $_SESSION['update_success'] = true;
                         header("Location: /blog/u/" . $_SESSION['loginid']);
                     } else {
                         //update fails

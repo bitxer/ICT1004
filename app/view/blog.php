@@ -1,12 +1,21 @@
 <section>
 <?php if (isset($_SESSION['post_success'])): ?>
-    <article class="alert alert-success alert-dismissible fade show ml-5 mt-2 mb-0 alert-box w-25" role="alert">
-        <p class="text-center">Your Post is has been added!!</p>
+    <article class="alert alert-success alert-dismissible fade show mt-2 mb-0 alert-box post-alert" role="alert">
+        <p class="text-center">Your Post has been added!!</p>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </article>
     <?php unset($_SESSION['post_success']);
+endif; ?>
+<?php if (isset($_SESSION['update_success'])): ?>
+    <article class="alert alert-success alert-dismissible fade show mt-2 mb-0 alert-box post-alert" role="alert">
+        <p class="text-center">Your Post has been updated!!</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </article>
+    <?php unset($_SESSION['update_success']);
 endif; ?>
     <article class="card border-0">
         <div class="border-bottom pt-3 mb-3">

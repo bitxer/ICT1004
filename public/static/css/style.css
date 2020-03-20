@@ -200,3 +200,7 @@ margin:auto;
   white-space: pre-line;
   overflow-wrap: break-word;
 }
+.post-alert, .comment-alert{
+  position:fixed;
+  z-index:10000;
+}

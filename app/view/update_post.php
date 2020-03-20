@@ -2,7 +2,7 @@
 <?php if ($_GET) :
     if (isset($_GET['update'])) :
         if ($_GET['update'] == 'failed'):?>
-            <article class="alert alert-danger alert-dismissible fade show alert-box ml-5 w-25" role="alert">
+            <article class="alert alert-danger alert-dismissible fade show alert-box mt-2 mb-0 post-alert" role="alert">
                 <p class="text-center">Your Post is empty</p>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -31,7 +31,7 @@ endif; ?>
                     <div class="form-group">
                         <input type="hidden" name="postid" value="<?= ($data['blog_post'])->getField('id')->getValue(); ?>">
                         <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
-                        <button class="btn btn-primary" id="submit">Submit new post</button>
+                        <button class="btn btn-primary" id="submit">Update post</button>
                     </div>
                 </div>
             </fieldset>
