@@ -1,22 +1,21 @@
+<section>
 <?php if (isset($_SESSION['post_success'])): ?>
-    <section class="alert alert-success alert-dismissible fade show ml-5 mt-2 mb-0 alert-box" role="alert">
+    <article class="alert alert-success alert-dismissible fade show ml-5 mt-2 mb-0 alert-box" role="alert">
         <p class="text-center">Your Post is has been added!!</p>
-
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
-    </section>
-
+    </article>
     <?php unset($_SESSION['post_success']);
 endif; ?>
-    <section class="card border-0">
-        <article class="border-bottom pt-3 mb-3">
+    <article class="card border-0">
+        <div class="border-bottom pt-3 mb-3">
             <header class="card-body">
                 <h2 class="text-center">Welcome to <?= $data['blog_name'] ?>'s blog!</h2>
             </header>
-        </article>
-    </section>
-    <section class="card m-5">
+        </div>
+    </article>
+    <article class="card m-1">
         <?php if (isset($data['blog_info'])) : ?>
             <header class="card-header">
                 <section class="d-flex">
@@ -26,8 +25,7 @@ endif; ?>
             </header>
             <?php if (isset($data['blog_info']))  : ?>
                 <?php foreach ($data['blog_info'] as &$entry) : ?>
-                    <article>
-                        <section class="card m-5">
+                    <article class="card m-5">
                             <header class="card-header">
                                 <?php
                                 $epoch = (int)($entry->getField('created_at')->getValue());
@@ -49,7 +47,6 @@ endif; ?>
                                 <a href="<?= $_SERVER['REQUEST_URI'] . '/' . $entry->getField('id')->getValue() ?>"
                                    class="btn btn-primary">Read More</a>
                             </main>
-                        </section>
                     </article>
                 <?php endforeach; ?>
             <?php endif; ?>
@@ -59,36 +56,35 @@ endif; ?>
                 <?php endif; ?>
             </footer>
         <?php else : ?>
-            <article>
-                <section class="card">
+            <article class="card">
                     <?php if (isset($data['blog_max_page'])) : ?>
-                        <main class="card-body">
+                        <div class="card-body">
                             <h5 class="card-title">Max Page Reached (>.<)</h5>
                             <p class="card-text">Yep, Page our of Range kinda</p>
                             <a href="<?= parse_url($_SERVER["REQUEST_URI"])["path"] ?>" class="btn btn-primary">Return
                                 to Blog</a>
-                        </main>
+                        </div>
                     <?php else: ?>
                         <header class="card-header">Hmmm...</header>
-                        <main class="card-body">
+                        <div class="card-body">
                             <h5 class="card-title">No Post Yet!</h5>
                             <p class="card-text">Blog under construction</p>
-                        </main>
+                        </div>
                     <?php endif; ?>
-                </section>
             </article>
         <?php endif; ?>
-    </section>
-    <aside class="card m-5 h-25">
+    </article>
+    <article class="card mt-5 mb-5 ml-1 mr-1 h-25">
         <header class="card-header">
             <p class="text-center h5 ">Blog Stats</p>
         </header>
-        <main class="card-body">
+        <div class="card-body">
                 <span class="row">
                     <p class="col-md text-center"><span class="font-weight-bold"><?=$data['total_post']?></span> Post</p>
                 </span>
-            <span>
+                <span>
                 <p class="col-md text-center"><span class="font-weight-bold"><?=$data['total_likes']?></span> Likes</p>
                 </span>
-        </main>
-    </aside>
+        </div>
+    </article>
+</section>

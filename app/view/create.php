@@ -1,5 +1,6 @@
+<section>
 <?php if(isset($data['err_msg'])):?>
-<section class="alert alert-danger alert-dismissible fade show alert-box ml-5 w-25" role="alert">
+<article class="alert alert-danger alert-dismissible fade show alert-box ml-5 w-25" role="alert">
 
     <?php if(($data['err_msg'])[0]) : ?>
     <p class="text-center">Title is empty</p>
@@ -10,11 +11,11 @@
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
-</section>
+</article>
 
 <?php endif;?>
 
-<section class="ml-5 mr-5 mt-3">
+<article class="ml-5 mr-5 mt-3">
         <form action="/blog/create" method="post">
             <legend class="form-group">Submit new post</legend>
             <fieldset class="row">
@@ -32,4 +33,5 @@
                 </div>
             </fieldset>
         </form>
- </section>
+ </article>
+</section>

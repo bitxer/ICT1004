@@ -39,15 +39,6 @@ class App{
         get($_SESSION['token']);
         if(!isset($_SESSION['token'])){
             (new Router())->token_gen();
-        }else{
-            if(time()>$_SESSION['token-expire']){
-                if(!is_null($_SESSION['loginid'])){
-                    require_once '../app/routes/signout.php';
-                    $this->controller = 'signout';
-                    $function = 'index';
-                    (new $this->controller())->$function();
-                }
-            }
         }
     }
 

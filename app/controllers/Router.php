@@ -7,7 +7,7 @@ class Router
 
     public function view($data = [])
     {
-        require_once '../public/view/base.php';
+        require_once '../app/view/base.php';
     }
 
     public function token_gen()

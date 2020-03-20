@@ -77,9 +77,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/blog/create">Create</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Follow</a>
-                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Account Settings
@@ -105,7 +102,7 @@
         </nav>
         <main class="container">
             <?php
-            include '../public/view/' . $data['page'] . '.php';
+            include '../app/view/' . $data['page'] . '.php';
             ?>
         </main>
         <footer class="container border-top">
