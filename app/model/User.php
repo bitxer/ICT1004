@@ -5,13 +5,14 @@ require_once("../app/utils/helpers.php");
 
 class User extends Model{
     const tablename = "users";
-    const fields = ["loginid", "password", "email", "name", "isadmin"];
+    const fields = ["id", "loginid", "password", "email", "name", "isadmin", "suspended"];
     protected $id = null;
     protected $loginid = null;
     protected $password = null;
     protected $email = null;
     protected $name = null;
     protected $isadmin = null;
+    protected $suspended = null;
 
     function __construct($values)
     {
@@ -22,6 +23,7 @@ class User extends Model{
         $this->email = new Field("email");
         $this->name = new Field("name");
         $this->isadmin = new Field("isadmin", PDO::PARAM_INT);
+        $this->suspended = new Field("suspended", PDO::PARAM_INT);
 
         // Assign values
         $this->id->setValue(get($values["id"]));
@@ -30,6 +32,7 @@ class User extends Model{
         $this->email->setValue(get($values["email"]));
         $this->name->setValue(get($values["name"]));
         $this->isadmin->setValue(get($values["isadmin"]));
+        $this->suspended->setValue(get($values["suspended"]));
     }
 
 }

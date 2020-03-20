@@ -1,4 +1,6 @@
 <?php
+require_once "../app/model/User.php";
+
 class App{
     protected $controller = 'main';
 
@@ -16,12 +18,20 @@ class App{
         get($this->url[1]);
         get($this->url[2]);
         $this->SetPageName();
+        if (!is_null(get_user('*', ['isadmin'=>['=', 1]]))) {
+            if ($this->controller === 'setup') {
+                header('Location: /', true, 301);
+                die();
+            }
+        } else if ($this->controller !== 'setup'){
+            header("Location: /setup");
+        }
         require_once '../app/routes/' . $this->controller . '.php';
         $this->SetFunctionName();
         $this->SetParam();
         $function = $this->function;
         $params = $this->params;
-        /*  go to /routes/<controller> and run function <function> with the following parameters <params>*/
+        /*  go to /routes/<controller> and run function <function> with the following parameters <params> */
         (new $this->controller())->$function($params);
     }
     public function StartSession(){

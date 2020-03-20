@@ -45,9 +45,11 @@ class RegisterController
                 'name' => $_POST["name"],
                 'isadmin' => 0
             ];
+            if ($_SERVER['REQUEST_URI'] === '/setup') {
+                $new_values['isadmin'] = 1;
+            }
             $user = new User($new_values);
             return $user->add();
-
         }
     }
 }

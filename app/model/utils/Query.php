@@ -55,9 +55,9 @@ class Query {
         if ($fields === '*'){
             $sql .= "*";
         } else if (is_array($fields)) {
-            $sql .= "'";
-            $sql .= implode("', '", $fields);
-            $sql .= "'";
+            $sql .= "`";
+            $sql .= implode("`, `", $fields);
+            $sql .= "`";
         } else {
             die();
         }
