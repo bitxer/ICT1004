@@ -1,4 +1,8 @@
 <?php
+/*
+Check if $_POST is set. If it is, call the getSearchResults function
+from the SearchController.
+*/
 require_once '../app/controllers/SearchController.php';
 require_once '../app/utils/helpers.php';
 class search extends Router{
