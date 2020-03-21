@@ -55,7 +55,7 @@
                 </div>
                 <div>
                     <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>">
-                    <input type="submit" id="register-user" name="register-user" value="Register" class="btnRegister">
+                    <button type="submit" id="register-user" name="register-user" class="btn btn-primary">Register</button>
                 </div>
             </div>
             <?php
