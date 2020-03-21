@@ -7,7 +7,7 @@
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input class="form-control" type="password" id="password" required name="password"  placeholder="Enter password">
+                <input class="form-control" type="password" id="password" required name="password" value="<?php if (isset($_POST['password'])); ?>"  placeholder="Enter password">
                 <br>
                 <div class="form-group">
                     <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>">
