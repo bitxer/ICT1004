@@ -1,4 +1,4 @@
-    <div class="card" id="login">
+    <div class="card col-sm-auto" id="login">
         <h1>Member Login</h1>
         <form class="login"name="frmLogin" action="/login/login_process" method="post">
             <div class="form-group">
