@@ -50,7 +50,7 @@
                         <span class="mr-auto p-2">
                         <a class="btn btn-primary" href="/blog/u/<?= $data['blog_name'] ?>">Back to Blog</a>
                         </span>
-                        <?php if($_SESSION['loginid']):?>
+                        <?php if(isset($_SESSION[SESSION_LOGIN])):?>
                         <span class="p-2">
                             <form action="/blog/like" method="post">
                                 <input type="hidden" name="postid" value="<?= $entry->getField('id')->getValue() ?>">
@@ -76,12 +76,14 @@
                                     data-clipboard-text="<?= $link ?>">Share</button>
                         </span>
 
-                        <?php if ($data['blog_name'] == $_SESSION['loginid'])  : ?>
-                            <span class="p-2">
-                            <a class="btn btn-primary d-flex justify-content-end"
-                               href="/blog/updatepost/<?= $entry->getField("id")->getValue() ?>">Update Post</a>
-                        </span>
-                        <?php endif; ?>
+                        <?php if (isset($_SESSION[SESSION_LOGIN])):
+                            if ($data['blog_name'] == $_SESSION[SESSION_LOGIN])  : ?>
+                                <span class="p-2">
+                                <a class="btn btn-primary d-flex justify-content-end"
+                                    href="/blog/updatepost/<?= $entry->getField("id")->getValue() ?>">Update Post</a>
+                                </span>
+                        <?php endif;
+                        endif; ?>
                     </div>
                 </footer>
         </article>
@@ -94,11 +96,11 @@
                     </div>
                 </header>
                 <?php
-                    if(isset($_SESSION["loginid"])) :?>
+                    if(isset($_SESSION[SESSION_LOGIN])) :?>
                 <div class="card-body">                    
                     <form class="form-group" action="<?= (parse_url($_SERVER['REQUEST_URI']))['path'] ?>" method="post">
                         <div class="pb-2 pl-5">
-                            <label class="form-group"><?= $_SESSION['loginid'] ?></label>
+                            <label class="form-group"><?= $_SESSION[SESSION_LOGIN] ?></label>
                         </div>
                         <div class="row pb-2 pl-5 pr-2">
                                 <span class="input-group">

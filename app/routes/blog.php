@@ -83,8 +83,11 @@ class blog extends Router
                             $isComAdded = $blog_control->addComments($PostID = $argv[1]);
                         }
                         //Get info of Logged in user
-                        $usr_id = $blog_control->getUserID($_SESSION[SESSION_LOGIN]);
-                        $usr_like = $like_control->getLikes(3, $usr_id, $postid = $argv[1]);
+                        $usr_like = null;
+                        if(isset($_SESSION[SESSION_LOGIN])){
+                            $usr_id = $blog_control->getUserID($_SESSION[SESSION_LOGIN]);
+                            $usr_like = $like_control->getLikes(3, $usr_id, $postid = $argv[1]);
+                        }
 
                         //Get info of the blog post
                         $post_like = $like_control->getLikes(2, null, $postid = $argv[1]);
