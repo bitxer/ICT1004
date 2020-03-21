@@ -12,7 +12,7 @@ main{
   padding-bottom: 100px; /* height of your footer */
 }
 
-footer {
+#basefooter {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -93,6 +93,7 @@ form.profile input{
   border: 1px solid grey;
   border-radius: 3px;
   width: 15rem;
+  padding: 4px;
 }
 
 form.profile button{
@@ -105,7 +106,6 @@ form.profile button:hover{
   background-color: #0000CC;
 
 }
-
 
 #profilenote{
   color: #B30000;
@@ -121,8 +121,8 @@ form.profile button:hover{
 /*Contact us page*/
 #aboutus, #contactus{
     margin: auto;
-    margin-left: 5rem;
-    margin-right: 5rem;
+    margin-left: 20px;
+    margin-right: 20px;
     border-width: 0;
 }
 
@@ -133,7 +133,7 @@ form.profile button:hover{
 }
 #contactheader{
   background-color: white;
-  border-width: 0.1rem;
+  border-width: 1.5px;
   border-color: black;
 }
 
@@ -141,6 +141,7 @@ form.contactus textarea, form.contactus input{
   border: 1px solid grey;
   border-radius: 3px;
   width: 100%;
+  padding: 4px;
   resize: none;
 }
 
@@ -158,10 +159,9 @@ form.contactus button:hover{
 /*Login page*/
 #login{
   margin: auto;
-  margin-left: 7rem;
-  margin-right: 7rem;
   margin-top: 1rem;
   border: none;
+  align-items: center;
 }
 
 form.login input{
@@ -176,14 +176,14 @@ form.login input{
 form.register{
   margin: auto;
   margin-top: 1rem;
-  margin-left: 7rem;
-  margin-right: 7rem;
+  width: 85%;
 }
 
 form.register input{
   border: 1px solid grey;
   border-radius: 3px;
 }
+
 
 
 /*About us page*/

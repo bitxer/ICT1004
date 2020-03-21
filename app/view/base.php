@@ -98,7 +98,7 @@
         include '../app/view/' . $data['page'] . '.php';
         ?>
     </main>
-    <footer class="footer border-top">
+    <footer class="footer border-top" id="basefooter">
         <p class="text-center">Copyright &copy; 2020 Budget Blogspots</p>
     </footer>
 </body>
