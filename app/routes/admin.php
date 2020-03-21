@@ -3,7 +3,7 @@
 require_once('../app/model/User.php');
 
 class admin extends Router{
-    // protected $RIGHTS = 2;
+    protected $RIGHTS = 2;
     
     public function index(){
         self::view(['page'=>'main']);
