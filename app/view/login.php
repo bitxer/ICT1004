@@ -3,7 +3,7 @@
         <form class="login"name="frmLogin" action="/login/login_process" method="post">
             <div class="form-group">
                 <label for="loginid">Login ID</label>
-                <input class="form-control" type="text" required id="loginid" name="loginid" value="<?php if (isset($_POST['loginid'])); ?>" placeholder="Enter Login ID">
+                <input class="form-control" type="text" required id="loginid" name="loginid" placeholder="Enter Login ID">
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
