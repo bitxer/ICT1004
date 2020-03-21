@@ -133,8 +133,8 @@ form.profile button:hover{
 /*Contact us page*/
 #aboutus, #contactus{
     margin: auto;
-    margin-left: 5rem;
-    margin-right: 5rem;
+    margin-left: 20px;
+    margin-right: 20px;
     border-width: 0;
 }
 
@@ -145,7 +145,7 @@ form.profile button:hover{
 }
 #contactheader{
   background-color: white;
-  border-width: 0.1rem;
+  border-width: 1.5px;
   border-color: black;
 }
 
@@ -170,8 +170,8 @@ form.contactus button:hover{
 /*Login page*/
 #login{
   margin: auto;
-  margin-left: 7rem;
-  margin-right: 7rem;
+  margin-left: 30px;
+  margin-right: 30px;
   margin-top: 1rem;
   border: none;
 }
@@ -188,8 +188,8 @@ form.login input{
 form.register{
   margin: auto;
   margin-top: 1rem;
-  margin-left: 7rem;
-  margin-right: 7rem;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 form.register input{
