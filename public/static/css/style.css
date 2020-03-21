@@ -8,11 +8,23 @@
   white-space: pre-line;
   overflow-wrap: break-word;
 }
+
+/*css for base*/
 body{
   background-color: white;
+  height: 100%;
+  position: relative;
 }
 
-.footer-container {
+main{
+  min-height: 90vh; /* will cover the 100% of viewport */
+  overflow: hidden;
+  display: block;
+  position: relative;
+  padding-bottom: 100px; /* height of your footer */
+}
+
+footer {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -28,7 +40,8 @@ body{
 a.nav-link{
   color: black;
   display:block;
-  padding: 20px 30px;
+  padding: 20px 25px;
+  font-size: medium;
 }
 .active, .nav-link:hover {
   background-color: #248270;
@@ -40,7 +53,7 @@ a.dropdown-item:hover{
 }
 
 /* Style the search field */
-form.searchbar input[type=text] {
+.searchbar input[type=text] {
 font-size: 13px;
 padding: 5px;
 border: 1px solid grey;
@@ -51,7 +64,7 @@ margin: 0 auto;
 
 
 /* Style the submit button */
-form.searchbar button {
+.searchbar button {
   float: right;
   margin: 0 auto;
   padding: 3px;
@@ -65,12 +78,12 @@ form.searchbar button {
 }
 
 /*when you hover over the search bar button*/
-form.searchbar button:hover {
+.searchbar button:hover {
   background:#d4d4d4;
 }
 
 /* Clear floats */
-form.searchbar::after {
+.searchbar::after {
 content: "";
 clear: both;
 display: table;
@@ -97,12 +110,18 @@ form.profile input{
 form.profile button{
   margin: 0 auto;
   padding: 4px;
+  background-color: #0000FF;
+}
+
+form.profile button:hover{
+  background-color: #0000CC;
+
 }
 
 
 #profilenote{
-  color: red;
-  font-size: 13px;
+  color: #B30000;
+  font-size: small;
 }
 
 #myMsg{
@@ -122,10 +141,10 @@ form.profile button{
 #contact{
   margin: auto;
   float: center;
-  background-color: ghostwhite;
+  background-color: white;
 }
 #contactheader{
-  background-color: ghostwhite;
+  background-color: white;
   border-width: 0.1rem;
   border-color: black;
 }
@@ -139,14 +158,20 @@ form.contactus textarea, form.contactus input{
 
 form.contactus button{
   width: 8rem;
+  background-color: #0000FF;
+}
+
+form.contactus button:hover{
+  background-color: #0000CC;
+
 }
 
 
 /*Login page*/
 #login{
   margin: auto;
-  margin-left: 5rem;
-  margin-right: 5rem;
+  margin-left: 7rem;
+  margin-right: 7rem;
   margin-top: 1rem;
   border: none;
 }

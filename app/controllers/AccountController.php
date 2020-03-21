@@ -1,6 +1,6 @@
 <?php
 require_once("../app/model/User.php");
-
+require_once("../app/constants.php");
 
 class AccountController
 {
@@ -27,8 +27,6 @@ class AccountController
         
 
         $currentpwd = $user->getField('password')->getValue();
-        //$_SESSION["pwd"] = $currentpwd;
-        
         $errorMsg = "";
         $success = true;
         $p = false;

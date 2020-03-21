@@ -1,4 +1,4 @@
-    <div class="card" id="login">
+    <div class="card col-sm-auto" id="login">
         <h1>Member Login</h1>
         <p>
             For existing members, please go to the <a href="#">Sign In page</a>
