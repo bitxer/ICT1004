@@ -98,7 +98,8 @@ class blog extends Router
                             'likes_count' => $post_like,
                             'blog_name' => $loginid,
                             'comments' => $comments,
-                            'comment_success' => $isComAdded
+                            'comment_success' => $isComAdded,
+                            'script' => '/static/js/clipboard.js'
                         ];
 
                         //Serve /blog/u/<loginid>/<postid> with post.php
