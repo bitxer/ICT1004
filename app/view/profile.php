@@ -16,7 +16,7 @@
         <article class="form-group">
             <?php
             $user = $data['loginid'];
-            echo '<input class="form-group" type="text" name="userid" placeholder="Enter Your user id" maxlength="50" value=' . $user . '>';
+            echo '<input class="form-group" type="text" name="userid" placeholder="Enter Your user id" maxlength="50" value=' . $user . ' aria-label="loginid">';
             ?>
             <button class="btn btn-primary" type="submit" name="update" value="buserid">Update User id</button>
         </article>
@@ -25,7 +25,7 @@
         <article class="form-group">
             <?php
             $email = $data['email'];
-            echo '<input class="form-group" type="text" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Enter Your new Email" maxlength="100" value=' . $email . '>';
+            echo '<input class="form-group" type="text" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Enter Your new Email" maxlength="100" value=' . $email . ' aria-label="email">';
             ?>
             <button class="btn btn-primary" type="submit" name="update" value="bemail">Update Email</button>
         </article>
@@ -34,24 +34,24 @@
         <article class="form-group">
             <?php
             $name = $data['name'];
-            echo '<input class="form-group" type="text" name="name" placeholder="Enter Your new Name" maxlength="50"     value=' . $name . '>';
+            echo '<input class="form-group" type="text" name="name" placeholder="Enter Your new Name" maxlength="50"     value=' . $name . ' aria-label="name">';
             ?>
             <button class="btn btn-primary" type="submit" name="update" value="bname">Update Name</button>
         </article>
 
         <label>Current Password:</label>
         <article class="form-group">
-            <input class="form-group" type="password" minlength="8" name="cpassword" placeholder="Enter current password">
+            <input class="form-group" type="password" minlength="8" name="cpassword" placeholder="Enter current password" aria-label="cpassword">
         </article>
 
         <label>New Password:</label>
         <article class="form-group">
-            <input class="form-group" type="password" title="Password must contain at least 8 characters, including UPPER/lowercase and numbers." pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" minlength="8" name="npassword" placeholder="Enter new password">
+            <input class="form-group" type="password" title="Password must contain at least 8 characters, including UPPER/lowercase and numbers." pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" minlength="8" name="npassword" placeholder="Enter new password" aria-label="npassword">
         </article>
 
         <label>Confirm New Password:</label>
         <article class="form-group">
-            <input class="form-group" type="password" minlength="8" name="ncpassword" placeholder="Enter new confirm password">
+            <input class="form-group" type="password" minlength="8" name="ncpassword" placeholder="Enter new confirm password" aria-label="ncpassword">
             <button class="btn btn-primary" type="submit" name="update" value="bpassword">Change Password</button>
         </article>
 
