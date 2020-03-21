@@ -25,7 +25,7 @@ class login extends Router
             if ($account == NULL) {
                 header("Location: /login?error=invalidcredentials");
             } else if($account['isadmin'] == 1) {
-                header("Location: /admin/dashboard");
+                header("Location: /admin");
             } else if($account['suspended'] == 1){
                 header("Location: /login?error=accountlocked");
             }
