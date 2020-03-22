@@ -47,7 +47,7 @@ class Router{
             $this->abort(403);
         }
 
-        if (in_array($_SERVER['REQUEST_METHOD'], $this->METHODS, true)) {
+        if (!in_array($_SERVER['REQUEST_METHOD'], $this->METHODS, true)) {
             $this->abort(405);
         }
         
