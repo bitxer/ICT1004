@@ -26,6 +26,8 @@ class login extends Router
             header("Location: /login?error=invalidcredentials");
         } else if ($account['isadmin'] == 1) {
             $_SESSION[SESSION_RIGHTS] = AUTH_ADMIN;
+            $_SESSION[SESSION_LOGIN] = $account['loginid'];
+            $_SESSION[SESSION_CSRF_EXPIRE] = time() + 3600;
             header("Location: /admin");
         } else if ($account['suspended'] == 1) {
             header("Location: /login?error=accountlocked");
