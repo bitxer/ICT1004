@@ -17,6 +17,6 @@ define("FORM_CSRF_FIELD", "_csrf");
 
 // Auth parameters
 define("AUTH_GUEST", 0);
-define("AUTH_LOGIN", 0);
-define("AUTH_ADMIN", 0);
+define("AUTH_LOGIN", 1);
+define("AUTH_ADMIN", 2);
 ?>
