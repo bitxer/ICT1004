@@ -10,7 +10,7 @@ class account extends Router {
 
     public function profile() {
         $account_control = new AccountController();
-        if ($_SESSION['loginid'] != "") {
+        if ($_SESSION[SESSION_LOGIN] != "") {
             $user = $account_control->getdetails();
             $this->view(['page' => 'profile', 'loginid' => $user->getField('loginid')->getValue(), 'name' => $user->getField('name')->getValue(), 'email' => $user->getField('email')->getValue()]);
         } else {
