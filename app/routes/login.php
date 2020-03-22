@@ -25,13 +25,15 @@ class login extends Router
         if ($account == NULL) {
             header("Location: /login?error=invalidcredentials");
         } else if ($account['isadmin'] == 1) {
+            $_SESSION[SESSION_RIGHTS] = AUTH_ADMIN;
             header("Location: /admin");
         } else if ($account['suspended'] == 1) {
             header("Location: /login?error=accountlocked");
         } else {
-            $_SESSION[SESSION_LOGIN] = $account['loginid'];
-            $_SESSION[SESSION_CSRF_EXPIRE] = time() + 3600;
-            header("Location: /blog/u/" . $_SESSION[SESSION_LOGIN]);
+            $_SESSION['loginid'] = $account;
+            $_SESSION['token-expire'] = time() + 3600;
+            $_SESSION[SESSION_RIGHTS] = AUTH_LOGIN;
+            header("Location: /blog/u/" . $_SESSION['loginid']);
         }
     }
 }
