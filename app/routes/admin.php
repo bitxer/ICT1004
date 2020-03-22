@@ -3,7 +3,7 @@
 require_once('../app/model/User.php');
 
 class admin extends Router{
-    // protected $RIGHTS = 2;
+    protected $RIGHTS = 2;
     
     public function index(){
         self::view(['page'=>'main']);
@@ -30,19 +30,22 @@ class admin extends Router{
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             $this->abort(405);
         }
+
+        $user = get_user('*', ['id'=>['=', $_POST['uid']]])[0];
         if ($_POST['button'] === 'promote') {
-            $user = get_user('*', ['id'=>['=', $_POST['uid']]])[0];
             $user->getField('isadmin')->setValue(1);
-            $result = $user->update();
-            http_response_code($result === true ? 204: 500);
+        } else if ($_POST['button'] === 'demote') {
+            $user->getField('isadmin')->setValue(0);
         } else if ($_POST['button'] === 'suspend') {
-            $user = get_user('*', ['id'=>['=', $_POST['uid']]])[0];
             $user->getField('suspended')->setValue(1);
-            $result = $user->update();
-            http_response_code($result === true ? 200: 500);
+        } else if ($_POST['button'] === 'unsuspend') {
+            $user->getField('suspended')->setValue(0);
         } else {
             $this->abort(400);
         }
+
+        $result = $user->update();
+        http_response_code($result === true ? 204: 500);
     }
 
 }

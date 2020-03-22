@@ -16,12 +16,17 @@ class register extends Router{
         if($_SERVER['REQUEST_METHOD'] !== 'POST') {
             $this->abort(403);
         }
-        $register_control = new RegisterController();
+        if($this->token_compare()){
+            $register_control = new RegisterController();
             $register = $register_control->createUserAccount();
             if ($register == NULL){
                 header("Location: /register?error=sqlerror");
             } else{
                 header("Location: /login");
             }
+        }else{
+            session_destroy();
+            header("Location: /");
+        }
     }
 }

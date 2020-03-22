@@ -110,7 +110,7 @@
                         </div>
                         <div class="row pb-2 pl-5">
                                 <span class="input-group">
-                                    <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
+                                    <input type="hidden" name="<?=FORM_CSRF_FIELD?>" value="<?= $_SESSION[SESSION_CSRF_TOKEN] ?>">
                                     <input class="btn btn-primary" type="submit" name="submit">
                                 </span>
                         </div>

@@ -20,9 +20,9 @@
                             <td>
                                 <a href="/admin/u/<?= $id ?>"><?= $id ?></a>
                             </td>
-                            <td><?= $user->getField('loginid')->getValue(); ?></td>
-                            <td><?= $user->getField('email')->getValue(); ?></td>
-                            <td><?= $user->getField('name')->getValue(); ?></td>
+                            <td><?= htmlspecialchars($user->getField('loginid')->getValue()); ?></td>
+                            <td><?= htmlspecialchars($user->getField('email')->getValue()); ?></td>
+                            <td><?= htmlspecialchars($user->getField('name')->getValue()); ?></td>
                             <td><?= $user->getField('isadmin')->getValue() == 1 ? 'Yes' : 'No'; ?></td>
                             <td><?= $user->getField('suspended')->getValue() == 1 ? 'Yes' : 'No'; ?></td>
                         </tr>

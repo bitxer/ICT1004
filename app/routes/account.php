@@ -20,7 +20,6 @@ class account extends Router {
 
     public function update_profile() {
         $account_control = new AccountController();
-        get($_POST['token']);
         if ((new Router)->token_compare()) {
             $account_control->update_user();
             header("Location: /account/profile");

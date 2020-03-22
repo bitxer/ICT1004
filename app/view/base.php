@@ -43,10 +43,10 @@
         <div class="collapse navbar-collapse mr-auto" id="navbarSupportedContent" >
             <?php if (isset($_SESSION[SESSION_LOGIN])) : ?>
                 <ul class="navbar-nav mr-auto">
-                    <li class="searchbar d-flex" method="post" action="/search" style="margin:auto;max-width:260px">
+                    <form class="searchbar d-flex" method="post" action="/search" style="margin:auto;max-width:260px">
                         <input type="text" placeholder="Search" name="search" aria-label="Search">
                         <button type="submit"><i class="fa fa-search"> Search</i></button>
-                    </li>
+                    </form>
                 </ul>
             <?php else : ?>
                 <ul class="navbar-nav mr-auto">
