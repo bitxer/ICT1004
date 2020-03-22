@@ -58,8 +58,6 @@ class admin extends Router{
                 $contact = get_contactus('*');
                 self::view(['page'=>'admin/contact/all', 'contact'=>$contact]);
             }
-        } else if ($_SERVER['RESQUEST_METHOD'] === 'POST') {
-
         } else {
             $this->abort(405);
         }
