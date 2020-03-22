@@ -13,7 +13,7 @@ class admin extends Router{
     protected function u($args) {
         if (count($args))
         {   
-            $user = get_user(['id', 'loginid', 'email', 'name', 'isadmin'], ['id'=>['=', $args[0]]]);
+            $user = get_user(['id', 'loginid', 'email', 'name', 'isadmin', 'suspended'], ['id'=>['=', $args[0]]]);
             if ($user == null) {
                 $this->abort(404);
             }
