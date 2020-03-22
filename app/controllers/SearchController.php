@@ -1,5 +1,10 @@
 <?php
-
+/*
+getSearchResults will first check if the POST is empty or has only a space. rows will be
+returned as 0 if it is. Otherwise, it will call the get_user function from User.php
+and GET the users from the table that might match the name or letters that were posted from
+the search form. It will then return the array.
+*/
 class SearchController{
     public function getSearchResults(){
         require_once('../app/model/User.php');

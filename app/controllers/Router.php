@@ -3,12 +3,14 @@ require_once '../app/constants.php';
 class Router{
     protected $RIGHTS = 0;
     protected $METHODS = ['GET', 'POST'];
-    
-    public  function view( $data = []){
-        require_once  '../public/view/base.php';
+
+    public function view($data = [])
+    {
+        require_once '../app/view/base.php';
     }
 
-    public  function token_gen(){
+    public function token_gen()
+    {
         require_once '../app/utils/helpers.php';
         if($_SESSION[SESSION_CSRF_TOKEN]==null){
             $length = 32;
@@ -27,19 +29,21 @@ class Router{
     public  function check_session_timeout(){
         if(time()>=$_SESSION[SESSION_CSRF_EXPIRE]){
             return false;
-        }else{
+        } else {
             return true;
         }
     }
 
-    public function abort($status) {
+    public function abort($status)
+    {
         http_response_code($status);
         $this->view(['page' => 'error/' . $status]);
         die();
     }
 
-    public function __call($method,$arguments) {
-        if($this->RIGHTS !== $_SESSION[SESSION_RIGHTS]) {
+    public function __call($method, $arguments)
+    {
+        if ($this->RIGHTS !== $_SESSION[SESSION_RIGHTS]) {
             $this->abort(403);
         }
 
