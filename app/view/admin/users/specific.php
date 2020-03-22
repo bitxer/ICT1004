@@ -36,7 +36,7 @@ $user = $data['user'][0]; ?>
         </table>
         <!-- <form class="text-center" id="userAction"action="/admin/action" method='POST'> -->
         <form class="text-center" id="userAction">
-            <input type="hidden" name="_csrf" value="<?= $_SESSION[SESSION_CSRF_TOKEN]; ?>">
+            <input type="hidden" name="<?= $_SESSION[FORM_CSRF_FIELD]; ?>" value="<?= $_SESSION[SESSION_CSRF_TOKEN]; ?>">
             <input type="hidden" name="uid" value="<?= $user->getField('id')->getValue(); ?>">
             <input type="submit" name="promote" class="btn btn-success" value="Promote to admin"/>
             <input type="submit" name="suspend" class="btn btn-danger" value="Suspend user"/>
