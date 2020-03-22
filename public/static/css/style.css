@@ -158,9 +158,6 @@ form.contactus button:hover{
 
 /*Login page*/
 #login{
-  margin: auto;
-  margin-top: 1rem;
-  border: none;
   align-items: center;
 }
 
