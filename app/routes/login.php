@@ -33,7 +33,7 @@ class login extends Router
             $_SESSION[SESSION_LOGIN] = $account;
             $_SESSION['token-expire'] = time() + 3600;
             $_SESSION[SESSION_RIGHTS] = AUTH_LOGIN;
-            header("Location: /blog/u/" . $_SESSION['loginid']);
+            header("Location: /blog/u/" . $_SESSION[SESSION_LOGIN]);
         }
     }
 }
