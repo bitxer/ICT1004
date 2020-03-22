@@ -27,7 +27,7 @@
                         <textarea class="form-control post-box" name="content" rows="18" placeholder="Add a Post here..." required></textarea>
                     </div>
                     <div class="form-group">
-                        <input type="hidden" name="token" value="<?=$_SESSION[SESSION_CSRF_TOKEN]?>">
+                        <input type="hidden" name="token" value="<?=$_SESSION['token']?>">
                         <button class="btn btn-primary" id="post-submit">Submit new post</button>
                     </div>
                 </div>

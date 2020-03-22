@@ -54,7 +54,7 @@
                     and conditions
                 </div>
                 <div>
-                    <input type="hidden" name="token" value="<?= $_SESSION[SESSION_CSRF_TOKEN]; ?>">
+                    <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>">
                     <button type="submit" id="register-user" name="register-user" class="btn btn-primary">Register</button>
                 </div>
             </div>
