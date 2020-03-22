@@ -10,7 +10,7 @@
                 <input class="form-control" type="password" id="password" required name="password" placeholder="Enter password">
                 <br>
                 <div class="form-group">
-                    <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>">
+                    <input type="hidden" name="<?=FORM_CSRF_FIELD?>" value="<?= $_SESSION[SESSION_CSRF_TOKEN]; ?>">
                     <button class="btn btn-primary" type="submit">Submit</button>
                 </div>
                 <?php

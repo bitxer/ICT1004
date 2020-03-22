@@ -7,7 +7,6 @@ class Setup extends Router{
             self::view(["page"=>"admin/setup"]);
         } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $register_control = new RegisterController();
-            get($_POST['token']);
             if($this->token_compare()){
                 $register_admin = $register_control->createUserAccount();
                 if ($register_admin === NULL){
