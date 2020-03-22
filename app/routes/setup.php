@@ -3,7 +3,7 @@ require_once '../app/controllers/RegisterController.php';
 require_once '../app/utils/helpers.php';
 
 class Setup extends Router{
-    function index($args){
+    protected function index($args){
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             self::view(["page"=>"admin/setup"]);
         } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {

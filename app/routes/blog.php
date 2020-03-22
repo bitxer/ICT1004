@@ -6,8 +6,6 @@ require_once('../app/controllers/LikesController.php');
 
 class blog extends Router
 {
-    protected $RIGHTS = 0;
-
     /**
      * Route for /blog
      */
@@ -18,7 +16,7 @@ class blog extends Router
      *
      * No access to all users
      */
-    public function index()
+    protected function index()
     {
         $this->abort(404);
     }
@@ -45,7 +43,7 @@ class blog extends Router
      * Invalid loginid returns Error 404
      */
 
-    public function u($argv)
+    protected function u($argv)
     {
         $blog_control = new BlogController();
         $like_control = new LikesController();
@@ -164,7 +162,7 @@ class blog extends Router
      * /blog/create
      * Creates a post for <loginid>
      */
-    public function create()
+    protected function create()
     {
         $blog_control = new BlogController();
         //Checks if a post is being added
@@ -199,7 +197,7 @@ class blog extends Router
      * 
      * Returns an error page if an invalid post is being edited
      */
-    public function updatepost($argv)
+    protected function updatepost($argv)
     {
         //Check is postid is set
         if (sizeof($argv)!=1) {
@@ -254,7 +252,7 @@ class blog extends Router
      * 
      * Only accepts POST request
      */
-    public function like()
+    protected function like()
     {
         //Only accepts post request
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

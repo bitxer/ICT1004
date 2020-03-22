@@ -9,24 +9,19 @@ require_once '../app/utils/helpers.php';
 
 */
 class register extends Router{
-    public function index(){
+    protected function index(){
         $this->view(['page' => 'register', 'script' => '/static/js/validate.js']);
     }
-    public function register_process(){
+    protected function register_process(){
         if($_SERVER['REQUEST_METHOD'] !== 'POST') {
             $this->abort(403);
         }
-        if($this->token_compare()){
-            $register_control = new RegisterController();
-            $register = $register_control->createUserAccount();
-            if ($register == NULL){
-                header("Location: /register?error=sqlerror");
-            } else{
-                header("Location: /login");
-            }
-        }else{
-            session_destroy();
-            header("Location: /");
+        $register_control = new RegisterController();
+        $register = $register_control->createUserAccount();
+        if ($register == NULL){
+            header("Location: /register?error=sqlerror");
+        } else{
+            header("Location: /login");
         }
     }
 }

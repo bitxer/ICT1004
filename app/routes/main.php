@@ -2,19 +2,19 @@
 require_once("../app/controllers/ContactUsController.php");
 
 class main extends Router{
-    public function index(){
+    protected function index(){
         $this->view(['page'=>'main']);
     }
 
-    public function aboutus(){
+    protected function aboutus(){
         $this->view(['page'=>'aboutus']);
     }
 
-    public function contactus(){
+    protected function contactus(){
         $this->view(['page'=>'contactus']);
     }
 
-    public function contact_us(){
+    protected function contact_us(){
         (new ContactUsController)->submit_us();
         header("Location: /main/contactus");
     }
