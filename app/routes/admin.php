@@ -7,7 +7,7 @@ class admin extends Router{
     protected $RIGHTS = 2;
     
     protected function index(){
-        self::view(['page'=>'admin/dashboard']);
+        header("Location: /admin/u");
     }
 
     protected function u($args) {
