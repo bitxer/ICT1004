@@ -50,7 +50,7 @@
             </div>
             <div class="form-group">
                 <div>
-                    <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>">
+                    <input type="hidden" name="<?=FORM_CSRF_FIELD?>" value="<?=$_SESSION[SESSION_CSRF_TOKEN]?>">
                     <input type="submit" id="register-user" name="register-user" value="Register" class="btnRegister">
                 </div>
             </div>
