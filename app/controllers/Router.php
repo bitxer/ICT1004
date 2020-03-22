@@ -1,7 +1,7 @@
 <?php
 require_once '../app/constants.php';
 class Router{
-    protected $RIGHTS = 0;
+    protected $RIGHTS = AUTH_GUEST;
     protected $METHODS = ['GET', 'POST'];
 
     public function view($data = [])

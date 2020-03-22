@@ -6,8 +6,6 @@ require_once('../app/controllers/LikesController.php');
 
 class blog extends Router
 {
-    protected $RIGHTS = 0;
-
     /**
      * Route for /blog
      */

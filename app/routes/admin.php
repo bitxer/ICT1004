@@ -4,7 +4,7 @@ require_once('../app/model/User.php');
 require_once('../app/model/ContactUs.php');
 
 class admin extends Router{
-    protected $RIGHTS = 2;
+    protected $RIGHTS = AUTH_ADMIN;
     
     protected function index(){
         header("Location: /admin/u");
