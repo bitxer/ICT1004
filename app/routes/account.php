@@ -4,11 +4,11 @@ require_once("../app/model/User.php");
 
 
 class account extends Router {
-    public function index() {
+    protected function index() {
         $this->abort(404);
     }
 
-    public function profile() {
+    protected function profile() {
         $account_control = new AccountController();
         if ($_SESSION[SESSION_LOGIN] != "") {
             $user = $account_control->getdetails();
@@ -18,7 +18,7 @@ class account extends Router {
         }
     }
 
-    public function update_profile() {
+    protected function update_profile() {
         $account_control = new AccountController();
         if ((new Router)->token_compare()) {
             $account_control->update_user();

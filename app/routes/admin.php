@@ -49,7 +49,7 @@ class admin extends Router{
         http_response_code($result === true ? 204: 500);
     }
 
-    public function contact($args) {
+    protected function contact($args) {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if (count($args)) {
                 $contact = get_contactus('*', ['id'=>['=', $args[0]]]);

@@ -9,10 +9,10 @@ require_once '../app/utils/helpers.php';
 
 */
 class register extends Router{
-    public function index(){
+    protected function index(){
         $this->view(['page' => 'register', 'script' => '/static/js/validate.js']);
     }
-    public function register_process(){
+    protected function register_process(){
         if($_SERVER['REQUEST_METHOD'] !== 'POST') {
             $this->abort(403);
         }

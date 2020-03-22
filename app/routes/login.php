@@ -10,11 +10,11 @@ require_once '../app/utils/helpers.php';
 */
 class login extends Router
 {
-    public function index()
+    protected function index()
     {
         $this->view(['page' => 'login']);
     }
-    public function login_process()
+    protected function login_process()
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             $this->abort(403);
