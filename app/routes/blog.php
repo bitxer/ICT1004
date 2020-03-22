@@ -80,7 +80,12 @@ class blog extends Router
                         //Check if a comment is being added
                         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             //returns true:Comment added, false:Comment not added
-                            $isComAdded = $blog_control->addComments($PostID = $argv[1]);
+                            if($this->token_compare()){
+                                $isComAdded = $blog_control->addComments($PostID = $argv[1]);
+                            }else{
+                                session_destroy();
+                                header("Location: /");
+                            }
                         }
                         //Get info of Logged in user
                         $usr_like = null;
@@ -170,20 +175,25 @@ class blog extends Router
         //Checks if a post is being added
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //A post is being added
+            if($this->token_compare()){
 
-            //return  either array: an post entry is invalid, or bool: post entry is added
-            $postsuccess = $blog_control->AddPost($_POST);
-            //Check if post is added
-            if (is_bool($postsuccess)) {
-                //Post is added
-                $_SESSION['post_success'] = true;
-                //redirect to /blog/u/<loginid>
-                header("Location: /blog/u/" . $_SESSION[SESSION_LOGIN]);
-            } else {
-                //Post is not added
+                //return  either array: an post entry is invalid, or bool: post entry is added
+                $postsuccess = $blog_control->AddPost($_POST);
+                //Check if post is added
+                if (is_bool($postsuccess)) {
+                    //Post is added
+                    $_SESSION['post_success'] = true;
+                    //redirect to /blog/u/<loginid>
+                    header("Location: /blog/u/" . $_SESSION[SESSION_LOGIN]);
+                } else {
+                    //Post is not added
 
-                //returns to create post page with an error message
-                $this->view(['page' => 'create', 'err_msg' => $postsuccess]);
+                    //returns to create post page with an error message
+                    $this->view(['page' => 'create', 'err_msg' => $postsuccess]);
+                }
+            }else{
+                session_destroy();
+                header("Location: /");
             }
         } else {
             //User is creating a post
@@ -219,20 +229,25 @@ class blog extends Router
                 //Check if an update request is sent
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     //Post is being updated
+                    if($this->token_compare()){
                     //returns either array: entry is invalid, bool: update is a success
-                    $postsuccess = $blog_control->updatePost($_POST['content'], $postid);
-                    if ($postsuccess == true) {
-                        //update is a success
-                        //Redirect to user blog
-                        $_SESSION['update_success'] = true;
-                        header("Location: /blog/u/" . $_SESSION[SESSION_LOGIN]);
-                    } else {
-                        //update fails
-                        //Sends user back to /blog/updatepost/<postid>
-                        header("Location: /blog/updatepost/" . $postid . "?update=failed");
+                        $postsuccess = $blog_control->updatePost($_POST['content'], $postid);
+                        if ($postsuccess == true) {
+                            //update is a success
+                            //Redirect to user blog
+                            $_SESSION['update_success'] = true;
+                            header("Location: /blog/u/" . $_SESSION[SESSION_LOGIN]);
+                        } else {
+                            //update fails
+                            //Sends user back to /blog/updatepost/<postid>
+                            header("Location: /blog/updatepost/" . $postid . "?update=failed");
+                        }
+                    }else{
+                        session_destroy();
+                        header("Location: /");
                     }
                 } else {
-                    //User want to edit <postid>
+                //User want to edit <postid>
                     $usr_id = $blog_control->getUserID($_SESSION[SESSION_LOGIN]);
                     $blog_post = $blog_control->getPost($usr_id, $postid);
                     //Check if the user owns that post
@@ -247,6 +262,7 @@ class blog extends Router
             }
         }
     }
+    
     /**
      * /blog/like
      * 

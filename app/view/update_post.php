@@ -30,7 +30,7 @@ endif; ?>
                     </div>
                     <div class="form-group">
                         <input type="hidden" name="postid" value="<?= ($data['blog_post'])->getField('id')->getValue(); ?>">
-                        <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
+                        <input type="hidden" name="_csrf" value="<?= $_SESSION['token'] ?>">
                         <button class="btn btn-primary" id="submit">Update post</button>
                     </div>
                 </div>

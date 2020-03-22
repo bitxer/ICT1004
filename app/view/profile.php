@@ -56,6 +56,6 @@
         </article>
 
         <label id="profilenote">Note: if you change your password, you will be signed out, sign back in with the new password</label>
-        <input type="hidden" name="token" value="<?=$_SESSION['token']?>">
+        <input type="hidden" name="_csrf" value="<?=$_SESSION['token']?>">
     </form>
 </section>
