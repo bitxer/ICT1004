@@ -19,24 +19,19 @@ class login extends Router
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             $this->abort(403);
         }
-        if($this->token_compare()){
-            $login_control = new LoginController();
+        $login_control = new LoginController();
 
-            $account = $login_control->getUserAccount();
-            if ($account == NULL) {
-                header("Location: /login?error=invalidcredentials");
-            } else if ($account['isadmin'] == 1) {
-                header("Location: /admin");
-            } else if ($account['suspended'] == 1) {
-                header("Location: /login?error=accountlocked");
-            } else {
-                $_SESSION['loginid'] = $account['loginid'];
-                $_SESSION['token-expire'] = time() + 3600;
-                header("Location: /blog/u/" . $_SESSION['loginid']);
-            }
-        }else{
-            session_destroy();
-            header("Location: /");
+        $account = $login_control->getUserAccount();
+        if ($account == NULL) {
+            header("Location: /login?error=invalidcredentials");
+        } else if ($account['isadmin'] == 1) {
+            header("Location: /admin");
+        } else if ($account['suspended'] == 1) {
+            header("Location: /login?error=accountlocked");
+        } else {
+            $_SESSION[SESSION_LOGIN] = $account['loginid'];
+            $_SESSION[SESSION_CSRF_EXPIRE] = time() + 3600;
+            header("Location: /blog/u/" . $_SESSION[SESSION_LOGIN]);
         }
     }
 }
