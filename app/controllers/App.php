@@ -36,8 +36,10 @@ class App{
     }
     public function StartSession(){
         session_start();
-        get($_SESSION['token']);
-        if(!isset($_SESSION['token'])){
+        if(!isset($_SESSION[SESSION_RIGHTS])){
+            $_SESSION[SESSION_RIGHTS] = AUTH_GUEST;
+        }
+        if(!isset($_SESSION[SESSION_CSRF_TOKEN])){
             (new Router())->token_gen();
         }
     }
