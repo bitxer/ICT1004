@@ -1,30 +1,63 @@
-.comment-box, .post-box{
-    resize: none;
-    height: 100%;
-}
-.post-preview{
-    white-space: pre-line;
-    overflow-wrap: break-word;
+body{
+  background-color: white;
+  height: 100%;
+  position: relative;
 }
 
+main{
+  min-height: 90vh; /* will cover the 100% of viewport */
+  overflow: hidden;
+  display: block;
+  position: relative;
+  padding-bottom: 100px; /* height of your footer */
+}
+
+#basefooter {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+ }
+
+/*Navbar*/
+.navbar-toggler{
+  border-color: black;
+}
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0, 0.5)' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+a.nav-link{
+  color: black;
+  display:block;
+  padding: 20px 25px;
+  font-size: medium;
+}
+.active, .nav-link:hover {
+  background-color: #248270;
+  color: white;
+}
+
+a.dropdown-item:hover{
+  background-color: #999999;
+}
 
 /* Style the search field */
-form.searchbar input[type=text] {
-  font-size: 13px;
-  padding: 5px;
-  border: 1px solid grey;
-  float: left;
-  background: #f1f1f1;
-  margin: 0 auto;
+.searchbar input[type=text] {
+font-size: 13px;
+padding: 5px;
+border: 1px solid grey;
+float: left;
+background: #f1f1f1;
+margin: 0 auto;
 }
 
+
 /* Style the submit button */
-form.searchbar button {
+.searchbar button {
   float: right;
   margin: 0 auto;
   padding: 3px;
-  background: #2196F3;
-  color: white;
+  background: white;
+  color: black;
   font-size: 17px;
   border: 1px solid grey;
   border-left: none; /* Prevent double borders */
@@ -33,50 +66,193 @@ form.searchbar button {
 }
 
 /*when you hover over the search bar button*/
-form.searchbar button:hover {
-  background: #0b7dda;
+.searchbar button:hover {
+  background:#d4d4d4;
 }
 
 /* Clear floats */
-form.searchbar::after {
-  content: "";
-  clear: both;
-  display: table;
+.searchbar::after {
+content: "";
+clear: both;
+display: table;
 }
 
+
+/*profile page*/
 #profile{
     margin: auto;
-    margin-left: 5rem;
     margin-top: 1rem;
 }
 
-form.profile input{
-    border: 1px solid grey;
-    border-radius: 3px;
-    width: 15rem;
-}
-  
-form.profile button{
-    margin: 0 auto;
-    padding: 4px;
-}
-  
-#myMsg{
-    font-weight: bold;
-    color: red;
+form.profile{
+  margin-left: 3rem;
+  margin-right: 2rem;
 }
 
+form.profile input{
+  border: 1px solid grey;
+  border-radius: 3px;
+  width: 15rem;
+  padding: 4px;
+}
+
+form.profile button{
+  margin: 0 auto;
+  padding: 4px;
+  background-color: #0000FF;
+}
+
+form.profile button:hover{
+  background-color: #0000CC;
+
+}
+
+#profilenote{
+  color: #B30000;
+  font-size: small;
+}
+
+#myMsg{
+  font-weight: bold;
+  color: red;
+}
+
+
+/*Contact us page*/
 #aboutus, #contactus{
     margin: auto;
-    margin-left: 5rem;
-    margin-top: 2rem;
-    margin-right: 5rem;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-width: 0;
 }
 
+#contact{
+  margin: auto;
+  float: center;
+  background-color: white;
+}
+#contactheader{
+  background-color: white;
+  border-width: 1.5px;
+  border-color: black;
+}
+
+form.contactus textarea, form.contactus input{
+  border: 1px solid grey;
+  border-radius: 3px;
+  width: 100%;
+  padding: 4px;
+  resize: none;
+}
+
+form.contactus button{
+  width: 8rem;
+  background-color: #0000FF;
+}
+
+form.contactus button:hover{
+  background-color: #0000CC;
+
+}
+
+
+/*Login page*/
+#login{
+  margin: auto;
+  margin-top: 1rem;
+  border: none;
+  align-items: center;
+}
+
+form.login input{
+  border: 1px solid grey;
+  border-radius: 3px;
+  min-width: 20%;
+  max-width: 20rem;
+}
 #loginerror{
   color:red;
 }
 
 #sqlerror{
   color:red;
+}
+
+/*Registration page*/
+form.register{
+  margin: auto;
+  margin-top: 1rem;
+  width: 85%;
+}
+
+form.register input{
+  border: 1px solid grey;
+  border-radius: 3px;
+}
+
+
+
+/*About us page*/
+#aboutheader{
+  text-align: center;
+  background-color: white;
+  border-width: 1px;
+  border-color: black;
+}
+
+
+#search_header{
+text-align:center;
+}
+
+.main{
+margin:auto;
+}
+
+/* Comment and Post Blog box style*/
+.comment-box, .post-box{
+  resize: none;
+  height: 100%;
+}
+
+.post-preview, .blog-post{
+    white-space: pre-line;
+    overflow-wrap: break-word;
+}
+.post-preview {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+}
+.post-preview{
+  white-space: pre-line;
+  overflow-wrap: break-word;
+}
+.post-alert, .comment-alert{
+  position:fixed;
+  z-index:10000;
+}
+
+/* Style for main page*/
+
+
+
+.main-background{
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../image/main-background.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.intro-blog{
+  background-color: rgba(255, 255,255, 0.7);
+  height: 100%;
 }

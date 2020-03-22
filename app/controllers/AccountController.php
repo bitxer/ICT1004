@@ -1,12 +1,12 @@
 <?php
 require_once("../app/model/User.php");
-
+require_once("../app/constants.php");
 
 class AccountController
 {
     public function getdetails()
     {
-        $loginid = $_SESSION['loginid'];
+        $loginid = $_SESSION[SESSION_LOGIN];
         $data = get_user('*', ['loginid' => ["=", $loginid]]);
         return $user = $data[0];
     }
@@ -27,7 +27,6 @@ class AccountController
         
 
         $currentpwd = $user->getField('password')->getValue();
-
         $errorMsg = "";
         $success = true;
         $p = false;
@@ -94,20 +93,22 @@ class AccountController
                 break;
 
                 //when update password button is pressed.
+                
             case 'bpassword':
                 if (empty($cpwd) || empty($npwd) || empty($ncpwd)) {
                     $errorMsg .= "Password is required.";
                     $success = false;
                 } else {
-                    if ($cpwd == $currentpwd) {
+                    if (password_verify($cpwd,$currentpwd)) {
                         if ($npwd == $ncpwd) {
                             $key = 'password';
-                            $val = $npwd;
+                            $hash = password_hash($npwd, PASSWORD_DEFAULT);
+                            $val = $hash;
                             $msg = 'Password';
                             $p = true;
                             $success = true;
                         } else {
-                            $errorMsg .= "Password do not match.<br>";
+                            $errorMsg .= "New password do not match.<br>";
                             $success = false;
                         }
                     } else {
@@ -121,7 +122,7 @@ class AccountController
 
 
         if ($success) {
-            $_SESSION['loginid'] = $uid == "" ? $_SESSION['loginid'] : $uid;
+            $_SESSION[SESSION_LOGIN] = $uid == "" ? $_SESSION[SESSION_LOGIN] : $uid;
             $values = [$key => $val];
             foreach ($values as $key => $val) {
                 if ($val != null || $val != " ") {
@@ -132,7 +133,7 @@ class AccountController
             $_SESSION['msg'] = $msg;
             $user->update();
             if($p == true){
-                unset($_SESSION['loginid']);
+                unset($_SESSION[SESSION_LOGIN]);
             }
         } else {
             $_SESSION['msg'] = $errorMsg;

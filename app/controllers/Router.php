@@ -3,14 +3,16 @@ require_once '../app/constants.php';
 class Router{
     protected $RIGHTS = 0;
     protected $METHODS = ['GET', 'POST'];
-    
-    public  function view( $data = []){
-        require_once  '../public/view/base.php';
+
+    public function view($data = [])
+    {
+        require_once '../app/view/base.php';
     }
 
-    public  function token_gen(){
-        require_once '../app/utils/helpers.php';
-        if($_SESSION[SESSION_CSRF_TOKEN]==null){
+    public function token_gen()
+    {
+        require_once '../app/utils/helpers.php';        
+        if(isset($_SESSION[SESSION_CSRF_TOKEN]) ? $_SESSION[SESSION_CSRF_TOKEN]==null : true){
             $length = 32;
             $_SESSION[SESSION_CSRF_TOKEN] = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, $length);
             $_SESSION[SESSION_CSRF_EXPIRE] = time()+3600;
@@ -27,23 +29,25 @@ class Router{
     public  function check_session_timeout(){
         if(time()>=$_SESSION[SESSION_CSRF_EXPIRE]){
             return false;
-        }else{
+        } else {
             return true;
         }
     }
 
-    public function abort($status) {
+    public function abort($status)
+    {
         http_response_code($status);
         $this->view(['page' => 'error/' . $status]);
         die();
     }
 
-    public function __call($method,$arguments) {
-        if($this->RIGHTS !== $_SESSION[SESSION_RIGHTS]) {
+    public function __call($method, $arguments)
+    {
+        if ($this->RIGHTS !== $_SESSION[SESSION_RIGHTS]) {
             $this->abort(403);
         }
 
-        if (in_array($_SERVER['REQUEST_METHOD'], $this->METHODS, true)) {
+        if (!in_array($_SERVER['REQUEST_METHOD'], $this->METHODS, true)) {
             $this->abort(405);
         }
         

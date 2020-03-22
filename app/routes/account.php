@@ -10,7 +10,7 @@ class account extends Router {
 
     public function profile() {
         $account_control = new AccountController();
-        if ($_SESSION['loginid'] != "") {
+        if ($_SESSION[SESSION_LOGIN] != "") {
             $user = $account_control->getdetails();
             $this->view(['page' => 'profile', 'loginid' => $user->getField('loginid')->getValue(), 'name' => $user->getField('name')->getValue(), 'email' => $user->getField('email')->getValue()]);
         } else {
@@ -20,7 +20,6 @@ class account extends Router {
 
     public function update_profile() {
         $account_control = new AccountController();
-        get($_POST['token']);
         if ((new Router)->token_compare()) {
             $account_control->update_user();
             header("Location: /account/profile");

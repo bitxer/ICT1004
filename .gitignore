@@ -3,6 +3,7 @@
 /public/storage
 /storage/*.key
 /vendor
+/.idea
 .env
 .env.backup
 .phpunit.result.cache
@@ -18,3 +19,4 @@ private/
 !private/README.md
 
 tmp/
+nbproject/

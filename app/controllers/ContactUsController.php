@@ -3,7 +3,7 @@ require_once("../app/model/ContactUs.php");
 
 class ContactUsController{
 
-    public static function sanitize_input($input)
+    public function sanitize_input($input)
     {
         $input = trim($input);
         $input = stripslashes($input);
@@ -11,12 +11,12 @@ class ContactUsController{
         return $input;
     }
 
-    public static function submit_us(){
+    public function submit_us(){
         $errorMsg = "";
         $success = true;
-        $fname = self::sanitize_input($_POST["fullname"]);
-        $email = self::sanitize_input($_POST["email"]);
-        $description = self::sanitize_input($_POST["description"]);
+        $fname = $this->sanitize_input($_POST["fullname"]);
+        $email = $this->sanitize_input($_POST["email"]);
+        $description = $this->sanitize_input($_POST["description"]);
         
         
         if (empty($fname) and empty($email) and empty($description)){
