@@ -11,8 +11,8 @@ class Router{
 
     public function token_gen()
     {
-        require_once '../app/utils/helpers.php';
-        if($_SESSION[SESSION_CSRF_TOKEN]==null){
+        require_once '../app/utils/helpers.php';        
+        if(isset($_SESSION[SESSION_CSRF_TOKEN]) ? $_SESSION[SESSION_CSRF_TOKEN]==null : true){
             $length = 32;
             $_SESSION[SESSION_CSRF_TOKEN] = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, $length);
             $_SESSION[SESSION_CSRF_EXPIRE] = time()+3600;

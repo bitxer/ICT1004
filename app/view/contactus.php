@@ -15,7 +15,7 @@
 
         <label>Email:</label>
         <section class="form-group">
-            <input class="form-group col-sm" type="text" name="email" value="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required aria-label="email">
+            <input class="form-group col-sm" type="email" name="email" value="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required aria-label="email">
         </section>
 
         <label>Description:</label>

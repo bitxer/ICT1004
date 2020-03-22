@@ -15,7 +15,7 @@ class main extends Router{
     }
 
     public function contact_us(){
-        ContactUsController::submit_us();
+        (new ContactUsController)->submit_us();
         header("Location: /main/contactus");
     }
 }
