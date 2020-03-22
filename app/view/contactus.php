@@ -22,7 +22,8 @@
         <section class="form-group">
             <textarea class="form-group col-sm" type="text" name="description" rows="6" cols="50" required aria-label="description"></textarea>
         </section>
-
+        
+        <input type="hidden" name="_csrf" value="<?= $_SESSION[SESSION_CSRF_TOKEN]; ?>"> 
         <button class="btn btn-primary" type="submit" name="update" value="bname">Submit</button>
     </form>
 </div>
