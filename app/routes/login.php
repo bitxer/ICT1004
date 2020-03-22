@@ -29,9 +29,9 @@ class login extends Router
         } else if ($account['suspended'] == 1) {
             header("Location: /login?error=accountlocked");
         } else {
-            $_SESSION['loginid'] = $account;
+            $_SESSION[SESSION_LOGIN] = $account;
             $_SESSION['token-expire'] = time() + 3600;
-            header("Location: /blog/u/" . $_SESSION['loginid']);
+            header("Location: /blog/u/" . $_SESSION[SESSION_LOGIN]);
         }
     }
 }

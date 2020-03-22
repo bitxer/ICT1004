@@ -6,7 +6,7 @@ class AccountController
 {
     public function getdetails()
     {
-        $loginid = $_SESSION['loginid'];
+        $loginid = $_SESSION[SESSION_LOGIN];
         $data = get_user('*', ['loginid' => ["=", $loginid]]);
         return $user = $data[0];
     }
@@ -122,7 +122,7 @@ class AccountController
 
 
         if ($success) {
-            $_SESSION['loginid'] = $uid == "" ? $_SESSION['loginid'] : $uid;
+            $_SESSION[SESSION_LOGIN] = $uid == "" ? $_SESSION[SESSION_LOGIN] : $uid;
             $values = [$key => $val];
             foreach ($values as $key => $val) {
                 if ($val != null || $val != " ") {
@@ -133,7 +133,7 @@ class AccountController
             $_SESSION['msg'] = $msg;
             $user->update();
             if($p == true){
-                unset($_SESSION['loginid']);
+                unset($_SESSION[SESSION_LOGIN]);
             }
         } else {
             $_SESSION['msg'] = $errorMsg;
