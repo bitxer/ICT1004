@@ -64,8 +64,8 @@
                                     $like_css = "danger";
                                     $like_action = "Unlike";
                                 } ?>
-                                    <input class="btn btn-<?= $like_css ?>" type="submit" name="submit"
-                                           value="<?= $like_action ?>">
+                                    <input type="hidden" name="<?=FORM_CSRF_FIELD?>" value="<?= $_SESSION[SESSION_CSRF_TOKEN] ?>">
+                                    <input class="btn btn-<?= $like_css ?>" type="submit" name="submit" value="<?= $like_action ?>">
                             </form>
                         </span>
                             <?php endif;?>
