@@ -1,5 +1,6 @@
 <!DOCtype html>
 <html lang="en">
+
 <head>
     <title>Blog</title>
     <meta charset="UTF-8">
@@ -37,12 +38,13 @@
             <img class="rounded-circle" src="/static/image/logo.jpg" id="logo" width="60" height="60" alt="Home" />
         </a>
         <button class="navbar-toggler navbar-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse mr-auto" id="navbarSupportedContent" >
+        <div class="collapse navbar-collapse mr-auto" id="navbarSupportedContent">
             <?php if ($_SESSION[SESSION_RIGHTS] == AUTH_LOGIN) : ?>
                 <ul class="navbar-nav mr-auto">
                     <form class="searchbar d-flex" method="post" action="/search" style="margin:auto;max-width:260px">
+                        <input type="hidden" name="<?= FORM_CSRF_FIELD ?>" value="<?= $_SESSION[SESSION_CSRF_TOKEN] ?>">
                         <input type="text" placeholder="Search" name="search" aria-label="Search">
                         <button type="submit"><i class="fa fa-search"> Search</i></button>
                     </form>
@@ -101,7 +103,7 @@
             <?php endif; ?>
         </div>
     </nav>
-    <main <?=$data['page']=='main'? "" : "class=\"container\""; ?>>
+    <main <?= $data['page'] == 'main' ? "" : "class=\"container\""; ?>>
         <?php
         include '../app/view/' . $data['page'] . '.php';
         ?>
