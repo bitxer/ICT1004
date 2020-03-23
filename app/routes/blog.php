@@ -264,6 +264,7 @@ class blog extends Router
         if(!($_SESSION[SESSION_RIGHTS] == AUTH_LOGIN)){
             $this->abort(400);
         }
+
         //Only accepts post request
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             $this->abort(405);
@@ -271,7 +272,7 @@ class blog extends Router
         $likes_control = new LikesController();
 
         if (isset($_POST['submit'])) {
-            if ($_POST['submit'] == null ) {
+            if ($_POST['submit'] !== null ) {
                 $postid = $_POST['postid'];
                 //Checks if the postid is an int
                 if (is_int(filter_var($postid, FILTER_VALIDATE_INT))) {
