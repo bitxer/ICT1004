@@ -42,7 +42,7 @@ endif; ?>
                                 ?>
                                 <?= $PostTimeStamp->format('D, j M Y g:i:s A'); ?>
                             </header>
-                            <main class="card-body">
+                            <div class="card-body">
                                 <h5 class="card-title"><?= $entry->getField('title')->getValue() ?></h5>
                                 <p class="card-text post-preview">
                                     <?php
@@ -55,7 +55,7 @@ endif; ?>
                                 </p>
                                 <a href="<?= $_SERVER['REQUEST_URI'] . '/' . $entry->getField('id')->getValue() ?>"
                                    class="btn btn-primary">Read More</a>
-                            </main>
+                            </div>
                     </article>
                 <?php endforeach; ?>
             <?php endif; ?>
