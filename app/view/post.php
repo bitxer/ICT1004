@@ -38,13 +38,13 @@
                     <span class="col text-left pl-0">Likes</span>
                 </div>
             </header>
-            <main class="card-body">
+            <div class="card-body">
                 <h5 class="card-title"><?= $entry->getField('title')->getValue() ?></h5>
                 <p class="card-text blog-post">
                     <?php $content = $entry->getField('content')->getValue(); ?>
                     <?= $content ?>
                 </p>
-            </main>
+            </div>
             <footer class="card-footer text-muted">
                 <div class="d-flex">
                     <span class="mr-auto p-2">
