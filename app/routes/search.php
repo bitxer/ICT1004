@@ -6,6 +6,7 @@ from the SearchController.
 require_once '../app/controllers/SearchController.php';
 require_once '../app/utils/helpers.php';
 class search extends Router{
+    protected $RIGHTS = AUTH_LOGIN;
     protected function index(){
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $search_control = new SearchController();
