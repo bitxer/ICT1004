@@ -39,7 +39,7 @@ $suspended = $user->getField('suspended')->getValue() == 1;
         </table>
         <!-- <form class="text-center" id="userAction"action="/admin/action" method='POST'> -->
         <form class="text-center" id="userAction">
-            <input type="hidden" name="<?= $_SESSION[FORM_CSRF_FIELD]; ?>" value="<?= $_SESSION[SESSION_CSRF_TOKEN]; ?>">
+            <input type="hidden" name="<?= FORM_CSRF_FIELD ?>" value="<?= $_SESSION[SESSION_CSRF_TOKEN]; ?>">
             <input type="hidden" name="uid" value="<?= htmlspecialchars($user->getField('id')->getValue()); ?>">
             <?php if ($isadmin) { ?>
                 <input type="submit" name="demote" class="btn btn-danger" value="Remove admin rights"/>

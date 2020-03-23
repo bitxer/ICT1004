@@ -1,7 +1,7 @@
 <?php
 require_once '../app/constants.php';
 class Router{
-    protected $RIGHTS = 0;
+    protected $RIGHTS = AUTH_GUEST;
     protected $METHODS = ['GET', 'POST'];
 
     public function view($data = [])
@@ -26,7 +26,7 @@ class Router{
         }
         return false;
     }
-    public  function check_session_timeout(){
+    public function check_session_timeout(){
         if(time()>=$_SESSION[SESSION_CSRF_EXPIRE]){
             return false;
         } else {
@@ -34,7 +34,7 @@ class Router{
         }
     }
 
-    public function abort($status)
+    protected function abort($status)
     {
         http_response_code($status);
         $this->view(['page' => 'error/' . $status]);
@@ -43,11 +43,11 @@ class Router{
 
     public function __call($method, $arguments)
     {
-        if ($this->RIGHTS !== $_SESSION[SESSION_RIGHTS]) {
+        if ($this->RIGHTS > $_SESSION[SESSION_RIGHTS]) {
             $this->abort(403);
         }
 
-        if (in_array($_SERVER['REQUEST_METHOD'], $this->METHODS, true)) {
+        if (!in_array($_SERVER['REQUEST_METHOD'], $this->METHODS, true)) {
             $this->abort(405);
         }
         
