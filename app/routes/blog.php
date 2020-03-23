@@ -271,7 +271,7 @@ class blog extends Router
         $likes_control = new LikesController();
 
         if (isset($_POST['submit'])) {
-            if ($_POST['submit'] == nullcd ) {
+            if ($_POST['submit'] == null ) {
                 $postid = $_POST['postid'];
                 //Checks if the postid is an int
                 if (is_int(filter_var($postid, FILTER_VALIDATE_INT))) {
