@@ -257,6 +257,18 @@ class BlogController{
         return $post_update->update();
       }
 
+    public function deletePost($postid){
+        require_once('../app/model/Post.php');
+        $loginid = $_SESSION[SESSION_LOGIN];
+        $usr_id = $this->getUserID($loginid);
+        $post = $this->getPost($usr_id,$postid);
+        if(is_array($post)){
+            ($post[0])->delete();
+        }
+
+
+    }
+
       /**
        * sanitize user input
        * 

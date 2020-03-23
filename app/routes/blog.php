@@ -252,6 +252,33 @@ class blog extends Router
             }
         }
     }
+
+    protected function deletepost()
+    {
+        if(!($_SESSION[SESSION_RIGHTS] == AUTH_LOGIN)){
+            $this->abort(400);
+        }
+
+        //Only accepts post request
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $this->abort(405);
+        }
+        $blog_control = new BlogController();
+        if (isset($_POST['postid'])) {
+            if ($_POST['postid'] !== null ) {
+                $postid = $_POST['postid'];
+                //Checks if the postid is an int
+                if (is_int(filter_var($postid, FILTER_VALIDATE_INT))) {
+                    $blog_control->deletePost($postid);
+                    header("Location: /blog/u/" . $_SESSION[SESSION_LOGIN]);
+                }
+            }else{
+                $this->abort(405);
+            }
+        }else{
+            $this->abort(404);
+        }
+    }
     /**
      * /blog/like
      * 

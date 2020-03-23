@@ -82,6 +82,13 @@
                             <a class="btn btn-primary d-flex justify-content-end"
                                 href="/blog/updatepost/<?= $entry->getField("id")->getValue() ?>">Update Post</a>
                             </span>
+                            <span class="p-2">
+                            <form action="/blog/deletepost" method="post">
+                            <input type="hidden" name="postid" value="<?= $entry->getField("id")->getValue() ?>">
+                            <input type="hidden" name="<?=FORM_CSRF_FIELD?>" value="<?= $_SESSION[SESSION_CSRF_TOKEN] ?>">
+                            <button class="btn btn-danger d-flex justify-content-end">Delete Post</button>
+                            </form>
+                            </span>
                     <?php endif;
                     endif; ?>
                 </div>
