@@ -6,9 +6,11 @@ class AccountController
 {
     public function getdetails()
     {
-        $loginid = $_SESSION[SESSION_LOGIN];
-        $data = get_user('*', ['loginid' => ["=", $loginid]]);
-        return $user = $data[0];
+        if($_SESSION[SESSION_RIGHTS] == AUTH_LOGIN){
+            $loginid = $_SESSION[SESSION_LOGIN];
+            $data = get_user('*', ['loginid' => ["=", $loginid]]);
+            return $data[0];
+        }
     }
 
     public function sanitize_input($input)
@@ -133,8 +135,8 @@ class AccountController
             $_SESSION['msg'] = $msg;
             $user->update();
             if($p == true){
-                unset($_SESSION[SESSION_LOGIN]);
                 $_SESSION[SESSION_RIGHTS] = AUTH_GUEST;
+                unset($_SESSION[SESSION_LOGIN]);
             }
         } else {
             $_SESSION['msg'] = $errorMsg;
