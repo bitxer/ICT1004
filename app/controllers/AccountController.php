@@ -134,6 +134,7 @@ class AccountController
             $user->update();
             if($p == true){
                 unset($_SESSION[SESSION_LOGIN]);
+                $_SESSION[SESSION_RIGHTS] = AUTH_GUEST;
             }
         } else {
             $_SESSION['msg'] = $errorMsg;
