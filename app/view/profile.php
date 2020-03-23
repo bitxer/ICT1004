@@ -17,7 +17,6 @@
                 $user = $data['loginid'];
                 echo '<input class="form-group" type="text" name="userid" placeholder="Enter Your user id" maxlength="50" value=' . $user . ' aria-label="loginid">';
             ?>
-            <button class="btn btn-primary" type="submit" name="update" value="buserid">Update User id</button>
         </article>
 
         <label>Email:</label>
@@ -26,7 +25,6 @@
                 $email = $data['email'];
                 echo '<input class="form-group" type="text" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Enter Your new Email" maxlength="100" value=' . $email . ' aria-label="email">';
             ?>
-            <button class="btn btn-primary" type="submit" name="update" value="bemail">Update Email</button>
         </article>
 
         <label>Name:</label>
@@ -35,9 +33,9 @@
                 $name = $data['name'];
                 echo '<input class="form-group" type="text" name="name" placeholder="Enter Your new Name" maxlength="50"     value=' . $name . ' aria-label="name">';
             ?>
-            <button class="btn btn-primary" type="submit" name="update" value="bname">Update Name</button>
+            <button class="btn btn-primary" type="submit" name="update" value="bprofile">Update Profile</button>
         </article>
-
+        
         <label>Current Password:</label>
         <article class="form-group">
             <input class="form-group" type="password" minlength="8" name="cpassword" placeholder="Enter current password" aria-label="cpassword">
@@ -54,7 +52,9 @@
             <button class="btn btn-primary" type="submit" name="update" value="bpassword">Change Password</button>
         </article>
 
-        <label id="profilenote">Note: if you change your password, you will be signed out, sign back in with the new password</label>
+        
+        <label id="profilenote">Note: if you change your password, your password will be updated on your next sign in</label>
         <input type="hidden" name="<?= FORM_CSRF_FIELD ?>" value="<?= $_SESSION[SESSION_CSRF_TOKEN] ?>">
     </form>
+    <>
 </section>

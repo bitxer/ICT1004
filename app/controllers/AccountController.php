@@ -10,6 +10,8 @@ class AccountController
             $loginid = $_SESSION[SESSION_LOGIN];
             $data = get_user('*', ['loginid' => ["=", $loginid]]);
             return $data[0];
+        }else{
+            return NULL;
         }
     }
 
@@ -42,9 +44,11 @@ class AccountController
         $val = '';
         $msg = '';
 
+
+        
         switch ($_POST["update"]) {
                 //when update user id button is pressed
-            case 'buserid':
+            case 'bprofile':
                 if (empty($uid)) {
                     $errorMsg .= "User id is required <br>";
                     $success = false;
@@ -52,14 +56,9 @@ class AccountController
                 } else {
                     $key = 'loginid';
                     $val = $uid;
-                    $msg = 'User Id';
+                    $msg = 'Profile';
                     $success = true;
                 }
-                echo "update userid<br>";
-                break;
-
-                //when update email button is press
-            case 'bemail':
                 if (empty($email)) {
                     $errorMsg .= "Email is required.<br>";
                     $success = false;
@@ -73,28 +72,20 @@ class AccountController
                         echo $email;
                         $key = 'email';
                         $val = $email;
-                        $msg = 'Email';
+                        $msg = 'Profile';
                         $success = true;
                     }
                 }
-                echo "update email<br>";
-                break;
-
-                //when update name button is pressed.
-            case 'bname':
                 if (empty($name)) {
                     $errorMsg .= "Name is required <br>";
                     $success = false;
                 } else {
                     $key = 'name';
                     $val = $name;
-                    $msg = 'Name';
+                    $msg = 'Profile';
                     $success = true;
                 }
-                echo "update name<br>";
                 break;
-
-                //when update password button is pressed.
                 
             case 'bpassword':
                 if (empty($cpwd) || empty($npwd) || empty($ncpwd)) {
@@ -131,13 +122,14 @@ class AccountController
                     $user->setValue($key, $val);
                 }
             }
-            $msg .= " have been successfully updated";
-            $_SESSION['msg'] = $msg;
-            $user->update();
+            
+            $msg .= " have been successfully updated <br>";
+            //$_SESSION['msg'] = $msg;
             if($p == true){
-                $_SESSION[SESSION_RIGHTS] = AUTH_GUEST;
-                unset($_SESSION[SESSION_LOGIN]);
+                $msg.="you will use your updated password after the next login";
             }
+            $_SESSION['msg'] = $msg;
+            return $user->update();
         } else {
             $_SESSION['msg'] = $errorMsg;
         }

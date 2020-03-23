@@ -45,7 +45,6 @@ class ContactUsController{
         else{
             $_SESSION["contactus"] = $errorMsg;
         }
-        
     }
 
 }
