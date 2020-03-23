@@ -6,6 +6,7 @@ require_once('../app/controllers/LikesController.php');
 
 class blog extends Router
 {
+    protected $RIGHTS = AUTH_GUEST;
     /**
      * Route for /blog
      */
@@ -164,6 +165,9 @@ class blog extends Router
      */
     protected function create()
     {
+        if(!($_SESSION[SESSION_RIGHTS] == AUTH_LOGIN)){
+            $this->abort(400);
+        }
         $blog_control = new BlogController();
         //Checks if a post is being added
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -199,6 +203,9 @@ class blog extends Router
      */
     protected function updatepost($argv)
     {
+        if(!($_SESSION[SESSION_RIGHTS] == AUTH_LOGIN)){
+            $this->abort(400);
+        }
         //Check is postid is set
         if (sizeof($argv)!=1) {
             //postid is not set
@@ -254,6 +261,10 @@ class blog extends Router
      */
     protected function like()
     {
+        if(!($_SESSION[SESSION_RIGHTS] == AUTH_LOGIN)){
+            $this->abort(400);
+        }
+
         //Only accepts post request
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             $this->abort(405);
@@ -261,7 +272,7 @@ class blog extends Router
         $likes_control = new LikesController();
 
         if (isset($_POST['submit'])) {
-            if ($_POST['submit']) {
+            if ($_POST['submit'] !== null ) {
                 $postid = $_POST['postid'];
                 //Checks if the postid is an int
                 if (is_int(filter_var($postid, FILTER_VALIDATE_INT))) {

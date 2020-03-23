@@ -2,6 +2,7 @@
 require_once("../app/controllers/ContactUsController.php");
 
 class main extends Router{
+    protected $RIGHTS = AUTH_GUEST;
     protected function index(){
         $this->view(['page'=>'main']);
     }
