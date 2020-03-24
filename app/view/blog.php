@@ -1,7 +1,7 @@
 <section>
 <?php if (isset($_SESSION['post_success'])): ?>
     <article class="alert alert-success alert-dismissible fade show mt-2 mb-0 alert-box post-alert" role="alert">
-        <p class="text-center">Your Post has been added!!</p>
+        <h5 class="text-center">Your Post has been added!!</h5>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -10,28 +10,20 @@
 endif; ?>
 <?php if (isset($_SESSION['update_success'])): ?>
     <article class="alert alert-success alert-dismissible fade show mt-2 mb-0 alert-box post-alert" role="alert">
-        <p class="text-center">Your Post has been updated!!</p>
+        <h5 class="text-center">Your Post has been updated!!</h5>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </article>
     <?php unset($_SESSION['update_success']);
 endif; ?>
-    <article class="card border-0">
-        <div class="border-bottom pt-3 mb-3">
-            <header class="card-body">
-                <h2 class="text-center">Welcome to <?= $data['blog_name'] ?>'s blog!</h2>
-            </header>
-        </div>
-    </article>
+ <h2 class="card border-0 border-bottom pt-3 mb-3 text-center">Welcome to <?= $data['blog_name'] ?>'s blog!</h2>
     <article class="card m-1">
         <?php if (isset($data['blog_info'])) : ?>
-            <header class="card-header">
-                <section class="d-sm-flex">
-                    <span class="mr-auto  pt-2 pl-5"><p class="h2">Blog Post</p></span>
-                    <span class="p-2"><?php include 'blog.nav.inc.php' ?></span>
-                </section>
-            </header>
+                <div class="card-header d-sm-flex">
+                    <h2 class="mr-auto  pt-2 pl-5">Blog Post</h2>
+                    <?php include 'blog.nav.inc.php' ?>
+                </div>
             <?php if (isset($data['blog_info']))  : ?>
                 <?php foreach ($data['blog_info'] as &$entry) : ?>
                     <article class="card m-5">
@@ -65,35 +57,27 @@ endif; ?>
                 <?php endif; ?>
             </footer>
         <?php else : ?>
-            <article class="card">
                     <?php if (isset($data['blog_max_page'])) : ?>
                         <div class="card-body">
-                            <h5 class="card-title">Max Page Reached (>.<)</h5>
+                            <h5 class="card-title">Max Page Reached (&gt;.&lt;)</h5>
                             <p class="card-text">Yep, Page our of Range kinda</p>
                             <a href="<?= parse_url($_SERVER["REQUEST_URI"])["path"] ?>" class="btn btn-primary">Return
                                 to Blog</a>
                         </div>
                     <?php else: ?>
-                        <header class="card-header">Hmmm...</header>
+                        <h2 class="card-header">Hmmm...</h2>
                         <div class="card-body">
                             <h5 class="card-title">No Post Yet!</h5>
                             <p class="card-text">Blog under construction</p>
                         </div>
                     <?php endif; ?>
-            </article>
         <?php endif; ?>
     </article>
     <article class="card mt-5 mb-5 ml-1 mr-1 h-25">
-        <header class="card-header">
-            <p class="text-center h5 ">Blog Stats</p>
-        </header>
+        <h5 class="card-header text-center">Blog Stats</h5>
         <div class="card-body">
-                <span class="row">
-                    <p class="col-md text-center"><span class="font-weight-bold"><?=$data['total_post']?></span> Post</p>
-                </span>
-                <span>
-                <p class="col-md text-center"><span class="font-weight-bold"><?=$data['total_likes']?></span> Likes</p>
-                </span>
+                <p class="text-center"><span class="font-weight-bold"><?=$data['total_post']?></span> Post</p>
+                <p class="text-center"><span class="font-weight-bold"><?=$data['total_likes']?></span> Likes</p>
         </div>
     </article>
 </section>

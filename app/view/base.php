@@ -42,10 +42,12 @@
         <div class="collapse navbar-collapse mr-auto" id="navbarSupportedContent" >
             <?php if ($_SESSION[SESSION_RIGHTS] == AUTH_LOGIN) : ?>
                 <ul class="navbar-nav mr-auto">
-                    <form class="searchbar d-flex" method="post" action="/search" style="margin:auto;max-width:260px">
-                        <input type="text" placeholder="Search" name="search" aria-label="Search">
-                        <button type="submit"><i class="fa fa-search"> Search</i></button>
-                    </form>
+                <li class="nav-item">
+                        <form class="searchbar d-flex" method="post" action="/search" style="margin:auto;max-width:260px">
+                            <input type="text" placeholder="Search" name="search" aria-label="Search">
+                            <button type="submit"><i class="fa fa-search"> Search</i></button>
+                        </form>
+                    </li>
                 </ul>
             <?php elseif ($_SESSION[SESSION_RIGHTS] == AUTH_ADMIN) : ?>
                 <ul class="navbar-nav mr-auto">
