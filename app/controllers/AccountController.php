@@ -126,7 +126,7 @@ class AccountController
             $msg .= " have been successfully updated <br>";
             //$_SESSION['msg'] = $msg;
             if($p == true){
-                $msg.="you will use your updated password after the next login";
+                $msg.="Your updated password will take effect after next login";
             }
             $_SESSION['msg'] = $msg;
             return $user->update();

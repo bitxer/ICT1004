@@ -25,6 +25,8 @@ class account extends Router
             $account_control = new AccountController();
             $account_control->update_user();
             header("Location: /account/profile");
+        } else {
+            $this->abort(405);
         }
     }
 }
