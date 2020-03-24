@@ -1,45 +1,47 @@
 <section>
     <?php $entry = $data['post_info'][0]; ?>
-        <article class="card m-5 border-0">
-        <?php   if (is_bool($data['comment_success'])) :
-            if ($data['comment_success']):?>
-                <span class="alert alert-success alert-dismissible fade show mt-2 mb-0 alert-box comment-alert" role="alert">
-                    <p class="text-center">Your Comment has been added!!</p>
+        <h2 class="card-title m-5">Title: <?= $entry->getField('title')->getValue() ?></h2>
+
+        <?php if (is_bool($data['comment_success'])) :?>
+            <article class="card m-5 border-0">
+
+        <?php if ($data['comment_success']):?>
+                <div class="alert alert-success alert-dismissible fade show mt-2 mb-0 alert-box comment-alert" role="alert">
+                    <h5 class="text-center">Your Comment has been added!!</h5>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                </span>
+                </div>
             <?php else: ?>
-                <span class="alert alert-danger alert-dismissible fade show mt-2 mb-0 alert-box comment-alert" role="alert">
-                    <p class="text-center">Please enter a comment.</p>
+                <div class="alert alert-danger alert-dismissible fade show mt-2 mb-0 alert-box comment-alert" role="alert">
+                    <h5 class="text-center">Please enter a comment.</h5>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                </span>
-            <?php endif;
-        endif; ?>
-        </article>
+                </div>
+            <?php endif;?>
+            </article>
+        <?php endif;?>
         <article class="card m-5">
-            <header class="card-header">
-                <div class="row">
+        <div class="card-header">
+            <h6>
                     <?php
                     $epochCreated = (int)($entry->getField('created_at')->getValue());
                     $epochUpdated = (int)($entry->getField('updated_at')->getValue());
 
                     $dtCreated = new DateTime("@$epochCreated");
                     $dtUpdated = new DateTime("@$epochUpdated");
-                    echo "<span class='col-md'><p>" . $dtCreated->format('D, j M Y g:i:s A') . "</p></span>";
+                    echo "<span>" . $dtCreated->format('D, j M Y g:i:s A') . "</span>";
                     if ($epochUpdated > $epochCreated) {
-                        echo "<span class='col-md'><p class='text-right'>Last Edited: " . $dtUpdated->format('D, j M Y g:i:s A') . "</p></span>";
+                        echo "<span class='col-md text-right'>Last Edited: " . $dtUpdated->format('D, j M Y g:i:s A') . "</span>";
                     } ?>
-                </div>
-                <div class="row">
-                    <span class="col text-right pr-1"><?= $data["likes_count"] ?></span>
-                    <span class="col text-left pl-0">Likes</span>
-                </div>
-            </header>
+            </h6>
+            <div class="row">
+                <p class="col text-right pr-1"><?= $data["likes_count"] ?></p>
+                <p class="col text-left pl-0">Likes</p>
+            </div>
+            </div>
             <div class="card-body">
-                <h5 class="card-title"><?= $entry->getField('title')->getValue() ?></h5>
                 <p class="card-text blog-post">
                     <?php $content = $entry->getField('content')->getValue(); ?>
                     <?= $content ?>
@@ -51,7 +53,7 @@
                     <a class="btn btn-primary" href="/blog/u/<?= $data['blog_name'] ?>">Back to Blog</a>
                     </span>
                     <?php if(isset($_SESSION[SESSION_LOGIN])):?>
-                    <span class="p-2">
+                    <div class="p-2">
                         <form action="/blog/like" method="post">
                             <input type="hidden" name="postid" value="<?= $entry->getField('id')->getValue() ?>">
                             <?php
@@ -67,41 +69,38 @@
                                 <input type="hidden" name="<?=FORM_CSRF_FIELD?>" value="<?= $_SESSION[SESSION_CSRF_TOKEN] ?>">
                                 <input class="btn btn-<?= $like_css ?>" type="submit" name="submit" value="<?= $like_action ?>">
                         </form>
-                    </span>
+                    </div>
                         <?php endif;?>
-                    <span class="p-2">
+                    <div class="p-2">
                         <?php //Get Full url
                         $link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>
                         <button class="btn btn-primary" id="share-btn"
                                 data-clipboard-text="<?= $link ?>">Share</button>
-                    </span>
+                    </div>
 
                     <?php if (isset($_SESSION[SESSION_LOGIN])):
                         if ($data['blog_name'] == $_SESSION[SESSION_LOGIN])  : ?>
-                            <span class="p-2">
+                            <div class="p-2">
                             <a class="btn btn-primary d-flex justify-content-end"
                                 href="/blog/updatepost/<?= $entry->getField("id")->getValue() ?>">Update Post</a>
-                            </span>
-                            <span class="p-2">
+                            </div>
+                            <div class="p-2">
                             <form action="/blog/deletepost" method="post">
                             <input type="hidden" name="postid" value="<?= $entry->getField("id")->getValue() ?>">
                             <input type="hidden" name="<?=FORM_CSRF_FIELD?>" value="<?= $_SESSION[SESSION_CSRF_TOKEN] ?>">
                             <button class="btn btn-danger d-flex justify-content-end">Delete Post</button>
                             </form>
-                            </span>
+                            </div>
                     <?php endif;
                     endif; ?>
                 </div>
             </footer>
         </article>
-        <article>
-            <div class="card m-5">
-                <header class="card-header text-center">
-                    <div class="row">
+        <article class="card m-5">
+        <h2 class="card-header text-center">
                         <span class="col text-right pr-1"><?= sizeof($data['comments']) ?></span>
                         <span class="col text-left pl-0">Comment(s)</span>
-                    </div>
-                </header>
+                </h2>
                 <?php if(isset($_SESSION[SESSION_LOGIN])) :?>
                 <div class="card-body">                    
                     <form class="form-group" action="<?= (parse_url($_SERVER['REQUEST_URI']))['path'] ?>" method="post">

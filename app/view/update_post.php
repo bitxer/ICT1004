@@ -1,4 +1,4 @@
-<section>
+<section class="m-5">
 <?php if ($_GET) :
     if (isset($_GET['update'])) :
         if ($_GET['update'] == 'failed'):?>
@@ -12,15 +12,13 @@
         endif;
     endif;
 endif; ?>
-
-    <article class="m-5">
+    <h2>Edit Post</h2>
         <form action="/blog/updatepost/<?= ($data['blog_post'])->getField('id')->getValue(); ?>" method="post">
-            <legend class="form-group">Edit Post</legend>
             <fieldset class="row">
                 <div class="col">
                     <div class="form-group">
-                        <label for="title">
-                            <h2>Title: <?= ($data['blog_post'])->getField('title')->getValue(); ?></h2>
+                        <label class="h4">
+                            Title: <?= ($data['blog_post'])->getField('title')->getValue(); ?>
                         </label>
                     </div>
                     <div class="form-group">
@@ -36,5 +34,4 @@ endif; ?>
                 </div>
             </fieldset>
         </form>
-    </article>
 </section>
