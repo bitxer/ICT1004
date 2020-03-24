@@ -29,4 +29,4 @@ endif; ?>
             </div>
         </article>
     </div>
-</section>
+</div>

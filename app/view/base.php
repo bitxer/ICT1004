@@ -34,9 +34,15 @@
 
 <body>
     <nav class="navbar navbar-expand-sm py-1" style="background-color: #32a891;">
-        <a class="navbar-brand" href="/">
-            <img class="rounded-circle" src="/static/image/logo.jpg" id="logo" width="60" height="60" alt="Home" />
-        </a>
+        <?php if ($_SESSION[SESSION_RIGHTS] == AUTH_LOGIN || $_SESSION[SESSION_RIGHTS] == AUTH_ADMIN)  : ?>
+            <a class="nav-brand" href="/blog/u/<?= $_SESSION[SESSION_LOGIN] ?>">
+                <img class="rounded-circle" src="/static/image/logo.jpg" id="logo" width="60" height="60" alt="Home" />
+            </a>
+        <?php else : ?>
+            <a class="navbar-brand" href="/">
+                <img class="rounded-circle" src="/static/image/logo.jpg" id="logo" width="60" height="60" alt="Home" />
+            </a>
+        <?php endif; ?>
         <button class="navbar-toggler navbar-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
