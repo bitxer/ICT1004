@@ -31,8 +31,9 @@ class App{
         $this->SetParam();
         $function = $this->function;
         $params = $this->params;
-        /*  go to /routes/<controller> and run function <function> with the following parameters <params> */
+        /*  go to /routes/<controller> and run function <function> with the following parameters <params> */           
         (new $this->controller())->$function($params);
+
     }
     public function StartSession(){
         session_start();
@@ -41,6 +42,11 @@ class App{
         }
         if(!isset($_SESSION[SESSION_CSRF_TOKEN])){
             (new Router())->token_gen();
+        }
+        if(!(new Router())->check_session_timeout() && $_SESSION[SESSION_RIGHTS] > 0){
+            session_destroy();
+            header('Location: /?timeout=1');
+            die();
         }
     }
 
@@ -56,8 +62,6 @@ class App{
         }elseif(file_exists('../app/routes/' . $this->url[1] . '.php')) {
             $this->controller = $this->url[1];
             unset($this->url[1]);
-        }else{
-            $this->controller='pageerror';
         }
     }
 
