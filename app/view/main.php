@@ -27,4 +27,4 @@
             </div>
         </article>
     </div>
-</section>
+</div>
