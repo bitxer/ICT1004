@@ -1,4 +1,4 @@
-<section>
+<section class="ml-5 mr-5 mt-3">
 <?php if(isset($data['err_msg'])):?>
 <article class="alert alert-danger alert-dismissible fade show alert-box ml-5 w-25" role="alert">
 
@@ -14,10 +14,8 @@
 </article>
 
 <?php endif;?>
-
-<article class="ml-5 mr-5 mt-3">
+    <h2>Submit new post</h2>
         <form action="/blog/create" method="post">
-            <legend class="form-group">Submit new post</legend>
             <fieldset class="row">
                 <div class="col">
                     <div class="form-group">
@@ -33,5 +31,4 @@
                 </div>
             </fieldset>
         </form>
- </article>
 </section>

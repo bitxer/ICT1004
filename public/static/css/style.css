@@ -175,6 +175,15 @@ form.login input{
   color:red;
 }
 
+form.login button{
+  background-color: #0000FF;
+}
+
+form.login button:hover{
+  background-color: #0000CC;
+
+}
+
 /*Registration page*/
 form.register{
   margin: auto;
@@ -187,6 +196,14 @@ form.register input{
   border-radius: 3px;
 }
 
+form.register button{
+  background-color: #0000FF;
+}
+
+form.register button:hover{
+  background-color: #0000CC;
+
+}
 
 
 /*About us page*/
@@ -247,7 +264,9 @@ margin:auto;
   background-repeat: no-repeat;
   background-size: cover;
 }
-
+.intro-head{
+  background-color: rgba(255, 255,255, 0.7);
+}
 
 .intro-blog{
   background-color: rgba(255, 255,255, 0.7);
