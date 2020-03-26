@@ -18,7 +18,6 @@ class RegisterController
         } else if (empty($values['password'])) {
             return NULL;
         } else if (strlen($values['password']) < 8) {
-            var_dump(strlen($values['password']<8));
             return NULL;
         } else if (!preg_match("/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/i", $values['password'])) {
             return NULL;
