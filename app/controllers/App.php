@@ -1,5 +1,6 @@
 <?php
 require_once "../app/model/User.php";
+require_once "../app/controllers/Router.php";
 
 class App{
     protected $controller = 'main';
@@ -59,9 +60,14 @@ class App{
     public function SetPageName(){
         if($this->url[1]==''){
             $this->controller = 'main';
+        }elseif($this->url[1]=='main' && !isset($this->url[2])){
+            header("Location: /");
         }elseif(file_exists('../app/routes/' . $this->url[1] . '.php')) {
             $this->controller = $this->url[1];
             unset($this->url[1]);
+        }else{
+            (new Router)->abort(404);
+            die();
         }
     }
 
@@ -70,6 +76,9 @@ class App{
             if(method_exists($this->controller, $this->url[2])){
                 $this->function = $this->url[2];
                 unset($this->url[2]);
+            }else{
+                (new Router)->abort(404);
+                die();
             }
         }
     }
