@@ -1,5 +1,5 @@
 <section class="card border-0 m-3">
-    <h1>Registered users</h1>
+    <h1>Contact Requests</h1>
 <?php if (isset($data['contact'])) { ?>
         <div class="table-responsive">
             <table class="table table-striped">
