@@ -264,12 +264,15 @@ class blog extends Router
             $this->abort(405);
         }
         $blog_control = new BlogController();
+        $like_control = new LikesController();
         if (isset($_POST['postid'])) {
             if ($_POST['postid'] !== null ) {
                 $postid = $_POST['postid'];
                 //Checks if the postid is an int
                 if (is_int(filter_var($postid, FILTER_VALIDATE_INT))) {
+                    $like_control->RemoveLikes($postid);
                     $blog_control->deletePost($postid);
+                    $_SESSION['postdeleted'] = true;
                     header("Location: /blog/u/" . $_SESSION[SESSION_LOGIN]);
                 }
             }else{
