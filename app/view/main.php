@@ -1,6 +1,7 @@
 <section class=" main-background intro-blog">
 
-<?php if ($_GET['timeout']):?>
+<?php if(isset($_GET['timeout'])):
+if ($_GET['timeout']):?>
     <article class="card border-0 intro-head p-5">
         <div class="alert alert-danger alert-dismissible fade show mt-2 mb-0 alert-box comment-alert" role="alert">
             <h5 class="text-center">Your Session has timeout!! Please sign in again</h5>
@@ -9,7 +10,8 @@
             </button>
         </div>
     </article>
-<?php endif; ?>
+<?php endif;
+endif; ?>
     <h2 class="intro-head m-0 p-5 text-center">Welcome to Budget Blogspot</h2>
     <div class="row m-0 intro-blog">
         <article class="col">
