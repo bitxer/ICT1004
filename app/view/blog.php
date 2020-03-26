@@ -45,7 +45,7 @@ endif; ?>
                                     ?>
                                     <?= $preview_content ?>
                                 </p>
-                                <a href="<?= $_SERVER['REQUEST_URI'] . '/' . $entry->getField('id')->getValue() ?>"
+                                <a href="<?=parse_url($_SERVER['REQUEST_URI'])['path']. "/" . $entry->getField('id')->getValue() ?>"
                                    class="btn btn-primary">Read More</a>
                             </div>
                     </article>
