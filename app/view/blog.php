@@ -60,7 +60,7 @@ endif; ?>
                     <?php if (isset($data['blog_max_page'])) : ?>
                         <div class="card-body">
                             <h5 class="card-title">Max Page Reached (&gt;.&lt;)</h5>
-                            <p class="card-text">Yep, Page our of Range kinda</p>
+                            <p class="card-text">Yep, Page out of Range kinda</p>
                             <a href="<?= parse_url($_SERVER["REQUEST_URI"])["path"] ?>" class="btn btn-primary">Return
                                 to Blog</a>
                         </div>
