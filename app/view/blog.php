@@ -17,6 +17,15 @@ endif; ?>
     </article>
     <?php unset($_SESSION['update_success']);
 endif; ?>
+<?php if (isset($_SESSION['postdeleted'])):?>
+    <article class="alert alert-success alert-dismissible fade show mt-2 mb-0 alert-box post-alert" role="alert">
+        <h5 class="text-center">Your Post has been successfully deleted!!</h5>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </article>
+<?php unset($_SESSION['postdeleted']);
+endif;?>
  <h2 class="card border-0 border-bottom pt-3 mb-3 text-center">Welcome to <?= $data['blog_name'] ?>'s blog!</h2>
     <article class="card m-1">
         <?php if (isset($data['blog_info'])) : ?>
