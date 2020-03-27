@@ -63,11 +63,4 @@
         }
         ?>
     </div>
-    <?php
-    if (isset($_GET['error'])) {
-        if ($_GET['error'] == "sqlerror") {
-            echo '<p id="sqlerror">Please enter the fields again.</p>';
-        }
-    }
-    ?>
 </form>
