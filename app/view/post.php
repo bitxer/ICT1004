@@ -48,12 +48,12 @@
                 </p>
             </div>
             <footer class="card-footer text-muted">
-                <div class="d-flex">
-                    <span class="mr-auto p-2">
+                <div class="d-sm-flex">
+                    <span class="mr-auto p-1">
                     <a class="btn btn-primary" href="/blog/u/<?= $data['blog_name'] ?>">Back to Blog</a>
                     </span>
                     <?php if(isset($_SESSION[SESSION_LOGIN])):?>
-                    <div class="p-2">
+                    <div class="p-1">
                         <form action="/blog/like" method="post">
                             <input type="hidden" name="postid" value="<?= $entry->getField('id')->getValue() ?>">
                             <?php
@@ -71,7 +71,7 @@
                         </form>
                     </div>
                         <?php endif;?>
-                    <div class="p-2">
+                    <div class="p-1">
                         <?php //Get Full url
                         $link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>
                         <button class="btn btn-primary" id="share-btn"
@@ -80,11 +80,11 @@
 
                     <?php if (isset($_SESSION[SESSION_LOGIN])):
                         if ($data['blog_name'] == $_SESSION[SESSION_LOGIN])  : ?>
-                            <div class="p-2">
-                            <a class="btn btn-primary d-flex justify-content-end"
+                            <div class="p-1">
+                            <a class="btn btn-primary d-sm-flex justify-content-end"
                                 href="/blog/updatepost/<?= $entry->getField("id")->getValue() ?>">Update Post</a>
                             </div>
-                            <div class="p-2">
+                            <div class="p-1">
                             <form action="/blog/deletepost" method="post">
                             <input type="hidden" name="postid" value="<?= $entry->getField("id")->getValue() ?>">
                             <input type="hidden" name="<?=FORM_CSRF_FIELD?>" value="<?= $_SESSION[SESSION_CSRF_TOKEN] ?>">
