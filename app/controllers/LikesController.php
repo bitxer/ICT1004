@@ -4,6 +4,7 @@ require_once('../app/model/Post_Like.php');
 
 
 
+
  class LikesController{
      /**
       * Like a Post
@@ -47,6 +48,12 @@ require_once('../app/model/Post_Like.php');
              ($like_post[0])->delete();
          }
      }
+     public function RemovePostLikes($postid){
+        $all_post_like = get_post_likes('*',['post_id'=>['=',$postid]]);
+        foreach($all_post_like as $lp){
+                $lp->delete();
+        }
+     }
 
      /**
       * get likes base on liketype
@@ -60,6 +67,9 @@ require_once('../app/model/Post_Like.php');
      public function getLikes($liketype, $usr_id = null, $postid = null){
             /* 1 : Likes of all post, 2: Like of a single Post, 3: check if user has already like the post*/
          if($liketype == 1){
+            require_once("../app/model/Post.php");
+
+
              $all_usr_post = get_post('*',['usr_id'=>['=',$usr_id]]);
              $like_counter = 0;
              //Check if user has a post
