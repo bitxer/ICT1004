@@ -97,6 +97,13 @@ class admin extends Router{
             $this->abort(405);
         }
         $contact = get_contactus('*', ['id'=>['=', $_POST["id"]]])[0];
-        http_response_code($contact->delete() === true ? 204: 500);
+        if ($contact === NULL) {
+            $this->abort(404);
+        }
+        if  ($contact->delete() === true) {
+            header("Location: /admin/contact");
+        } else {
+            $this->abort(400);
+        }
     }
 }
