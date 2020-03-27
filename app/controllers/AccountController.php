@@ -44,11 +44,12 @@ class AccountController
         $val = '';
         $keyval = (array) null;
         $msg = '';
-        $data = get_user('*', ['loginid' => ["=", $uid]]);
-
-        if ($data !== NULL) {
-            $_SESSION['msg'] = "A user with the given User ID already exists";
-            return;
+        
+        if ($uid != $_SESSION[SESSION_LOGIN]){
+            if (get_user('*', ['loginid' => ["=", $uid]]) !== NULL) {
+                $_SESSION['msg'] = "A user with the given User ID already exists";
+                return;
+            }
         }
         
         switch ($_POST["update"]) {
