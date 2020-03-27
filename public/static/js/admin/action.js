@@ -8,7 +8,8 @@ $("#userAction").submit(function(e){
         post_url,
         form_data,
 	    function(data, status){
-		    alert("success");
+            alert("Successfully performed requested action");
+            location.reload();
         }
     );
 });
@@ -23,7 +24,8 @@ $("#contactAction").submit(function(e){
         post_url,
         form_data,
         function(data, status){
-		    alert("success");
+		    alert("Successfully delete contact request");
+            location.reload();
         }
     );
 });

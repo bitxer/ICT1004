@@ -9,26 +9,26 @@ $contact = $data['contact'][0];
             <tbody>
                 <tr>
                     <th scope="col" class="w-25 text-right">Request ID:</th>
-                    <td scope="col"><?= htmlspecialchars($contact->getField('id')->getValue()); ?></td>
+                    <td><?= htmlspecialchars($contact->getField('id')->getValue()); ?></td>
                 </tr>
                 <tr>
                     <th scope="col" class="w-25 text-right">Requested By:</th>
-                    <td scope="col"><?= htmlspecialchars($contact->getField('name')->getValue()); ?></td>
+                    <td><?= htmlspecialchars($contact->getField('name')->getValue()); ?></td>
                 </tr>
                 <tr>
                     <th scope="col" class="w-25 text-right">Email:</th>
-                    <td scope="col"><?= htmlspecialchars($contact->getField('email')->getValue()); ?></td>
+                    <td><?= htmlspecialchars($contact->getField('email')->getValue()); ?></td>
                 </tr>
                 <tr>
-                    <th scope="col" class="w-25 text-right">Message: </th>
-                    <td scope="col"><?= htmlspecialchars($contact->getField('message')->getValue()); ?></td>
+                    <th scope="col" class="w-25 text-right">Message:</th>
+                    <td><?= htmlspecialchars($contact->getField('message')->getValue()); ?></td>
                 </tr>
             </tbody>
         </table>
         <form class="text-center" id="contactAction">
             <input type="hidden" name="<?= FORM_CSRF_FIELD ?>" value="<?= $_SESSION[SESSION_CSRF_TOKEN]; ?>">
             <input type="hidden" name="id" value="<?= htmlspecialchars($contact->getField('id')->getValue()); ?>">
-            <input type="submit" name="delete" class="btn btn-danger" value="Delete contact"/>
+            <input type="submit" name="delete" class="btn btn-danger" value="Delete request"/>
         </form>
     </div>
 </section>

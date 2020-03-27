@@ -83,7 +83,7 @@ DROP TABLE IF EXISTS `posts`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `posts` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `content` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` int unsigned NOT NULL,
   `updated_at` int unsigned NOT NULL,
