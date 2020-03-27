@@ -17,6 +17,15 @@ endif; ?>
     </article>
     <?php unset($_SESSION['update_success']);
 endif; ?>
+<?php if (isset($_SESSION['postdeleted'])):?>
+    <article class="alert alert-success alert-dismissible fade show mt-2 mb-0 alert-box post-alert" role="alert">
+        <h5 class="text-center">Your Post has been successfully deleted!!</h5>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </article>
+<?php unset($_SESSION['postdeleted']);
+endif;?>
  <h2 class="card border-0 border-bottom pt-3 mb-3 text-center">Welcome to <?= $data['blog_name'] ?>'s blog!</h2>
     <article class="card m-1">
         <?php if (isset($data['blog_info'])) : ?>
@@ -45,7 +54,7 @@ endif; ?>
                                     ?>
                                     <?= $preview_content ?>
                                 </p>
-                                <a href="<?= $_SERVER['REQUEST_URI'] . '/' . $entry->getField('id')->getValue() ?>"
+                                <a href="<?=parse_url($_SERVER['REQUEST_URI'])['path']. "/" . $entry->getField('id')->getValue() ?>"
                                    class="btn btn-primary">Read More</a>
                             </div>
                     </article>
@@ -60,7 +69,7 @@ endif; ?>
                     <?php if (isset($data['blog_max_page'])) : ?>
                         <div class="card-body">
                             <h5 class="card-title">Max Page Reached (&gt;.&lt;)</h5>
-                            <p class="card-text">Yep, Page our of Range kinda</p>
+                            <p class="card-text">Yep, Page out of Range kinda</p>
                             <a href="<?= parse_url($_SERVER["REQUEST_URI"])["path"] ?>" class="btn btn-primary">Return
                                 to Blog</a>
                         </div>

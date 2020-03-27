@@ -24,14 +24,14 @@
         <?php endif;?>
         <article class="card m-5">
         <div class="card-header">
-            <h6>
+            <h6 class="row">
                     <?php
                     $epochCreated = (int)($entry->getField('created_at')->getValue());
                     $epochUpdated = (int)($entry->getField('updated_at')->getValue());
 
                     $dtCreated = new DateTime("@$epochCreated");
                     $dtUpdated = new DateTime("@$epochUpdated");
-                    echo "<span>" . $dtCreated->format('D, j M Y g:i:s A') . "</span>";
+                    echo "<span class='col-md text-left'>" . $dtCreated->format('D, j M Y g:i:s A') . "</span>";
                     if ($epochUpdated > $epochCreated) {
                         echo "<span class='col-md text-right'>Last Edited: " . $dtUpdated->format('D, j M Y g:i:s A') . "</span>";
                     } ?>
