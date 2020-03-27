@@ -44,6 +44,14 @@ class AccountController
         $val = '';
         $keyval = (array) null;
         $msg = '';
+        
+        if ($uid != $_SESSION[SESSION_LOGIN]){
+            if (get_user('*', ['loginid' => ["=", $uid]]) !== NULL) {
+                $_SESSION['msg'] = "A user with the given User ID already exists";
+                return;
+            }
+        }
+        
         switch ($_POST["update"]) {
                 //when update user id button is pressed
             case 'bprofile':
@@ -51,11 +59,9 @@ class AccountController
                     $errorMsg .= "User id is required <br>";
                     $success = false;
                 } else {
-                    $key = 'loginid';
-                    $val = $uid;
                     $keyval['loginid'] = $uid;
                     $msg = 'Profile';
-                    $success = true;
+                    $success = $success && true;
                 }
 
                 if (empty($email)) {
@@ -67,12 +73,9 @@ class AccountController
                         $errorMsg .= "Invalid email format.<br>";
                         $success = false;
                     } else {
-                        echo $email;
-                        $key = 'email';
-                        $val = $email;
                         $keyval['email'] = $email;
                         $msg = 'Profile';
-                        $success = true;
+                        $success = $success && true;
                     }
                 }
 
@@ -80,11 +83,9 @@ class AccountController
                     $errorMsg .= "Name is required <br>";
                     $success = false;
                 } else {
-                    $key = 'name';
-                    $val = $name;
                     $keyval['name'] = $name;
                     $msg = 'Profile';
-                    $success = true;
+                    $success = $success && true;
                 }
                 break;
                 
@@ -95,9 +96,7 @@ class AccountController
                 } else {
                     if (password_verify($cpwd,$currentpwd)) {
                         if ($npwd == $ncpwd) {
-                            $key = 'password';
-                            $hash = password_hash($npwd, PASSWORD_DEFAULT);
-                            $val = $hash;
+                            $keyval['key'] = password_hash($npwd, PASSWORD_DEFAULT);
                             $msg = 'Password';
                             $p = true;
                             $success = true;
@@ -116,7 +115,6 @@ class AccountController
 
 
         if ($success) {
-            $values = [$key => $val];
             foreach ($keyval as $key => $val) {
                 if ($val != null || $val != " ") {
                     $user->setValue($key, $val);
@@ -125,7 +123,6 @@ class AccountController
             
             $_SESSION[SESSION_LOGIN] = $uid == "" ? $_SESSION[SESSION_LOGIN] : $uid;
             $msg .= " have been successfully updated <br>";
-            //$_SESSION['msg'] = $msg;
             if($p == true){
                 $msg.="Your updated password will take effect after next login";
             }
