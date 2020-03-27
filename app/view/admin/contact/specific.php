@@ -20,7 +20,7 @@ $contact = $data['contact'][0];
                     <td><?= htmlspecialchars($contact->getField('email')->getValue()); ?></td>
                 </tr>
                 <tr>
-                    <th scope="col" class="w-25 text-right">Message: </th>
+                    <th scope="col" class="w-25 text-right">Message:</th>
                     <td><?= htmlspecialchars($contact->getField('message')->getValue()); ?></td>
                 </tr>
             </tbody>

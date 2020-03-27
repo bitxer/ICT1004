@@ -3,6 +3,13 @@ body{
   height: 100%;
   position: relative;
 }
+a {
+  color: #0053B3;
+}
+
+.btn-success {
+  background-color: #208836;
+}
 
 main{
   min-height: 90vh; /* will cover the 100% of viewport */
