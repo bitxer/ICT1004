@@ -77,8 +77,7 @@
                 </ul>
             <?php endif; ?>
 
-            <?php if ($_SESSION[SESSION_RIGHTS] == AUTH_LOGIN || $_SESSION[SESSION_RIGHTS] == AUTH_ADMIN) : ?>
-
+            <?php if ($_SESSION[SESSION_RIGHTS] == AUTH_LOGIN) : ?>
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="/blog/u/<?= $_SESSION[SESSION_LOGIN] ?>"><?= $_SESSION[SESSION_LOGIN] ?></a>
@@ -97,8 +96,23 @@
                         </div>
                     </li>
                 </ul>
+            <?php elseif ($_SESSION[SESSION_RIGHTS] == AUTH_ADMIN) : ?>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blog/u/<?= $_SESSION[SESSION_LOGIN] ?>"><?= $_SESSION[SESSION_LOGIN] ?></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Account Settings
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/account/profile"><i class="fas fa-cogs pr-3"></i>Profile</a>
+                            <span class="dropdown-divider"></span>
+                            <a class="dropdown-item" href="/signout"><i class="fas fa-sign-out-alt pr-3"></i>Sign Out</a>
+                        </div>
+                    </li>
+                </ul>
             <?php else : ?>
-
                 <ul class="nav navbar-nav navbar-right" id="signin">
                     <li class="nav-item pr-3">
                         <a class="nav-link" href="/login" title="Sign In"><i class="fas fa-sign-in-alt fa-lg"></i></a>

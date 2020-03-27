@@ -6,11 +6,11 @@ class AccountController
 {
     public function getdetails()
     {
-        if($_SESSION[SESSION_RIGHTS] == AUTH_LOGIN){
+        if($_SESSION[SESSION_RIGHTS] == AUTH_LOGIN || $_SESSION[SESSION_RIGHTS] == AUTH_ADMIN){
             $loginid = $_SESSION[SESSION_LOGIN];
             $data = get_user('*', ['loginid' => ["=", $loginid]]);
             return $data[0];
-        }else{
+        } else {
             return NULL;
         }
     }

@@ -11,29 +11,29 @@ $suspended = $user->getField('suspended')->getValue() == 1;
             <tbody>
                 <tr>
                     <th scope="col" class="w-25 text-right">Unique User ID:</th>
-                    <td scope="col"><?= htmlspecialchars($user->getField('id')->getValue()); ?></td>
+                    <td><?= htmlspecialchars($user->getField('id')->getValue()); ?></td>
                 </tr>
                 <tr>
                     <th scope="col" class="w-25 text-right">Username:</th>
-                    <td scope="col"><?= htmlspecialchars($user->getField('loginid')->getValue()); ?></td>
+                    <td><?= htmlspecialchars($user->getField('loginid')->getValue()); ?></td>
                 </tr>
                 <tr>
                     <th scope="col" class="w-25 text-right">Email:</th>
-                    <td scope="col"><?= htmlspecialchars($user->getField('email')->getValue()); ?></td>
+                    <td><?= htmlspecialchars($user->getField('email')->getValue()); ?></td>
                 </tr>
                 <tr>
                     <th scope="col" class="w-25 text-right">Name: </th>
-                    <td scope="col"><?= htmlspecialchars($user->getField('name')->getValue()); ?></td>
+                    <td><?= htmlspecialchars($user->getField('name')->getValue()); ?></td>
                 </tr>
                 <tr>
                     <th scope="col" class="w-25 text-right">Admin user: </th>
-                    <td scope="col"><?= $isadmin ? 'Yes' : 'No'; ?></td>
+                    <td><?= $isadmin ? 'Yes' : 'No'; ?></td>
                 </tr><tr>
                     <th scope="col" class="w-25 text-right">Suspended</th>
-                    <td scope="col"><?= $suspended ? 'Yes' : 'No'; ?></td>
+                    <td><?= $suspended ? 'Yes' : 'No'; ?></td>
                 </tr>
                 <tr>
-                    <td scope="col" colspan="2" class="text-center">Click <a href="/blog/u/<?= htmlspecialchars($user->getField('loginid')->getValue()); ?>">here</a> to view blog</td>
+                    <td colspan="2" class="text-center">Click <a href="/blog/u/<?= htmlspecialchars($user->getField('loginid')->getValue()); ?>">here</a> to view blog</td>
                 </tr>
             </tbody>
         </table>
