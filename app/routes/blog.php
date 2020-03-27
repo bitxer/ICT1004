@@ -203,7 +203,7 @@ class blog extends Router
      */
     protected function updatepost($argv)
     {
-        if(!($_SESSION[SESSION_RIGHTS] == AUTH_LOGIN)){
+        if(!($_SESSION[SESSION_RIGHTS] >= AUTH_LOGIN)){
             $this->abort(400);
         }
         //Check is postid is set
@@ -255,7 +255,7 @@ class blog extends Router
 
     protected function deletepost()
     {
-        if(!($_SESSION[SESSION_RIGHTS] == AUTH_LOGIN)){
+        if(!($_SESSION[SESSION_RIGHTS] >= AUTH_LOGIN)){
             $this->abort(400);
         }
 
@@ -270,7 +270,7 @@ class blog extends Router
                 $postid = $_POST['postid'];
                 //Checks if the postid is an int
                 if (is_int(filter_var($postid, FILTER_VALIDATE_INT))) {
-                    $like_control->RemoveLikes($postid);
+                    $like_control->RemovePostLikes($blog_control->getUserID($_SESSION[SESSION_LOGIN]),$postid);
                     $blog_control->deletePost($postid);
                     $_SESSION['postdeleted'] = true;
                     header("Location: /blog/u/" . $_SESSION[SESSION_LOGIN]);
