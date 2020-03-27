@@ -24,9 +24,10 @@ class admin extends Router{
             if (count($user) > 1) {
                 $user = $user[0];
             }
+            var_dump($user);
             self::view(['page'=>'admin/users/specific', 'user'=>$user, 'script'=>'/static/js/admin/action.js']);
         } else {
-            $users = get_user(['id', 'loginid', 'email', 'name', 'isadmin']);
+            $users = get_user(['id', 'loginid', 'email', 'name', 'isadmin', 'suspended']);
             self::view(['page'=>'admin/users/all', 'users'=>$users]);
         }
     }
