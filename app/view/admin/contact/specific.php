@@ -25,7 +25,7 @@ $contact = $data['contact'][0];
                 </tr>
             </tbody>
         </table>
-        <form class="text-center" id="contactAction">
+        <form class="text-center" method="POST" action="/admin/delete">
             <input type="hidden" name="<?= FORM_CSRF_FIELD ?>" value="<?= $_SESSION[SESSION_CSRF_TOKEN]; ?>">
             <input type="hidden" name="id" value="<?= htmlspecialchars($contact->getField('id')->getValue()); ?>">
             <input type="submit" name="delete" class="btn btn-danger" value="Delete request"/>
