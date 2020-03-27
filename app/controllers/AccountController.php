@@ -61,7 +61,7 @@ class AccountController
                 } else {
                     $keyval['loginid'] = $uid;
                     $msg = 'Profile';
-                    $success = true;
+                    $success = $success && true;
                 }
 
                 if (empty($email)) {
@@ -75,7 +75,7 @@ class AccountController
                     } else {
                         $keyval['email'] = $email;
                         $msg = 'Profile';
-                        $success = true;
+                        $success = $success && true;
                     }
                 }
 
@@ -85,7 +85,7 @@ class AccountController
                 } else {
                     $keyval['name'] = $name;
                     $msg = 'Profile';
-                    $success = true;
+                    $success = $success && true;
                 }
                 break;
                 
