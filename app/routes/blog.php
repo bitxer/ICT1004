@@ -291,7 +291,7 @@ class blog extends Router
      */
     protected function like()
     {
-        if(!($_SESSION[SESSION_RIGHTS] == AUTH_LOGIN)){
+        if(!($_SESSION[SESSION_RIGHTS] >= AUTH_LOGIN)){
             $this->abort(400);
         }
 
