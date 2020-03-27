@@ -1,5 +1,6 @@
 <?php
 require_once("../app/model/User.php");
+require_once("../app/controllers/BlogController.php");
 
 class RegisterController
 {
@@ -36,6 +37,10 @@ class RegisterController
             return NULL;
         }
         else {
+            if(($userFound = get_user("*", ['loginid'=>['=', $_POST['loginid']]]))!=NULL){
+                return NULL;
+            }
+
             $hash = password_hash($values['password'], PASSWORD_DEFAULT);
             $new_values=[
                 'loginid' => $_POST["loginid"],
