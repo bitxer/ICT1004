@@ -1,15 +1,6 @@
 <section class="card border-0 m-3" id="login">
     <div class="m-auto">
         <h1>Member Login</h1>
-        <?php
-            if (isset($_GET['error'])){
-                if($_GET['error'] == "invalidcredentials"){
-                    echo '<p id="loginerror">Invalid username/password combination.</p>';
-                } else if($_GET['error'] == "accountlocked"){
-                    echo '<p id="loginerror">Your account is suspended.</p>';
-                }
-            }
-        ?>
         <form class="login" name="frmLogin" action="/login/login_process" method="POST">
             <div class="form-group">
                 <label for="loginid">Login ID</label>
@@ -25,5 +16,14 @@
                 </div>
             </div>
         </form>
+        <?php
+            if (isset($_GET['error'])){
+                if($_GET['error'] == "invalidcredentials"){
+                    echo '<p id="loginerror">Invalid username/password combination.</p>';
+                } else if($_GET['error'] == "accountlocked"){
+                    echo '<p id="loginerror">Your account is suspended.</p>';
+                }
+            }
+        ?>
     </div>
 </section>
