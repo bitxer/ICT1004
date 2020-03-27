@@ -3,15 +3,25 @@
 require_once('../app/model/User.php');
 require_once('../app/model/ContactUs.php');
 
+/**
+ * Route for /admin endpoints
+ */
 class admin extends Router{
     protected $RIGHTS = AUTH_ADMIN;
 
+    /**
+     * Redirects to /admin/u if no subpath is specified
+     */
     protected function index(){
         header("Location: /admin/u");
     }
 
+    /**
+     * Endpoint to retrieve all or specific user details
+     * Endpoint only allows GET
+     */
     protected function u($args) {
-        if ($_SERVER['REQUEST_METHOD'] === 'DELETE'){
+        if ($_SERVER['REQUEST_METHOD'] !== 'GET'){
             $this->abort(405);
         }
 
@@ -31,6 +41,10 @@ class admin extends Router{
         }
     }
 
+    /**
+     * Endpoint to promote, demote, suspend or unsuspend user account
+     * Endpoint only allows POST
+     */
     protected function action($args) {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST'){
             $this->abort(405);
@@ -53,6 +67,10 @@ class admin extends Router{
         http_response_code($result === true ? 204: 500);
     }
 
+    /**
+     * Endpoint to retrieve all or specific contact request information.
+     * Endpoint only allows GET
+     */
     protected function contact($args) {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if (count($args)) {
@@ -70,6 +88,10 @@ class admin extends Router{
         }
     }
 
+    /**
+     * Endpoint to delete contact requests
+     * Endpoint only allows POST
+     */
     protected function delete($args) {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST'){
             $this->abort(405);
