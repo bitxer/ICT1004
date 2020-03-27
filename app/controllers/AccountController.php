@@ -9,7 +9,7 @@ class AccountController
         if($_SESSION[SESSION_RIGHTS] == AUTH_LOGIN || $_SESSION[SESSION_RIGHTS] == AUTH_ADMIN){
             $loginid = $_SESSION[SESSION_LOGIN];
             $data = get_user('*', ['loginid' => ["=", $loginid]]);
-            return $data[0];
+            return $data == NULL ? NULL : $data[0];
         } else {
             return NULL;
         }
@@ -42,27 +42,25 @@ class AccountController
         $email = $this->sanitize_input($_POST["email"]);
         $key = '';
         $val = '';
+        $keyval = (array) null;
         $msg = '';
-
-
-        
         switch ($_POST["update"]) {
                 //when update user id button is pressed
             case 'bprofile':
                 if (empty($uid)) {
                     $errorMsg .= "User id is required <br>";
                     $success = false;
-                    //break;
                 } else {
                     $key = 'loginid';
                     $val = $uid;
+                    $keyval['loginid'] = $uid;
                     $msg = 'Profile';
                     $success = true;
                 }
+
                 if (empty($email)) {
                     $errorMsg .= "Email is required.<br>";
                     $success = false;
-                    //break;
                 } else {
                     // Additional check to make sure e-mail address is well-formed.
                     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -72,16 +70,19 @@ class AccountController
                         echo $email;
                         $key = 'email';
                         $val = $email;
+                        $keyval['email'] = $email;
                         $msg = 'Profile';
                         $success = true;
                     }
                 }
+
                 if (empty($name)) {
                     $errorMsg .= "Name is required <br>";
                     $success = false;
                 } else {
                     $key = 'name';
                     $val = $name;
+                    $keyval['name'] = $name;
                     $msg = 'Profile';
                     $success = true;
                 }
@@ -115,14 +116,14 @@ class AccountController
 
 
         if ($success) {
-            $_SESSION[SESSION_LOGIN] = $uid == "" ? $_SESSION[SESSION_LOGIN] : $uid;
             $values = [$key => $val];
-            foreach ($values as $key => $val) {
+            foreach ($keyval as $key => $val) {
                 if ($val != null || $val != " ") {
                     $user->setValue($key, $val);
                 }
             }
             
+            $_SESSION[SESSION_LOGIN] = $uid == "" ? $_SESSION[SESSION_LOGIN] : $uid;
             $msg .= " have been successfully updated <br>";
             //$_SESSION['msg'] = $msg;
             if($p == true){
